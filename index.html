@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to gotran’s documentation! &mdash; gotran 1.0 documentation</title>
+  <title>Gotran - General ODE TRAnslator &mdash; gotran 1.0 documentation</title>
   
 
   
@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="gotran" href="modules.html" /> 
+    <link rel="next" title="gotran package" href="gotran.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -77,8 +77,9 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">gotran</a></li>
+              <p class="caption"><span class="caption-text">Programmers reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gotran.html">gotran package</a></li>
 </ul>
 
             
@@ -124,7 +125,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>Welcome to gotran’s documentation!</li>
+      <li>Gotran - General ODE TRAnslator</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -143,79 +144,55 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="welcome-to-gotran-s-documentation">
-<h1>Welcome to gotran’s documentation!<a class="headerlink" href="#welcome-to-gotran-s-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">gotran</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="gotran.html">gotran package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="gotran.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="gotran.algorithms.html">gotran.algorithms package</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="gotran.algorithms.html#submodules">Submodules</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.algorithms.html#module-gotran.algorithms.symbolicnewtonsolution">gotran.algorithms.symbolicnewtonsolution module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.algorithms.html#module-gotran.algorithms">Module contents</a></li>
+  <div class="section" id="gotran-general-ode-translator">
+<h1>Gotran - General ODE TRAnslator<a class="headerlink" href="#gotran-general-ode-translator" title="Permalink to this headline">¶</a></h1>
+<p>Gotran:</p>
+<ul class="simple">
+<li>provides a Python interface to declare arbitrary ODEs.</li>
+<li>provides an interface for generating CUDA/C/C++/Python/Matlab code
+for a number of functions including the right hand side and symbolic
+generation of a Jacobian.</li>
+<li>is intentionally lightweight, and could be interfaced by other
+Python libraries needing functionalities to abstract a general ODE.</li>
+<li>depends on NumPy, and on SymPy. See further instructions in …</li>
+<li>can load models from external ODE desciption files such as CellML</li>
 </ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="gotran.codegeneration.html">gotran.codegeneration package</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="gotran.codegeneration.html#submodules">Submodules</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.codegeneration.html#module-gotran.codegeneration.algorithmcomponents">gotran.codegeneration.algorithmcomponents module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.codegeneration.html#module-gotran.codegeneration.avoidsympycontractions">gotran.codegeneration.avoidsympycontractions module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.codegeneration.html#module-gotran.codegeneration.codecomponent">gotran.codegeneration.codecomponent module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.codegeneration.html#module-gotran.codegeneration.codegenerators">gotran.codegeneration.codegenerators module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.codegeneration.html#module-gotran.codegeneration.compilemodule">gotran.codegeneration.compilemodule module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.codegeneration.html#module-gotran.codegeneration.latexcodegenerator">gotran.codegeneration.latexcodegenerator module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.codegeneration.html#module-gotran.codegeneration.oderepresentation">gotran.codegeneration.oderepresentation module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.codegeneration.html#module-gotran.codegeneration.solvercomponents">gotran.codegeneration.solvercomponents module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.codegeneration.html#module-gotran.codegeneration.sympy_cse">gotran.codegeneration.sympy_cse module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.codegeneration.html#module-gotran.codegeneration">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="gotran.common.html">gotran.common package</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="gotran.common.html#submodules">Submodules</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.common.html#module-gotran.common.dicts">gotran.common.dicts module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.common.html#module-gotran.common.disk">gotran.common.disk module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.common.html#module-gotran.common.options">gotran.common.options module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.common.html#module-gotran.common">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="gotran.input.html">gotran.input package</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="gotran.input.html#submodules">Submodules</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.input.html#module-gotran.input.cellml">gotran.input.cellml module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.input.html#module-gotran.input.mathml">gotran.input.mathml module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.input.html#module-gotran.input">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="gotran.model.html">gotran.model package</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="gotran.model.html#submodules">Submodules</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.model.html#module-gotran.model.cellmodel">gotran.model.cellmodel module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.model.html#module-gotran.model.expressions">gotran.model.expressions module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.model.html#module-gotran.model.loadmodel">gotran.model.loadmodel module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.model.html#module-gotran.model.ode">gotran.model.ode module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.model.html#module-gotran.model.odecomponent">gotran.model.odecomponent module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.model.html#module-gotran.model.odeobjects">gotran.model.odeobjects module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.model.html#module-gotran.model.utils">gotran.model.utils module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.model.html#module-gotran.model">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="gotran.solver.html">gotran.solver package</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="gotran.solver.html#submodules">Submodules</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.solver.html#module-gotran.solver.odesolver">gotran.solver.odesolver module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.solver.html#module-gotran.solver.scipysolver">gotran.solver.scipysolver module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.solver.html#module-gotran.solver.sundialssolver">gotran.solver.sundialssolver module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.solver.html#module-gotran.solver.utils">gotran.solver.utils module</a></li>
-<li class="toctree-l5"><a class="reference internal" href="gotran.solver.html#module-gotran.solver">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="gotran.html#module-gotran">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<p>Source code can be found at <a class="reference external" href="https://bitbucket.org/finsberg/gotran">https://bitbucket.org/finsberg/gotran</a> See
+the installation instructions for details on how to install Gotran.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>You can install gotran with either with <a class="reference external" href="https://pypi.org/project/gotran/">pip</a>:</p>
+<div class="code shell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">gotran</span>
+</pre></div>
+</div>
+<p>or if you want the latest features, you can install from <a class="reference external" href="https://bitbucket.org/finsberg/gotran">source</a>:</p>
+<div class="code shell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">finsberg</span><span class="nd">@bitbucket</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">finsberg</span><span class="o">/</span><span class="n">gotran</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="source-code">
+<h2>Source code<a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h2>
+<p>Gotran is orginally developed by Johan Hake, and the original
+source code can be found in his <a class="reference external" href="https://bitbucket.org/johanhake/gotran">repoistory</a>.
+The current maintained version can be foud <a class="reference external" href="https://bitbucket.org/finsberg/gotran">here</a>.</p>
+</div>
+<div class="section" id="contributors">
+<h2>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">¶</a></h2>
+<p>The main contributors are</p>
+<ul class="simple">
+<li>Henrik Finsberg (<a class="reference external" href="mailto:henriknf&#37;&#52;&#48;simula&#46;no">henriknf<span>&#64;</span>simula<span>&#46;</span>no</a>)</li>
+<li>Johan Hake (<a class="reference external" href="mailto:hake&#46;dev&#37;&#52;&#48;gmail&#46;com">hake<span>&#46;</span>dev<span>&#64;</span>gmail<span>&#46;</span>com</a>)</li>
 </ul>
 </div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>GNU GPLv3</p>
 <div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Programmers reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gotran.html">gotran package</a></li>
+</ul>
+</div>
 </div>
 </div>
 <div class="section" id="indices-and-tables">
@@ -235,7 +212,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="modules.html" class="btn btn-neutral float-right" title="gotran" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="gotran.html" class="btn btn-neutral float-right" title="gotran package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
