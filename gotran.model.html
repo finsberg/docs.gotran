@@ -1,0 +1,2711 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>gotran.model package &mdash; gotran 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="gotran.solver package" href="gotran.solver.html" />
+    <link rel="prev" title="gotran.input package" href="gotran.input.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> gotran
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">gotran</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="gotran.html">gotran package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="gotran.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="gotran.algorithms.html">gotran.algorithms package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gotran.codegeneration.html">gotran.codegeneration package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gotran.common.html">gotran.common package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gotran.input.html">gotran.input package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">gotran.model package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gotran.solver.html">gotran.solver package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gotran.html#module-gotran">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">gotran</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">gotran</a> &raquo;</li>
+        
+          <li><a href="gotran.html">gotran package</a> &raquo;</li>
+        
+      <li>gotran.model package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/gotran.model.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gotran-model-package">
+<h1>gotran.model package<a class="headerlink" href="#gotran-model-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-gotran.model.cellmodel">
+<span id="gotran-model-cellmodel-module"></span><h2>gotran.model.cellmodel module<a class="headerlink" href="#module-gotran.model.cellmodel" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="gotran.model.cellmodel.CellModel">
+<em class="property">class </em><code class="descclassname">gotran.model.cellmodel.</code><code class="descname">CellModel</code><span class="sig-paren">(</span><em>name_</em>, <em>ns=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.cellmodel.CellModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.ode.ODE</span></code></a></p>
+<p>Basic class for storing information of a cell model</p>
+<p>You can either initialize an empty CellModel similar to
+an ODE</p>
+<p>(Maybe if we can create a library of th cellmodels
+then it the string matched that of the library we return
+the model in the library, e.g <cite>cell = CellModel(“Noble_1962”)`</cite> ?? )
+Or you can initialize the cell using an existing ODE
+If you have an ODE and want to have a cell, then save the
+ODE to an <a href="#id1"><span class="problematic" id="id2">*</span></a>.ode file and load it using <cite>load_cell`</cite> (in stead of
+<cite>load_ode`</cite>)</p>
+<p class="rubric">Example</p>
+<p class="rubric">Example</p>
+<dl class="attribute">
+<dt id="gotran.model.cellmodel.CellModel.component_names">
+<code class="descname">component_names</code><a class="headerlink" href="#gotran.model.cellmodel.CellModel.component_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.cellmodel.CellModel.currents">
+<code class="descname">currents</code><a class="headerlink" href="#gotran.model.cellmodel.CellModel.currents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of the currents used in the
+computation of the membrane potential.
+Note that intermediate currents (not involved in
+th computation of the membrane potential)
+are not retured</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.cellmodel.CellModel.get_beattime">
+<code class="descname">get_beattime</code><span class="sig-paren">(</span><em>dt=1.0</em>, <em>extra=60.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.get_beattime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.cellmodel.CellModel.get_beattime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number timepoints for one beat</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Time increment in the same time unit
+as the model</li>
+<li><strong>extra</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Add some extra time (in ms) to prolonge the
+the time. Default 60 ms</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.cellmodel.CellModel.get_component">
+<code class="descname">get_component</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.get_component"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.cellmodel.CellModel.get_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the component with the given name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of the component</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>par</strong> – The component</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ODECompoenent</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.cellmodel.CellModel.get_intermediate">
+<code class="descname">get_intermediate</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.get_intermediate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.cellmodel.CellModel.get_intermediate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the intermediate with the given name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of the intermediate</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>par</strong> – The parameter</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#gotran.model.odeobjects.Parameter" title="gotran.model.odeobjects.Parameter">Parameter</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.cellmodel.CellModel.get_parameter">
+<code class="descname">get_parameter</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.get_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.cellmodel.CellModel.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the parameter with the given name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of the parameter</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>par</strong> – The parameter</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#gotran.model.odeobjects.Parameter" title="gotran.model.odeobjects.Parameter">Parameter</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.cellmodel.CellModel.get_state">
+<code class="descname">get_state</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.get_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.cellmodel.CellModel.get_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the state with the given name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of the state variable</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>par</strong> – The state</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#gotran.model.odeobjects.Parameter" title="gotran.model.odeobjects.Parameter">Parameter</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.cellmodel.CellModel.get_time_steps">
+<code class="descname">get_time_steps</code><span class="sig-paren">(</span><em>nbeats=1</em>, <em>t1=None</em>, <em>dt=1.0</em>, <em>t0=0.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.get_time_steps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.cellmodel.CellModel.get_time_steps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get list with time steps given the number
+of beats and time increment</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nbeats</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Nuber of beats (Default:1)</li>
+<li><strong>dt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Time increament between two time steps. (Default:1.0)
+Note that you need to think about the time unit.
+If time unit is <cite>ms</cite> then dt = 1.0 is probably OK, but
+if time unit is <cite>s</cite> then dt should probably be lower</li>
+<li><strong>t1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – End time. If not provided then end time will determined from
+the number of beats</li>
+<li><strong>t0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Start time (Default: 0.0)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.cellmodel.CellModel.intermediate_symbols">
+<code class="descname">intermediate_symbols</code><a class="headerlink" href="#gotran.model.cellmodel.CellModel.intermediate_symbols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.cellmodel.CellModel.intermediate_unit">
+<code class="descname">intermediate_unit</code><span class="sig-paren">(</span><em>name</em>, <em>unit_type='si'</em>, <em>return_factor=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.intermediate_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.cellmodel.CellModel.intermediate_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get unit of intermediate expression
+Note that we neglect units within a funtion like
+exponential and logaritm.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of intermediate</li>
+<li><strong>unit_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Type of unit, options <cite>si</cite>, <cite>base</cite> or <cite>original</cite></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>unit</strong> – Unit of the expression for the intermediate</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.cellmodel.CellModel.parameter_symbols">
+<code class="descname">parameter_symbols</code><a class="headerlink" href="#gotran.model.cellmodel.CellModel.parameter_symbols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.cellmodel.CellModel.parameter_values">
+<code class="descname">parameter_values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.parameter_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.cellmodel.CellModel.parameter_values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.cellmodel.CellModel.residual_current">
+<code class="descname">residual_current</code><span class="sig-paren">(</span><em>t</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.residual_current"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.cellmodel.CellModel.residual_current" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.cellmodel.CellModel.set_parameter">
+<code class="descname">set_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.set_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.cellmodel.CellModel.set_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the parameter in the model to a
+given value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of the parmaeter</li>
+<li><strong>value</strong> (<em>scalar</em><em>, </em><a class="reference internal" href="gotran.html#gotran.ScalarParam" title="gotran.ScalarParam"><em>ScalarParam</em></a>) – The new value of the parameter. Note that
+if the parameter is of type <cite>ScalarParam</cite>
+while the provided value is a scalar then the value
+will be updated while keeping the unit</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.cellmodel.CellModel.set_residual_current">
+<code class="descname">set_residual_current</code><span class="sig-paren">(</span><em>t</em>, <em>current</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.set_residual_current"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.cellmodel.CellModel.set_residual_current" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set rediual current</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>t</strong> (<em>array</em>) – List of times</li>
+<li><strong>current</strong> (<em>array</em>) – List with residual current</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.cellmodel.CellModel.simulate">
+<code class="descname">simulate</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.simulate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.cellmodel.CellModel.simulate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulate the ODE to <span class="math notranslate nohighlight">\(t_{\mathrm{end}}\)</span>
+with the given number points</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>t_end</strong> (<em>scalar</em>) – The end time</li>
+<li><strong>nbeats</strong> (<em>scalar</em>) – Number of beats based on stimulus protocol</li>
+<li><strong>npts</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of communication points used in the solver</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.cellmodel.CellModel.state_symbols">
+<code class="descname">state_symbols</code><a class="headerlink" href="#gotran.model.cellmodel.CellModel.state_symbols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.cellmodel.CellModel.state_values">
+<code class="descname">state_values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.state_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.cellmodel.CellModel.state_values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.cellmodel.CellModel.stimulation_parameters">
+<code class="descname">stimulation_parameters</code><a class="headerlink" href="#gotran.model.cellmodel.CellModel.stimulation_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.cellmodel.CellModel.stimulation_protocol">
+<code class="descname">stimulation_protocol</code><a class="headerlink" href="#gotran.model.cellmodel.CellModel.stimulation_protocol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.cellmodel.CellModel.update_parameter">
+<code class="descname">update_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>value=None</em>, <em>factor=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.update_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.cellmodel.CellModel.update_parameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="gotran.model.cellmodel.gccm">
+<code class="descclassname">gotran.model.cellmodel.</code><code class="descname">gccm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#gccm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.cellmodel.gccm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the current CellModel</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-gotran.model.expressions">
+<span id="gotran-model-expressions-module"></span><h2>gotran.model.expressions module<a class="headerlink" href="#module-gotran.model.expressions" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="gotran.model.expressions.Expression">
+<em class="property">class </em><code class="descclassname">gotran.model.expressions.</code><code class="descname">Expression</code><span class="sig-paren">(</span><em>name</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#Expression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.expressions.Expression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.ODEValueObject" title="gotran.model.odeobjects.ODEValueObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEValueObject</span></code></a></p>
+<p>class for all expressions such as intermediates and derivatives</p>
+<dl class="attribute">
+<dt id="gotran.model.expressions.Expression.dependent">
+<code class="descname">dependent</code><a class="headerlink" href="#gotran.model.expressions.Expression.dependent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.expressions.Expression.expr">
+<code class="descname">expr</code><a class="headerlink" href="#gotran.model.expressions.Expression.expr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the stored expression</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.expressions.Expression.is_state_expression">
+<code class="descname">is_state_expression</code><a class="headerlink" href="#gotran.model.expressions.Expression.is_state_expression" title="Permalink to this definition">¶</a></dt>
+<dd><p>True of expression is a state expression</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.expressions.Expression.replace_expr">
+<code class="descname">replace_expr</code><span class="sig-paren">(</span><em>*replace_dicts</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#Expression.replace_expr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.expressions.Expression.replace_expr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace registered expression using passed replace_dicts</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.expressions.Expression.sym">
+<code class="descname">sym</code><a class="headerlink" href="#gotran.model.expressions.Expression.sym" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.expressions.DerivativeExpression">
+<em class="property">class </em><code class="descclassname">gotran.model.expressions.</code><code class="descname">DerivativeExpression</code><span class="sig-paren">(</span><em>der_expr</em>, <em>dep_var</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#DerivativeExpression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.expressions.DerivativeExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.expressions.Intermediate" title="gotran.model.expressions.Intermediate"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.expressions.Intermediate</span></code></a></p>
+<p>A class for Intermediate derivative expressions</p>
+<dl class="attribute">
+<dt id="gotran.model.expressions.DerivativeExpression.dep_var">
+<code class="descname">dep_var</code><a class="headerlink" href="#gotran.model.expressions.DerivativeExpression.dep_var" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.expressions.DerivativeExpression.der_expr">
+<code class="descname">der_expr</code><a class="headerlink" href="#gotran.model.expressions.DerivativeExpression.der_expr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.expressions.AlgebraicExpression">
+<em class="property">class </em><code class="descclassname">gotran.model.expressions.</code><code class="descname">AlgebraicExpression</code><span class="sig-paren">(</span><em>state</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#AlgebraicExpression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.expressions.AlgebraicExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.expressions.StateExpression" title="gotran.model.expressions.StateExpression"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.expressions.StateExpression</span></code></a></p>
+<p>A class for algebraic expressions which relates a State with an
+expression which should equal to 0</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.expressions.StateExpression">
+<em class="property">class </em><code class="descclassname">gotran.model.expressions.</code><code class="descname">StateExpression</code><span class="sig-paren">(</span><em>name</em>, <em>state</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#StateExpression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.expressions.StateExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.expressions.Expression" title="gotran.model.expressions.Expression"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.expressions.Expression</span></code></a></p>
+<p>An expression which determines a State.</p>
+<dl class="attribute">
+<dt id="gotran.model.expressions.StateExpression.state">
+<code class="descname">state</code><a class="headerlink" href="#gotran.model.expressions.StateExpression.state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.expressions.StateSolution">
+<em class="property">class </em><code class="descclassname">gotran.model.expressions.</code><code class="descname">StateSolution</code><span class="sig-paren">(</span><em>state</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#StateSolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.expressions.StateSolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.expressions.Intermediate" title="gotran.model.expressions.Intermediate"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.expressions.Intermediate</span></code></a></p>
+<p>Sub class of Expression for state solution expressions</p>
+<dl class="attribute">
+<dt id="gotran.model.expressions.StateSolution.state">
+<code class="descname">state</code><a class="headerlink" href="#gotran.model.expressions.StateSolution.state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.expressions.RateExpression">
+<em class="property">class </em><code class="descclassname">gotran.model.expressions.</code><code class="descname">RateExpression</code><span class="sig-paren">(</span><em>to_state</em>, <em>from_state</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#RateExpression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.expressions.RateExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.expressions.Intermediate" title="gotran.model.expressions.Intermediate"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.expressions.Intermediate</span></code></a></p>
+<p>A sub class of Expression holding single rates</p>
+<dl class="attribute">
+<dt id="gotran.model.expressions.RateExpression.states">
+<code class="descname">states</code><a class="headerlink" href="#gotran.model.expressions.RateExpression.states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple of the two states the rate expression describes the rate
+between</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.expressions.Intermediate">
+<em class="property">class </em><code class="descclassname">gotran.model.expressions.</code><code class="descname">Intermediate</code><span class="sig-paren">(</span><em>name</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#Intermediate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.expressions.Intermediate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.expressions.Expression" title="gotran.model.expressions.Expression"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.expressions.Expression</span></code></a></p>
+<p>A class for all Intermediate classes</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.expressions.StateDerivative">
+<em class="property">class </em><code class="descclassname">gotran.model.expressions.</code><code class="descname">StateDerivative</code><span class="sig-paren">(</span><em>state</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#StateDerivative"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.expressions.StateDerivative" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.expressions.StateExpression" title="gotran.model.expressions.StateExpression"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.expressions.StateExpression</span></code></a></p>
+<p>A class for all state derivatives</p>
+<dl class="attribute">
+<dt id="gotran.model.expressions.StateDerivative.sym">
+<code class="descname">sym</code><a class="headerlink" href="#gotran.model.expressions.StateDerivative.sym" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.expressions.IndexedExpression">
+<em class="property">class </em><code class="descclassname">gotran.model.expressions.</code><code class="descname">IndexedExpression</code><span class="sig-paren">(</span><em>basename</em>, <em>indices</em>, <em>expr</em>, <em>shape=None</em>, <em>array_params=None</em>, <em>add_offset=''</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#IndexedExpression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.expressions.IndexedExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.IndexedObject" title="gotran.model.odeobjects.IndexedObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.IndexedObject</span></code></a>, <a class="reference internal" href="#gotran.model.expressions.Expression" title="gotran.model.expressions.Expression"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.expressions.Expression</span></code></a></p>
+<p>An expression which represents an expression with a fixed index
+associated with it</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="gotran.model.expressions.recreate_expression">
+<code class="descclassname">gotran.model.expressions.</code><code class="descname">recreate_expression</code><span class="sig-paren">(</span><em>expr</em>, <em>*replace_dicts</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#recreate_expression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.expressions.recreate_expression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recreate an Expression while applying replace dicts in given order</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-gotran.model.loadmodel">
+<span id="gotran-model-loadmodel-module"></span><h2>gotran.model.loadmodel module<a class="headerlink" href="#module-gotran.model.loadmodel" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="gotran.model.loadmodel.load_ode">
+<code class="descclassname">gotran.model.loadmodel.</code><code class="descname">load_ode</code><span class="sig-paren">(</span><em>filename</em>, <em>name=None</em>, <em>**arguments</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/loadmodel.html#load_ode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.loadmodel.load_ode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load an ODE from file and return the instance</p>
+<p>The method looks for a file with .ode extension.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of the ode file to load</li>
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> (</em><em>optional</em><em>)</em>) – Set the name of ODE (defaults to filename)</li>
+<li><strong>arguments</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em> (</em><em>optional</em><em>)</em>) – Optional arguments which can control loading of model</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gotran.model.loadmodel.exec_ode">
+<code class="descclassname">gotran.model.loadmodel.</code><code class="descname">exec_ode</code><span class="sig-paren">(</span><em>ode_str</em>, <em>name</em>, <em>**arguments</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/loadmodel.html#exec_ode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.loadmodel.exec_ode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute an ode given by a str</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ode_str</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The ode as a str</li>
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of ODE</li>
+<li><strong>arguments</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em> (</em><em>optional</em><em>)</em>) – Optional arguments which can control loading of model</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gotran.model.loadmodel.load_cell">
+<code class="descclassname">gotran.model.loadmodel.</code><code class="descname">load_cell</code><span class="sig-paren">(</span><em>filename</em>, <em>name=None</em>, <em>**arguments</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/loadmodel.html#load_cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.loadmodel.load_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a Cell from file and return the instance</p>
+<p>The method looks for a file with .ode extension.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of the ode file to load</li>
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> (</em><em>optional</em><em>)</em>) – Set the name of ODE (defaults to filename)</li>
+<li><strong>arguments</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em> (</em><em>optional</em><em>)</em>) – Optional arguments which can control loading of model</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gotran.model.loadmodel.get_model_as_python_module">
+<code class="descclassname">gotran.model.loadmodel.</code><code class="descname">get_model_as_python_module</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/loadmodel.html#get_model_as_python_module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.loadmodel.get_model_as_python_module" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-gotran.model.ode">
+<span id="gotran-model-ode-module"></span><h2>gotran.model.ode module<a class="headerlink" href="#module-gotran.model.ode" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="gotran.model.ode.ODE">
+<em class="property">class </em><code class="descclassname">gotran.model.ode.</code><code class="descname">ODE</code><span class="sig-paren">(</span><em>name</em>, <em>ns=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/ode.html#ODE"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ode.ODE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odecomponent.ODEComponent" title="gotran.model.odecomponent.ODEComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odecomponent.ODEComponent</span></code></a></p>
+<p>Root ODEComponent</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the ODE</li>
+<li><strong>ns</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em> (</em><em>optional</em><em>)</em>) – A namespace which will be filled with declared ODE symbols</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="gotran.model.ode.ODE.expanded_expression">
+<code class="descname">expanded_expression</code><span class="sig-paren">(</span><em>expr</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/ode.html#ODE.expanded_expression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ode.ODE.expanded_expression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the expanded expression.</p>
+<p>The returned expanded expression consists of the original
+expression given by it basics objects (States, Parameters and
+IndexedObjects)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ode.ODE.extract_components">
+<code class="descname">extract_components</code><span class="sig-paren">(</span><em>name</em>, <em>*components</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/ode.html#ODE.extract_components"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ode.ODE.extract_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an ODE from a number of components</p>
+<p>Returns an ODE including the components</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the created ODE</li>
+<li><strong>components</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A variable len tuple of str describing the components</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ode.ODE.finalize">
+<code class="descname">finalize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/ode.html#ODE.finalize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ode.ODE.finalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finalize the ODE</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ode.ODE.import_ode">
+<code class="descname">import_ode</code><span class="sig-paren">(</span><em>ode</em>, <em>prefix=''</em>, <em>components=None</em>, <em>**arguments</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/ode.html#ODE.import_ode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ode.ODE.import_ode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a Model into the present Model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><a class="reference internal" href="#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The ode which should be added. If ode is a str an
+ODE stored in that file will be loaded. If it is an ODE it will be
+added directly to the present ODE.</li>
+<li><strong>prefix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> (</em><em>optional</em><em>)</em>) – A prefix which all state, parameters and intermediates are
+prefixed with.</li>
+<li><strong>components</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a><em>, </em><em>tuple of str</em><em> (</em><em>optional</em><em>)</em>) – A list of components which will either be extracted or excluded
+from the imported model. If not given the whole ODE will be imported.</li>
+<li><strong>arguments</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em> (</em><em>optional</em><em>)</em>) – Optional arguments which can control loading of model</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ode.ODE.is_dae">
+<code class="descname">is_dae</code><a class="headerlink" href="#gotran.model.ode.ODE.is_dae" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if ODE is a DAE</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ode.ODE.mass_matrix">
+<code class="descname">mass_matrix</code><a class="headerlink" href="#gotran.model.ode.ODE.mass_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the mass matrix as a sympy.Matrix</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ode.ODE.ns">
+<code class="descname">ns</code><a class="headerlink" href="#gotran.model.ode.ODE.ns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ode.ODE.present_component">
+<code class="descname">present_component</code><a class="headerlink" href="#gotran.model.ode.ODE.present_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the present component</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ode.ODE.register_ode_object">
+<code class="descname">register_ode_object</code><span class="sig-paren">(</span><em>obj</em>, <em>comp</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/ode.html#ODE.register_ode_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ode.ODE.register_ode_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register an ODE object in the root ODEComponent</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ode.ODE.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>basename=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/ode.html#ODE.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ode.ODE.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save ODE to file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>basename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> (</em><em>optional</em><em>)</em>) – The basename of the file which the ode will be saved to, if not
+given the basename will be the same as the name of the ode.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ode.ODE.signature">
+<code class="descname">signature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/ode.html#ODE.signature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ode.ODE.signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a signature uniquely defining the ODE</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-gotran.model.odecomponent">
+<span id="gotran-model-odecomponent-module"></span><h2>gotran.model.odecomponent module<a class="headerlink" href="#module-gotran.model.odecomponent" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="gotran.model.odecomponent.ODEComponent">
+<em class="property">class </em><code class="descclassname">gotran.model.odecomponent.</code><code class="descname">ODEComponent</code><span class="sig-paren">(</span><em>name</em>, <em>parent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEObject</span></code></a></p>
+<p>Base class for all ODE components.</p>
+<dl class="method">
+<dt id="gotran.model.odecomponent.ODEComponent.add_algebraic">
+<code class="descname">add_algebraic</code><span class="sig-paren">(</span><em>state</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_algebraic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.add_algebraic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an algebraic expression which relates a State with an
+expression which should equal to 0</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>state</strong> (<a class="reference internal" href="#gotran.model.odeobjects.State" title="gotran.model.odeobjects.State"><em>State</em></a>) – The State which the algebraic expression should determine</li>
+<li><strong>expr</strong> (<em>sympy.Basic</em>) – The expression that should equal 0</li>
+<li><strong>dependent</strong> (<a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><em>ODEObject</em></a>) – If given the count of this expression will follow as a
+fractional count based on the count of the dependent object</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.odecomponent.ODEComponent.add_comment">
+<code class="descname">add_comment</code><span class="sig-paren">(</span><em>comment</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_comment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.add_comment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a comment to the ODE component</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>comment</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The comment</li>
+<li><strong>dependent</strong> (<a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><em>ODEObject</em></a>) – If given the count of this comment will follow as a
+fractional count based on the count of the dependent object</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.odecomponent.ODEComponent.add_component">
+<code class="descname">add_component</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_component"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.add_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a sub ODEComponent</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.odecomponent.ODEComponent.add_derivative">
+<code class="descname">add_derivative</code><span class="sig-paren">(</span><em>der_expr</em>, <em>dep_var</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_derivative"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.add_derivative" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a derivative expression</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>der_expr</strong> (<a class="reference internal" href="#gotran.model.expressions.Expression" title="gotran.model.expressions.Expression"><em>Expression</em></a><em>, </em><a class="reference internal" href="#gotran.model.odeobjects.State" title="gotran.model.odeobjects.State"><em>State</em></a><em>, </em><em>sympy.AppliedUndef</em>) – The Expression or State which is differentiated</li>
+<li><strong>dep_var</strong> (<a class="reference internal" href="#gotran.model.odeobjects.State" title="gotran.model.odeobjects.State"><em>State</em></a><em>, </em><a class="reference internal" href="#gotran.model.odeobjects.Time" title="gotran.model.odeobjects.Time"><em>Time</em></a><em>, </em><a class="reference internal" href="#gotran.model.expressions.Expression" title="gotran.model.expressions.Expression"><em>Expression</em></a><em>, </em><em>sympy.AppliedUndef</em><em>, </em><em>sympy.Symbol</em>) – The dependent variable</li>
+<li><strong>expr</strong> (<em>sympy.Basic</em>) – The expression which the differetiation should be equal</li>
+<li><strong>dependent</strong> (<a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><em>ODEObject</em></a>) – If given the count of this expression will follow as a
+fractional count based on the count of the dependent object</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.odecomponent.ODEComponent.add_intermediate">
+<code class="descname">add_intermediate</code><span class="sig-paren">(</span><em>name</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_intermediate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.add_intermediate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register an intermediate math expression</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the expression</li>
+<li><strong>expr</strong> (<em>sympy.Basic</em><em>, </em><em>scalar</em>) – The expression</li>
+<li><strong>dependent</strong> (<a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><em>ODEObject</em></a>) – If given the count of this expression will follow as a
+fractional count based on the count of the dependent object</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.odecomponent.ODEComponent.add_parameter">
+<code class="descname">add_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>init</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.add_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a parameter to the component</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the parameter</li>
+<li><strong>init</strong> (<em>scalar</em><em>, </em><a class="reference internal" href="gotran.html#gotran.ScalarParam" title="gotran.ScalarParam"><em>ScalarParam</em></a>) – The initial value of the parameter</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.odecomponent.ODEComponent.add_parameters">
+<code class="descname">add_parameters</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.add_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a number of parameters to the current ODEComponent</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>args</strong> (<em>list of tuples</em>) – A list of tuples with parameters and init values. Use this to
+set parameters if you need them ordered.</li>
+<li><strong>kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – A dict with parameters</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.odecomponent.ODEComponent.add_solve_state">
+<code class="descname">add_solve_state</code><span class="sig-paren">(</span><em>state</em>, <em>expr</em>, <em>dependent=None</em>, <em>**solve_flags</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_solve_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.add_solve_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a solve state expression which tries to find a solution to
+a state by solving an algebraic expression</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>state</strong> (<a class="reference internal" href="#gotran.model.odeobjects.State" title="gotran.model.odeobjects.State"><em>State</em></a><em>, </em><em>AppliedUndef</em>) – The State that is solved</li>
+<li><strong>expr</strong> (<em>sympy.Basic</em>) – The expression that determines the state</li>
+<li><strong>dependent</strong> (<a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><em>ODEObject</em></a>) – If given the count of this expression will follow as a
+fractional count based on the count of the dependent object</li>
+<li><strong>solve_flags</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Flags that are passed directly to sympy.solve</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.odecomponent.ODEComponent.add_state">
+<code class="descname">add_state</code><span class="sig-paren">(</span><em>name</em>, <em>init</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.add_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a state to the component</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the state variable</li>
+<li><strong>init</strong> (<em>scalar</em><em>, </em><a class="reference internal" href="gotran.html#gotran.ScalarParam" title="gotran.ScalarParam"><em>ScalarParam</em></a>) – The initial value of the state</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.odecomponent.ODEComponent.add_state_solution">
+<code class="descname">add_state_solution</code><span class="sig-paren">(</span><em>state</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_state_solution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.add_state_solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a solution expression for a state</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>state</strong> (<a class="reference internal" href="#gotran.model.odeobjects.State" title="gotran.model.odeobjects.State"><em>State</em></a><em>, </em><em>AppliedUndef</em>) – The State that is solved</li>
+<li><strong>expr</strong> (<em>sympy.Basic</em>) – The expression that determines the state</li>
+<li><strong>dependent</strong> (<a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><em>ODEObject</em></a>) – If given the count of this expression will follow as a
+fractional count based on the count of the dependent object</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.odecomponent.ODEComponent.add_states">
+<code class="descname">add_states</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_states"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.add_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a number of states to the current ODEComponent</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>args</strong> (<em>list of tuples</em>) – A list of tuples with states and init values. Use this to
+set states if you need them ordered.</li>
+<li><strong>kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – A dict with states</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.comments">
+<code class="descname">comments</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.comments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.components">
+<code class="descname">components</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all child components in the component</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.odecomponent.ODEComponent.finalize_component">
+<code class="descname">finalize_component</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.finalize_component"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.finalize_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called whenever the component should be finalized</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.full_state_vector">
+<code class="descname">full_state_vector</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.full_state_vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sympy column vector with all full states</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.full_states">
+<code class="descname">full_states</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.full_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all states in the component and its children that are
+not solved and determined by a state expression</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.odecomponent.ODEComponent.get_object">
+<code class="descname">get_object</code><span class="sig-paren">(</span><em>name</em>, <em>reversed=True</em>, <em>return_component=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.get_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.get_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.intermediates">
+<code class="descname">intermediates</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.intermediates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all intermediates</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.is_complete">
+<code class="descname">is_complete</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.is_complete" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if the component and all its children are locally complete</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.is_finalized">
+<code class="descname">is_finalized</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.is_finalized" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.is_locally_complete">
+<code class="descname">is_locally_complete</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.is_locally_complete" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if the number of non-solved states are the same as the number
+of registered state expressions</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.num_components">
+<code class="descname">num_components</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.num_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of all components including it self</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.num_full_states">
+<code class="descname">num_full_states</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.num_full_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of all full states</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.num_intermediates">
+<code class="descname">num_intermediates</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.num_intermediates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of all intermediates</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.num_parameters">
+<code class="descname">num_parameters</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.num_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of all parameters</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.num_rate_expressions">
+<code class="descname">num_rate_expressions</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.num_rate_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number rate expressions</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.num_state_expressions">
+<code class="descname">num_state_expressions</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.num_state_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number state expressions</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.num_states">
+<code class="descname">num_states</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.num_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of all states</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.parameters">
+<code class="descname">parameters</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all parameters in the component</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.parent">
+<code class="descname">parent</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the the parent if it is still alive. Otherwise it will return None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.rate_expressions">
+<code class="descname">rate_expressions</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.rate_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of rate expressions</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.root">
+<code class="descname">root</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.root" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the root ODE component (the ode)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.state_expressions">
+<code class="descname">state_expressions</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.state_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of state expressions</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.states">
+<code class="descname">states</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all states in the component and its children</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.t">
+<code class="descname">t</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the time symbol</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odecomponent.ODEComponent.time">
+<code class="descname">time</code><a class="headerlink" href="#gotran.model.odecomponent.ODEComponent.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the time</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-gotran.model.odeobjects">
+<span id="gotran-model-odeobjects-module"></span><h2>gotran.model.odeobjects module<a class="headerlink" href="#module-gotran.model.odeobjects" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="gotran.model.odeobjects.ODEObject">
+<em class="property">class </em><code class="descclassname">gotran.model.odeobjects.</code><code class="descname">ODEObject</code><span class="sig-paren">(</span><em>name</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#ODEObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odeobjects.ODEObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Base container class for all ODEObjects</p>
+<dl class="attribute">
+<dt id="gotran.model.odeobjects.ODEObject.name">
+<code class="descname">name</code><a class="headerlink" href="#gotran.model.odeobjects.ODEObject.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.odeobjects.ODEObject.rename">
+<code class="descname">rename</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#ODEObject.rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odeobjects.ODEObject.rename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rename the ODEObject</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.odeobjects.Comment">
+<em class="property">class </em><code class="descclassname">gotran.model.odeobjects.</code><code class="descname">Comment</code><span class="sig-paren">(</span><em>comment</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#Comment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odeobjects.Comment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEObject</span></code></a></p>
+<p>A Comment. To keep track of user comments in an ODE</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.odeobjects.ODEValueObject">
+<em class="property">class </em><code class="descclassname">gotran.model.odeobjects.</code><code class="descname">ODEValueObject</code><span class="sig-paren">(</span><em>name</em>, <em>value</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#ODEValueObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odeobjects.ODEValueObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEObject</span></code></a></p>
+<p>A class for all ODE objects which has a value</p>
+<dl class="attribute">
+<dt id="gotran.model.odeobjects.ODEValueObject.param">
+<code class="descname">param</code><a class="headerlink" href="#gotran.model.odeobjects.ODEValueObject.param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.odeobjects.ODEValueObject.rename">
+<code class="descname">rename</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#ODEValueObject.rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odeobjects.ODEValueObject.rename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rename the ODEValueObject</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odeobjects.ODEValueObject.sym">
+<code class="descname">sym</code><a class="headerlink" href="#gotran.model.odeobjects.ODEValueObject.sym" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odeobjects.ODEValueObject.unit">
+<code class="descname">unit</code><a class="headerlink" href="#gotran.model.odeobjects.ODEValueObject.unit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.odeobjects.ODEValueObject.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#ODEValueObject.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odeobjects.ODEValueObject.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odeobjects.ODEValueObject.value">
+<code class="descname">value</code><a class="headerlink" href="#gotran.model.odeobjects.ODEValueObject.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.odeobjects.Parameter">
+<em class="property">class </em><code class="descclassname">gotran.model.odeobjects.</code><code class="descname">Parameter</code><span class="sig-paren">(</span><em>name</em>, <em>init</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#Parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odeobjects.Parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.ODEValueObject" title="gotran.model.odeobjects.ODEValueObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEValueObject</span></code></a></p>
+<p>class for a Parameter</p>
+<dl class="attribute">
+<dt id="gotran.model.odeobjects.Parameter.init">
+<code class="descname">init</code><a class="headerlink" href="#gotran.model.odeobjects.Parameter.init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.odeobjects.State">
+<em class="property">class </em><code class="descclassname">gotran.model.odeobjects.</code><code class="descname">State</code><span class="sig-paren">(</span><em>name</em>, <em>init</em>, <em>time</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#State"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odeobjects.State" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.ODEValueObject" title="gotran.model.odeobjects.ODEValueObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEValueObject</span></code></a></p>
+<p>class for a State variable</p>
+<dl class="attribute">
+<dt id="gotran.model.odeobjects.State.init">
+<code class="descname">init</code><a class="headerlink" href="#gotran.model.odeobjects.State.init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odeobjects.State.is_solved">
+<code class="descname">is_solved</code><a class="headerlink" href="#gotran.model.odeobjects.State.is_solved" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odeobjects.State.sym">
+<code class="descname">sym</code><a class="headerlink" href="#gotran.model.odeobjects.State.sym" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.odeobjects.Time">
+<em class="property">class </em><code class="descclassname">gotran.model.odeobjects.</code><code class="descname">Time</code><span class="sig-paren">(</span><em>name</em>, <em>unit='ms'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#Time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odeobjects.Time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.ODEValueObject" title="gotran.model.odeobjects.ODEValueObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEValueObject</span></code></a></p>
+<p>Specialization for a Time class</p>
+<dl class="method">
+<dt id="gotran.model.odeobjects.Time.update_unit">
+<code class="descname">update_unit</code><span class="sig-paren">(</span><em>unit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#Time.update_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odeobjects.Time.update_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update unit. For example if time has unit
+seconds in stead of milliseconds</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.odeobjects.Dt">
+<em class="property">class </em><code class="descclassname">gotran.model.odeobjects.</code><code class="descname">Dt</code><span class="sig-paren">(</span><em>name</em>, <em>unit='ms'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#Dt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odeobjects.Dt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.ODEValueObject" title="gotran.model.odeobjects.ODEValueObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEValueObject</span></code></a></p>
+<p>Specialization for a time step class</p>
+<dl class="method">
+<dt id="gotran.model.odeobjects.Dt.update_unit">
+<code class="descname">update_unit</code><span class="sig-paren">(</span><em>unit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#Dt.update_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odeobjects.Dt.update_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update unit. For example if time has unit
+seconds in stead of milliseconds</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.odeobjects.IndexedObject">
+<em class="property">class </em><code class="descclassname">gotran.model.odeobjects.</code><code class="descname">IndexedObject</code><span class="sig-paren">(</span><em>basename</em>, <em>indices</em>, <em>shape=None</em>, <em>array_params=None</em>, <em>add_offset=''</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#IndexedObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odeobjects.IndexedObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEObject</span></code></a></p>
+<p>An object with a fixed index associated with it</p>
+<dl class="attribute">
+<dt id="gotran.model.odeobjects.IndexedObject.basename">
+<code class="descname">basename</code><a class="headerlink" href="#gotran.model.odeobjects.IndexedObject.basename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="gotran.model.odeobjects.IndexedObject.default_parameters">
+<em class="property">static </em><code class="descname">default_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#IndexedObject.default_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odeobjects.IndexedObject.default_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the default parameters for formating the array</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odeobjects.IndexedObject.indices">
+<code class="descname">indices</code><a class="headerlink" href="#gotran.model.odeobjects.IndexedObject.indices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odeobjects.IndexedObject.offset_str">
+<code class="descname">offset_str</code><a class="headerlink" href="#gotran.model.odeobjects.IndexedObject.offset_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odeobjects.IndexedObject.shape">
+<code class="descname">shape</code><a class="headerlink" href="#gotran.model.odeobjects.IndexedObject.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.odeobjects.IndexedObject.sym">
+<code class="descname">sym</code><a class="headerlink" href="#gotran.model.odeobjects.IndexedObject.sym" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="gotran.model.odeobjects.cmp_to_key">
+<code class="descclassname">gotran.model.odeobjects.</code><code class="descname">cmp_to_key</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gotran.model.odeobjects.cmp_to_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a cmp= function into a key= function.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="gotran.model.odeobjects.cmp">
+<code class="descclassname">gotran.model.odeobjects.</code><code class="descname">cmp</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#cmp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.odeobjects.cmp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-gotran.model.utils">
+<span id="gotran-model-utils-module"></span><h2>gotran.model.utils module<a class="headerlink" href="#module-gotran.model.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="gotran.model.utils.ode_primitives">
+<code class="descclassname">gotran.model.utils.</code><code class="descname">ode_primitives</code><span class="sig-paren">(</span><em>expr</em>, <em>time</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/utils.html#ode_primitives"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.ode_primitives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all ODE primitives</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>expr</strong> (<em>sympy expressio</em>) – A sympy expression of ode symbols</li>
+<li><strong>time</strong> (<em>sympy Symbol</em>) – A Symbol representing time in the ODE</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gotran.model.utils.special_expression">
+<code class="descclassname">gotran.model.utils.</code><code class="descname">special_expression</code><span class="sig-paren">(</span><em>name</em>, <em>root</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/utils.html#special_expression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.special_expression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if an expression name corresponds to a special expression</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.utils.iter_objects">
+<em class="property">class </em><code class="descclassname">gotran.model.utils.</code><code class="descname">iter_objects</code><span class="sig-paren">(</span><em>comp</em>, <em>return_comp=True</em>, <em>only_return_comp=False</em>, <em>reverse=False</em>, <em>*types</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/utils.html#iter_objects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.iter_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A recursive iterator over all objects of a component including its
+childrens</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>comp</strong> (<a class="reference internal" href="#gotran.model.odecomponent.ODEComponent" title="gotran.model.odecomponent.ODEComponent"><em>ODEComponent</em></a>) – The root ODEComponent of the iteration</li>
+<li><strong>reverse</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If True the iteration is done from the last component added</li>
+<li><strong>types</strong> (<em>ODEObject types</em><em> (</em><em>optional</em><em>)</em>) – Only iterate over particular types</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Yields:</th><td class="field-body"><p class="first last"><strong>ode_object</strong> (<em>ODEObject</em>) – All ODEObjects of a component</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="gotran.model.utils.iter_objects.next">
+<code class="descname">next</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/utils.html#iter_objects.next"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.iter_objects.next" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="gotran.model.utils.ode_objects">
+<code class="descclassname">gotran.model.utils.</code><code class="descname">ode_objects</code><span class="sig-paren">(</span><em>comp</em>, <em>*types</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/utils.html#ode_objects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.ode_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of ode objects</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>comp</strong> (<a class="reference internal" href="#gotran.model.odecomponent.ODEComponent" title="gotran.model.odecomponent.ODEComponent"><em>ODEComponent</em></a>) – The root ODEComponent of the list</li>
+<li><strong>types</strong> (<em>ODEObject types</em><em> (</em><em>optional</em><em>)</em>) – Only include objects of type given in types</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gotran.model.utils.ode_components">
+<code class="descclassname">gotran.model.utils.</code><code class="descname">ode_components</code><span class="sig-paren">(</span><em>comp</em>, <em>include_self=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/utils.html#ode_components"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.ode_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of ode components</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>comp</strong> (<a class="reference internal" href="#gotran.model.odecomponent.ODEComponent" title="gotran.model.odecomponent.ODEComponent"><em>ODEComponent</em></a>) – The root ODEComponent of the list</li>
+<li><strong>return_self</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em> (</em><em>optional</em><em>)</em>) – The list will include the passed component if True</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.utils.ODEObjectList">
+<em class="property">class </em><code class="descclassname">gotran.model.utils.</code><code class="descname">ODEObjectList</code><a class="reference internal" href="_modules/gotran/model/utils.html#ODEObjectList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.ODEObjectList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
+<p>Specialized container for ODEObjects. It is a list but adds dict
+access through the name attribute of an ODEObjects</p>
+<dl class="method">
+<dt id="gotran.model.utils.ODEObjectList.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>object</em><span class="sig-paren">)</span> &#x2192; None -- append object to end<a class="reference internal" href="_modules/gotran/model/utils.html#ODEObjectList.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.ODEObjectList.append" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.utils.ODEObjectList.count">
+<code class="descname">count</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span> &#x2192; integer -- return number of occurrences of value<a class="reference internal" href="_modules/gotran/model/utils.html#ODEObjectList.count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.ODEObjectList.count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.utils.ODEObjectList.extend">
+<code class="descname">extend</code><span class="sig-paren">(</span><em>iterable</em><span class="sig-paren">)</span> &#x2192; None -- extend list by appending elements from the iterable<a class="reference internal" href="_modules/gotran/model/utils.html#ODEObjectList.extend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.ODEObjectList.extend" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.utils.ODEObjectList.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/utils.html#ODEObjectList.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.ODEObjectList.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.utils.ODEObjectList.index">
+<code class="descname">index</code><span class="sig-paren">(</span><em>value</em><span class="optional">[</span>, <em>start</em><span class="optional">[</span>, <em>stop</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; integer -- return first index of value.<a class="reference internal" href="_modules/gotran/model/utils.html#ODEObjectList.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.ODEObjectList.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raises ValueError if the value is not present.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.utils.ODEObjectList.insert">
+<code class="descname">insert</code><span class="sig-paren">(</span><em>index</em>, <em>item</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/utils.html#ODEObjectList.insert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.ODEObjectList.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>L.insert(index, object) – insert object before index</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.utils.ODEObjectList.keys">
+<code class="descname">keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/utils.html#ODEObjectList.keys"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.ODEObjectList.keys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.utils.ODEObjectList.pop">
+<code class="descname">pop</code><span class="sig-paren">(</span><span class="optional">[</span><em>index</em><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; item -- remove and return item at index (default last).<a class="reference internal" href="_modules/gotran/model/utils.html#ODEObjectList.pop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.ODEObjectList.pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raises IndexError if list is empty or index is out of range.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.utils.ODEObjectList.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span> &#x2192; None -- remove first occurrence of value.<a class="reference internal" href="_modules/gotran/model/utils.html#ODEObjectList.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.ODEObjectList.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raises ValueError if the value is not present.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.utils.ODEObjectList.reverse">
+<code class="descname">reverse</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/utils.html#ODEObjectList.reverse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.ODEObjectList.reverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>L.reverse() – reverse <em>IN PLACE</em></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.utils.ODEObjectList.sort">
+<code class="descname">sort</code><span class="sig-paren">(</span><em>key=None</em>, <em>reverse=False</em><span class="sig-paren">)</span> &#x2192; None -- stable sort *IN PLACE*<a class="reference internal" href="_modules/gotran/model/utils.html#ODEObjectList.sort"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.ODEObjectList.sort" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.utils.RateDict">
+<em class="property">class </em><code class="descclassname">gotran.model.utils.</code><code class="descname">RateDict</code><span class="sig-paren">(</span><em>comp</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/utils.html#RateDict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.utils.RateDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.OrderedDict" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">collections.OrderedDict</span></code></a></p>
+<p>A storage class for Markov model rates</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-gotran.model">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-gotran.model" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="gotran.model.ODEObject">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">ODEObject</code><span class="sig-paren">(</span><em>name</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#ODEObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Base container class for all ODEObjects</p>
+<dl class="attribute">
+<dt id="gotran.model.ODEObject.name">
+<code class="descname">name</code><a class="headerlink" href="#gotran.model.ODEObject.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODEObject.rename">
+<code class="descname">rename</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#ODEObject.rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEObject.rename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rename the ODEObject</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.Comment">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">Comment</code><span class="sig-paren">(</span><em>comment</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#Comment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.Comment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEObject</span></code></a></p>
+<p>A Comment. To keep track of user comments in an ODE</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.ODEValueObject">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">ODEValueObject</code><span class="sig-paren">(</span><em>name</em>, <em>value</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#ODEValueObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEValueObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEObject</span></code></a></p>
+<p>A class for all ODE objects which has a value</p>
+<dl class="attribute">
+<dt id="gotran.model.ODEValueObject.param">
+<code class="descname">param</code><a class="headerlink" href="#gotran.model.ODEValueObject.param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODEValueObject.rename">
+<code class="descname">rename</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#ODEValueObject.rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEValueObject.rename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rename the ODEValueObject</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEValueObject.sym">
+<code class="descname">sym</code><a class="headerlink" href="#gotran.model.ODEValueObject.sym" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEValueObject.unit">
+<code class="descname">unit</code><a class="headerlink" href="#gotran.model.ODEValueObject.unit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODEValueObject.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#ODEValueObject.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEValueObject.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEValueObject.value">
+<code class="descname">value</code><a class="headerlink" href="#gotran.model.ODEValueObject.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.Parameter">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">Parameter</code><span class="sig-paren">(</span><em>name</em>, <em>init</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#Parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.Parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.ODEValueObject" title="gotran.model.odeobjects.ODEValueObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEValueObject</span></code></a></p>
+<p>class for a Parameter</p>
+<dl class="attribute">
+<dt id="gotran.model.Parameter.init">
+<code class="descname">init</code><a class="headerlink" href="#gotran.model.Parameter.init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.State">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">State</code><span class="sig-paren">(</span><em>name</em>, <em>init</em>, <em>time</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#State"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.State" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.ODEValueObject" title="gotran.model.odeobjects.ODEValueObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEValueObject</span></code></a></p>
+<p>class for a State variable</p>
+<dl class="attribute">
+<dt id="gotran.model.State.init">
+<code class="descname">init</code><a class="headerlink" href="#gotran.model.State.init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.State.is_solved">
+<code class="descname">is_solved</code><a class="headerlink" href="#gotran.model.State.is_solved" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.State.sym">
+<code class="descname">sym</code><a class="headerlink" href="#gotran.model.State.sym" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.Time">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">Time</code><span class="sig-paren">(</span><em>name</em>, <em>unit='ms'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#Time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.Time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.ODEValueObject" title="gotran.model.odeobjects.ODEValueObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEValueObject</span></code></a></p>
+<p>Specialization for a Time class</p>
+<dl class="method">
+<dt id="gotran.model.Time.update_unit">
+<code class="descname">update_unit</code><span class="sig-paren">(</span><em>unit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#Time.update_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.Time.update_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update unit. For example if time has unit
+seconds in stead of milliseconds</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.Dt">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">Dt</code><span class="sig-paren">(</span><em>name</em>, <em>unit='ms'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#Dt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.Dt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.ODEValueObject" title="gotran.model.odeobjects.ODEValueObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEValueObject</span></code></a></p>
+<p>Specialization for a time step class</p>
+<dl class="method">
+<dt id="gotran.model.Dt.update_unit">
+<code class="descname">update_unit</code><span class="sig-paren">(</span><em>unit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#Dt.update_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.Dt.update_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update unit. For example if time has unit
+seconds in stead of milliseconds</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.IndexedObject">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">IndexedObject</code><span class="sig-paren">(</span><em>basename</em>, <em>indices</em>, <em>shape=None</em>, <em>array_params=None</em>, <em>add_offset=''</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#IndexedObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.IndexedObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEObject</span></code></a></p>
+<p>An object with a fixed index associated with it</p>
+<dl class="attribute">
+<dt id="gotran.model.IndexedObject.basename">
+<code class="descname">basename</code><a class="headerlink" href="#gotran.model.IndexedObject.basename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="gotran.model.IndexedObject.default_parameters">
+<em class="property">static </em><code class="descname">default_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#IndexedObject.default_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.IndexedObject.default_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the default parameters for formating the array</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.IndexedObject.indices">
+<code class="descname">indices</code><a class="headerlink" href="#gotran.model.IndexedObject.indices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.IndexedObject.offset_str">
+<code class="descname">offset_str</code><a class="headerlink" href="#gotran.model.IndexedObject.offset_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.IndexedObject.shape">
+<code class="descname">shape</code><a class="headerlink" href="#gotran.model.IndexedObject.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.IndexedObject.sym">
+<code class="descname">sym</code><a class="headerlink" href="#gotran.model.IndexedObject.sym" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="gotran.model.cmp_to_key">
+<code class="descclassname">gotran.model.</code><code class="descname">cmp_to_key</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gotran.model.cmp_to_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a cmp= function into a key= function.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="gotran.model.cmp">
+<code class="descclassname">gotran.model.</code><code class="descname">cmp</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odeobjects.html#cmp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.cmp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.ODEComponent">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">ODEComponent</code><span class="sig-paren">(</span><em>name</em>, <em>parent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEComponent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEObject</span></code></a></p>
+<p>Base class for all ODE components.</p>
+<dl class="method">
+<dt id="gotran.model.ODEComponent.add_algebraic">
+<code class="descname">add_algebraic</code><span class="sig-paren">(</span><em>state</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_algebraic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEComponent.add_algebraic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an algebraic expression which relates a State with an
+expression which should equal to 0</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>state</strong> (<a class="reference internal" href="#gotran.model.odeobjects.State" title="gotran.model.odeobjects.State"><em>State</em></a>) – The State which the algebraic expression should determine</li>
+<li><strong>expr</strong> (<em>sympy.Basic</em>) – The expression that should equal 0</li>
+<li><strong>dependent</strong> (<a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><em>ODEObject</em></a>) – If given the count of this expression will follow as a
+fractional count based on the count of the dependent object</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODEComponent.add_comment">
+<code class="descname">add_comment</code><span class="sig-paren">(</span><em>comment</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_comment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEComponent.add_comment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a comment to the ODE component</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>comment</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The comment</li>
+<li><strong>dependent</strong> (<a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><em>ODEObject</em></a>) – If given the count of this comment will follow as a
+fractional count based on the count of the dependent object</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODEComponent.add_component">
+<code class="descname">add_component</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_component"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEComponent.add_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a sub ODEComponent</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODEComponent.add_derivative">
+<code class="descname">add_derivative</code><span class="sig-paren">(</span><em>der_expr</em>, <em>dep_var</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_derivative"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEComponent.add_derivative" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a derivative expression</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>der_expr</strong> (<a class="reference internal" href="#gotran.model.expressions.Expression" title="gotran.model.expressions.Expression"><em>Expression</em></a><em>, </em><a class="reference internal" href="#gotran.model.odeobjects.State" title="gotran.model.odeobjects.State"><em>State</em></a><em>, </em><em>sympy.AppliedUndef</em>) – The Expression or State which is differentiated</li>
+<li><strong>dep_var</strong> (<a class="reference internal" href="#gotran.model.odeobjects.State" title="gotran.model.odeobjects.State"><em>State</em></a><em>, </em><a class="reference internal" href="#gotran.model.odeobjects.Time" title="gotran.model.odeobjects.Time"><em>Time</em></a><em>, </em><a class="reference internal" href="#gotran.model.expressions.Expression" title="gotran.model.expressions.Expression"><em>Expression</em></a><em>, </em><em>sympy.AppliedUndef</em><em>, </em><em>sympy.Symbol</em>) – The dependent variable</li>
+<li><strong>expr</strong> (<em>sympy.Basic</em>) – The expression which the differetiation should be equal</li>
+<li><strong>dependent</strong> (<a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><em>ODEObject</em></a>) – If given the count of this expression will follow as a
+fractional count based on the count of the dependent object</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODEComponent.add_intermediate">
+<code class="descname">add_intermediate</code><span class="sig-paren">(</span><em>name</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_intermediate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEComponent.add_intermediate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register an intermediate math expression</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the expression</li>
+<li><strong>expr</strong> (<em>sympy.Basic</em><em>, </em><em>scalar</em>) – The expression</li>
+<li><strong>dependent</strong> (<a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><em>ODEObject</em></a>) – If given the count of this expression will follow as a
+fractional count based on the count of the dependent object</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODEComponent.add_parameter">
+<code class="descname">add_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>init</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEComponent.add_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a parameter to the component</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the parameter</li>
+<li><strong>init</strong> (<em>scalar</em><em>, </em><a class="reference internal" href="gotran.html#gotran.ScalarParam" title="gotran.ScalarParam"><em>ScalarParam</em></a>) – The initial value of the parameter</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODEComponent.add_parameters">
+<code class="descname">add_parameters</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEComponent.add_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a number of parameters to the current ODEComponent</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>args</strong> (<em>list of tuples</em>) – A list of tuples with parameters and init values. Use this to
+set parameters if you need them ordered.</li>
+<li><strong>kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – A dict with parameters</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODEComponent.add_solve_state">
+<code class="descname">add_solve_state</code><span class="sig-paren">(</span><em>state</em>, <em>expr</em>, <em>dependent=None</em>, <em>**solve_flags</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_solve_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEComponent.add_solve_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a solve state expression which tries to find a solution to
+a state by solving an algebraic expression</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>state</strong> (<a class="reference internal" href="#gotran.model.odeobjects.State" title="gotran.model.odeobjects.State"><em>State</em></a><em>, </em><em>AppliedUndef</em>) – The State that is solved</li>
+<li><strong>expr</strong> (<em>sympy.Basic</em>) – The expression that determines the state</li>
+<li><strong>dependent</strong> (<a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><em>ODEObject</em></a>) – If given the count of this expression will follow as a
+fractional count based on the count of the dependent object</li>
+<li><strong>solve_flags</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Flags that are passed directly to sympy.solve</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODEComponent.add_state">
+<code class="descname">add_state</code><span class="sig-paren">(</span><em>name</em>, <em>init</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEComponent.add_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a state to the component</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the state variable</li>
+<li><strong>init</strong> (<em>scalar</em><em>, </em><a class="reference internal" href="gotran.html#gotran.ScalarParam" title="gotran.ScalarParam"><em>ScalarParam</em></a>) – The initial value of the state</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODEComponent.add_state_solution">
+<code class="descname">add_state_solution</code><span class="sig-paren">(</span><em>state</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_state_solution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEComponent.add_state_solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a solution expression for a state</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>state</strong> (<a class="reference internal" href="#gotran.model.odeobjects.State" title="gotran.model.odeobjects.State"><em>State</em></a><em>, </em><em>AppliedUndef</em>) – The State that is solved</li>
+<li><strong>expr</strong> (<em>sympy.Basic</em>) – The expression that determines the state</li>
+<li><strong>dependent</strong> (<a class="reference internal" href="#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><em>ODEObject</em></a>) – If given the count of this expression will follow as a
+fractional count based on the count of the dependent object</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODEComponent.add_states">
+<code class="descname">add_states</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.add_states"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEComponent.add_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a number of states to the current ODEComponent</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>args</strong> (<em>list of tuples</em>) – A list of tuples with states and init values. Use this to
+set states if you need them ordered.</li>
+<li><strong>kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – A dict with states</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.comments">
+<code class="descname">comments</code><a class="headerlink" href="#gotran.model.ODEComponent.comments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.components">
+<code class="descname">components</code><a class="headerlink" href="#gotran.model.ODEComponent.components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all child components in the component</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODEComponent.finalize_component">
+<code class="descname">finalize_component</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.finalize_component"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEComponent.finalize_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called whenever the component should be finalized</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.full_state_vector">
+<code class="descname">full_state_vector</code><a class="headerlink" href="#gotran.model.ODEComponent.full_state_vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sympy column vector with all full states</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.full_states">
+<code class="descname">full_states</code><a class="headerlink" href="#gotran.model.ODEComponent.full_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all states in the component and its children that are
+not solved and determined by a state expression</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODEComponent.get_object">
+<code class="descname">get_object</code><span class="sig-paren">(</span><em>name</em>, <em>reversed=True</em>, <em>return_component=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/odecomponent.html#ODEComponent.get_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODEComponent.get_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.intermediates">
+<code class="descname">intermediates</code><a class="headerlink" href="#gotran.model.ODEComponent.intermediates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all intermediates</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.is_complete">
+<code class="descname">is_complete</code><a class="headerlink" href="#gotran.model.ODEComponent.is_complete" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if the component and all its children are locally complete</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.is_finalized">
+<code class="descname">is_finalized</code><a class="headerlink" href="#gotran.model.ODEComponent.is_finalized" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.is_locally_complete">
+<code class="descname">is_locally_complete</code><a class="headerlink" href="#gotran.model.ODEComponent.is_locally_complete" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if the number of non-solved states are the same as the number
+of registered state expressions</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.num_components">
+<code class="descname">num_components</code><a class="headerlink" href="#gotran.model.ODEComponent.num_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of all components including it self</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.num_full_states">
+<code class="descname">num_full_states</code><a class="headerlink" href="#gotran.model.ODEComponent.num_full_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of all full states</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.num_intermediates">
+<code class="descname">num_intermediates</code><a class="headerlink" href="#gotran.model.ODEComponent.num_intermediates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of all intermediates</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.num_parameters">
+<code class="descname">num_parameters</code><a class="headerlink" href="#gotran.model.ODEComponent.num_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of all parameters</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.num_rate_expressions">
+<code class="descname">num_rate_expressions</code><a class="headerlink" href="#gotran.model.ODEComponent.num_rate_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number rate expressions</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.num_state_expressions">
+<code class="descname">num_state_expressions</code><a class="headerlink" href="#gotran.model.ODEComponent.num_state_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number state expressions</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.num_states">
+<code class="descname">num_states</code><a class="headerlink" href="#gotran.model.ODEComponent.num_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of all states</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.parameters">
+<code class="descname">parameters</code><a class="headerlink" href="#gotran.model.ODEComponent.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all parameters in the component</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.parent">
+<code class="descname">parent</code><a class="headerlink" href="#gotran.model.ODEComponent.parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the the parent if it is still alive. Otherwise it will return None</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.rate_expressions">
+<code class="descname">rate_expressions</code><a class="headerlink" href="#gotran.model.ODEComponent.rate_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of rate expressions</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.root">
+<code class="descname">root</code><a class="headerlink" href="#gotran.model.ODEComponent.root" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the root ODE component (the ode)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.state_expressions">
+<code class="descname">state_expressions</code><a class="headerlink" href="#gotran.model.ODEComponent.state_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of state expressions</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.states">
+<code class="descname">states</code><a class="headerlink" href="#gotran.model.ODEComponent.states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all states in the component and its children</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.t">
+<code class="descname">t</code><a class="headerlink" href="#gotran.model.ODEComponent.t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the time symbol</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODEComponent.time">
+<code class="descname">time</code><a class="headerlink" href="#gotran.model.ODEComponent.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the time</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.Expression">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">Expression</code><span class="sig-paren">(</span><em>name</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#Expression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.Expression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.ODEValueObject" title="gotran.model.odeobjects.ODEValueObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEValueObject</span></code></a></p>
+<p>class for all expressions such as intermediates and derivatives</p>
+<dl class="attribute">
+<dt id="gotran.model.Expression.dependent">
+<code class="descname">dependent</code><a class="headerlink" href="#gotran.model.Expression.dependent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.Expression.expr">
+<code class="descname">expr</code><a class="headerlink" href="#gotran.model.Expression.expr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the stored expression</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.Expression.is_state_expression">
+<code class="descname">is_state_expression</code><a class="headerlink" href="#gotran.model.Expression.is_state_expression" title="Permalink to this definition">¶</a></dt>
+<dd><p>True of expression is a state expression</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.Expression.replace_expr">
+<code class="descname">replace_expr</code><span class="sig-paren">(</span><em>*replace_dicts</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#Expression.replace_expr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.Expression.replace_expr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace registered expression using passed replace_dicts</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.Expression.sym">
+<code class="descname">sym</code><a class="headerlink" href="#gotran.model.Expression.sym" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.DerivativeExpression">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">DerivativeExpression</code><span class="sig-paren">(</span><em>der_expr</em>, <em>dep_var</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#DerivativeExpression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.DerivativeExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.expressions.Intermediate" title="gotran.model.expressions.Intermediate"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.expressions.Intermediate</span></code></a></p>
+<p>A class for Intermediate derivative expressions</p>
+<dl class="attribute">
+<dt id="gotran.model.DerivativeExpression.dep_var">
+<code class="descname">dep_var</code><a class="headerlink" href="#gotran.model.DerivativeExpression.dep_var" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.DerivativeExpression.der_expr">
+<code class="descname">der_expr</code><a class="headerlink" href="#gotran.model.DerivativeExpression.der_expr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.AlgebraicExpression">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">AlgebraicExpression</code><span class="sig-paren">(</span><em>state</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#AlgebraicExpression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.AlgebraicExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.expressions.StateExpression" title="gotran.model.expressions.StateExpression"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.expressions.StateExpression</span></code></a></p>
+<p>A class for algebraic expressions which relates a State with an
+expression which should equal to 0</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.StateExpression">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">StateExpression</code><span class="sig-paren">(</span><em>name</em>, <em>state</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#StateExpression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.StateExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.expressions.Expression" title="gotran.model.expressions.Expression"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.expressions.Expression</span></code></a></p>
+<p>An expression which determines a State.</p>
+<dl class="attribute">
+<dt id="gotran.model.StateExpression.state">
+<code class="descname">state</code><a class="headerlink" href="#gotran.model.StateExpression.state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.StateSolution">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">StateSolution</code><span class="sig-paren">(</span><em>state</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#StateSolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.StateSolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.expressions.Intermediate" title="gotran.model.expressions.Intermediate"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.expressions.Intermediate</span></code></a></p>
+<p>Sub class of Expression for state solution expressions</p>
+<dl class="attribute">
+<dt id="gotran.model.StateSolution.state">
+<code class="descname">state</code><a class="headerlink" href="#gotran.model.StateSolution.state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.RateExpression">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">RateExpression</code><span class="sig-paren">(</span><em>to_state</em>, <em>from_state</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#RateExpression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.RateExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.expressions.Intermediate" title="gotran.model.expressions.Intermediate"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.expressions.Intermediate</span></code></a></p>
+<p>A sub class of Expression holding single rates</p>
+<dl class="attribute">
+<dt id="gotran.model.RateExpression.states">
+<code class="descname">states</code><a class="headerlink" href="#gotran.model.RateExpression.states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple of the two states the rate expression describes the rate
+between</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.Intermediate">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">Intermediate</code><span class="sig-paren">(</span><em>name</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#Intermediate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.Intermediate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.expressions.Expression" title="gotran.model.expressions.Expression"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.expressions.Expression</span></code></a></p>
+<p>A class for all Intermediate classes</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.StateDerivative">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">StateDerivative</code><span class="sig-paren">(</span><em>state</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#StateDerivative"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.StateDerivative" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.expressions.StateExpression" title="gotran.model.expressions.StateExpression"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.expressions.StateExpression</span></code></a></p>
+<p>A class for all state derivatives</p>
+<dl class="attribute">
+<dt id="gotran.model.StateDerivative.sym">
+<code class="descname">sym</code><a class="headerlink" href="#gotran.model.StateDerivative.sym" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.IndexedExpression">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">IndexedExpression</code><span class="sig-paren">(</span><em>basename</em>, <em>indices</em>, <em>expr</em>, <em>shape=None</em>, <em>array_params=None</em>, <em>add_offset=''</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#IndexedExpression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.IndexedExpression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odeobjects.IndexedObject" title="gotran.model.odeobjects.IndexedObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.IndexedObject</span></code></a>, <a class="reference internal" href="#gotran.model.expressions.Expression" title="gotran.model.expressions.Expression"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.expressions.Expression</span></code></a></p>
+<p>An expression which represents an expression with a fixed index
+associated with it</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="gotran.model.recreate_expression">
+<code class="descclassname">gotran.model.</code><code class="descname">recreate_expression</code><span class="sig-paren">(</span><em>expr</em>, <em>*replace_dicts</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#recreate_expression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.recreate_expression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recreate an Expression while applying replace dicts in given order</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.ODE">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">ODE</code><span class="sig-paren">(</span><em>name</em>, <em>ns=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/ode.html#ODE"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.odecomponent.ODEComponent" title="gotran.model.odecomponent.ODEComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odecomponent.ODEComponent</span></code></a></p>
+<p>Root ODEComponent</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the ODE</li>
+<li><strong>ns</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em> (</em><em>optional</em><em>)</em>) – A namespace which will be filled with declared ODE symbols</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="gotran.model.ODE.expanded_expression">
+<code class="descname">expanded_expression</code><span class="sig-paren">(</span><em>expr</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/ode.html#ODE.expanded_expression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODE.expanded_expression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the expanded expression.</p>
+<p>The returned expanded expression consists of the original
+expression given by it basics objects (States, Parameters and
+IndexedObjects)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODE.extract_components">
+<code class="descname">extract_components</code><span class="sig-paren">(</span><em>name</em>, <em>*components</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/ode.html#ODE.extract_components"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODE.extract_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an ODE from a number of components</p>
+<p>Returns an ODE including the components</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the created ODE</li>
+<li><strong>components</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – A variable len tuple of str describing the components</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODE.finalize">
+<code class="descname">finalize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/ode.html#ODE.finalize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODE.finalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finalize the ODE</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODE.import_ode">
+<code class="descname">import_ode</code><span class="sig-paren">(</span><em>ode</em>, <em>prefix=''</em>, <em>components=None</em>, <em>**arguments</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/ode.html#ODE.import_ode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODE.import_ode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import a Model into the present Model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><a class="reference internal" href="#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The ode which should be added. If ode is a str an
+ODE stored in that file will be loaded. If it is an ODE it will be
+added directly to the present ODE.</li>
+<li><strong>prefix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> (</em><em>optional</em><em>)</em>) – A prefix which all state, parameters and intermediates are
+prefixed with.</li>
+<li><strong>components</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a><em>, </em><em>tuple of str</em><em> (</em><em>optional</em><em>)</em>) – A list of components which will either be extracted or excluded
+from the imported model. If not given the whole ODE will be imported.</li>
+<li><strong>arguments</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em> (</em><em>optional</em><em>)</em>) – Optional arguments which can control loading of model</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODE.is_dae">
+<code class="descname">is_dae</code><a class="headerlink" href="#gotran.model.ODE.is_dae" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if ODE is a DAE</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODE.mass_matrix">
+<code class="descname">mass_matrix</code><a class="headerlink" href="#gotran.model.ODE.mass_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the mass matrix as a sympy.Matrix</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODE.ns">
+<code class="descname">ns</code><a class="headerlink" href="#gotran.model.ODE.ns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.ODE.present_component">
+<code class="descname">present_component</code><a class="headerlink" href="#gotran.model.ODE.present_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the present component</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODE.register_ode_object">
+<code class="descname">register_ode_object</code><span class="sig-paren">(</span><em>obj</em>, <em>comp</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/ode.html#ODE.register_ode_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODE.register_ode_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register an ODE object in the root ODEComponent</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODE.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>basename=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/ode.html#ODE.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODE.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save ODE to file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>basename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> (</em><em>optional</em><em>)</em>) – The basename of the file which the ode will be saved to, if not
+given the basename will be the same as the name of the ode.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.ODE.signature">
+<code class="descname">signature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/ode.html#ODE.signature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.ODE.signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a signature uniquely defining the ODE</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="gotran.model.CellModel">
+<em class="property">class </em><code class="descclassname">gotran.model.</code><code class="descname">CellModel</code><span class="sig-paren">(</span><em>name_</em>, <em>ns=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.CellModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.ode.ODE</span></code></a></p>
+<p>Basic class for storing information of a cell model</p>
+<p>You can either initialize an empty CellModel similar to
+an ODE</p>
+<p>(Maybe if we can create a library of th cellmodels
+then it the string matched that of the library we return
+the model in the library, e.g <cite>cell = CellModel(“Noble_1962”)`</cite> ?? )
+Or you can initialize the cell using an existing ODE
+If you have an ODE and want to have a cell, then save the
+ODE to an <a href="#id3"><span class="problematic" id="id4">*</span></a>.ode file and load it using <cite>load_cell`</cite> (in stead of
+<cite>load_ode`</cite>)</p>
+<p class="rubric">Example</p>
+<p class="rubric">Example</p>
+<dl class="attribute">
+<dt id="gotran.model.CellModel.component_names">
+<code class="descname">component_names</code><a class="headerlink" href="#gotran.model.CellModel.component_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.CellModel.currents">
+<code class="descname">currents</code><a class="headerlink" href="#gotran.model.CellModel.currents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of the currents used in the
+computation of the membrane potential.
+Note that intermediate currents (not involved in
+th computation of the membrane potential)
+are not retured</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.CellModel.get_beattime">
+<code class="descname">get_beattime</code><span class="sig-paren">(</span><em>dt=1.0</em>, <em>extra=60.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.get_beattime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.CellModel.get_beattime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number timepoints for one beat</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Time increment in the same time unit
+as the model</li>
+<li><strong>extra</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Add some extra time (in ms) to prolonge the
+the time. Default 60 ms</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.CellModel.get_component">
+<code class="descname">get_component</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.get_component"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.CellModel.get_component" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the component with the given name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of the component</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>par</strong> – The component</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ODECompoenent</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.CellModel.get_intermediate">
+<code class="descname">get_intermediate</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.get_intermediate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.CellModel.get_intermediate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the intermediate with the given name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of the intermediate</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>par</strong> – The parameter</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#gotran.model.odeobjects.Parameter" title="gotran.model.odeobjects.Parameter">Parameter</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.CellModel.get_parameter">
+<code class="descname">get_parameter</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.get_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.CellModel.get_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the parameter with the given name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of the parameter</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>par</strong> – The parameter</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#gotran.model.odeobjects.Parameter" title="gotran.model.odeobjects.Parameter">Parameter</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.CellModel.get_state">
+<code class="descname">get_state</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.get_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.CellModel.get_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the state with the given name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of the state variable</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>par</strong> – The state</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#gotran.model.odeobjects.Parameter" title="gotran.model.odeobjects.Parameter">Parameter</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.CellModel.get_time_steps">
+<code class="descname">get_time_steps</code><span class="sig-paren">(</span><em>nbeats=1</em>, <em>t1=None</em>, <em>dt=1.0</em>, <em>t0=0.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.get_time_steps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.CellModel.get_time_steps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get list with time steps given the number
+of beats and time increment</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nbeats</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Nuber of beats (Default:1)</li>
+<li><strong>dt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Time increament between two time steps. (Default:1.0)
+Note that you need to think about the time unit.
+If time unit is <cite>ms</cite> then dt = 1.0 is probably OK, but
+if time unit is <cite>s</cite> then dt should probably be lower</li>
+<li><strong>t1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – End time. If not provided then end time will determined from
+the number of beats</li>
+<li><strong>t0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Start time (Default: 0.0)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.CellModel.intermediate_symbols">
+<code class="descname">intermediate_symbols</code><a class="headerlink" href="#gotran.model.CellModel.intermediate_symbols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.CellModel.intermediate_unit">
+<code class="descname">intermediate_unit</code><span class="sig-paren">(</span><em>name</em>, <em>unit_type='si'</em>, <em>return_factor=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.intermediate_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.CellModel.intermediate_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get unit of intermediate expression
+Note that we neglect units within a funtion like
+exponential and logaritm.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of intermediate</li>
+<li><strong>unit_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Type of unit, options <cite>si</cite>, <cite>base</cite> or <cite>original</cite></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>unit</strong> – Unit of the expression for the intermediate</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)">str</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.CellModel.parameter_symbols">
+<code class="descname">parameter_symbols</code><a class="headerlink" href="#gotran.model.CellModel.parameter_symbols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.CellModel.parameter_values">
+<code class="descname">parameter_values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.parameter_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.CellModel.parameter_values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.CellModel.residual_current">
+<code class="descname">residual_current</code><span class="sig-paren">(</span><em>t</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.residual_current"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.CellModel.residual_current" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.CellModel.set_parameter">
+<code class="descname">set_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.set_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.CellModel.set_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the parameter in the model to a
+given value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of the parmaeter</li>
+<li><strong>value</strong> (<em>scalar</em><em>, </em><a class="reference internal" href="gotran.html#gotran.ScalarParam" title="gotran.ScalarParam"><em>ScalarParam</em></a>) – The new value of the parameter. Note that
+if the parameter is of type <cite>ScalarParam</cite>
+while the provided value is a scalar then the value
+will be updated while keeping the unit</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.CellModel.set_residual_current">
+<code class="descname">set_residual_current</code><span class="sig-paren">(</span><em>t</em>, <em>current</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.set_residual_current"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.CellModel.set_residual_current" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set rediual current</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>t</strong> (<em>array</em>) – List of times</li>
+<li><strong>current</strong> (<em>array</em>) – List with residual current</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.CellModel.simulate">
+<code class="descname">simulate</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.simulate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.CellModel.simulate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulate the ODE to <span class="math notranslate nohighlight">\(t_{\mathrm{end}}\)</span>
+with the given number points</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>t_end</strong> (<em>scalar</em>) – The end time</li>
+<li><strong>nbeats</strong> (<em>scalar</em>) – Number of beats based on stimulus protocol</li>
+<li><strong>npts</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of communication points used in the solver</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.CellModel.state_symbols">
+<code class="descname">state_symbols</code><a class="headerlink" href="#gotran.model.CellModel.state_symbols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.CellModel.state_values">
+<code class="descname">state_values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.state_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.CellModel.state_values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.CellModel.stimulation_parameters">
+<code class="descname">stimulation_parameters</code><a class="headerlink" href="#gotran.model.CellModel.stimulation_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.model.CellModel.stimulation_protocol">
+<code class="descname">stimulation_protocol</code><a class="headerlink" href="#gotran.model.CellModel.stimulation_protocol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.model.CellModel.update_parameter">
+<code class="descname">update_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>value=None</em>, <em>factor=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#CellModel.update_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.CellModel.update_parameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="gotran.model.gccm">
+<code class="descclassname">gotran.model.</code><code class="descname">gccm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/cellmodel.html#gccm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.gccm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the current CellModel</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="gotran.model.load_ode">
+<code class="descclassname">gotran.model.</code><code class="descname">load_ode</code><span class="sig-paren">(</span><em>filename</em>, <em>name=None</em>, <em>**arguments</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/loadmodel.html#load_ode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.load_ode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load an ODE from file and return the instance</p>
+<p>The method looks for a file with .ode extension.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of the ode file to load</li>
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> (</em><em>optional</em><em>)</em>) – Set the name of ODE (defaults to filename)</li>
+<li><strong>arguments</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em> (</em><em>optional</em><em>)</em>) – Optional arguments which can control loading of model</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gotran.model.exec_ode">
+<code class="descclassname">gotran.model.</code><code class="descname">exec_ode</code><span class="sig-paren">(</span><em>ode_str</em>, <em>name</em>, <em>**arguments</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/loadmodel.html#exec_ode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.exec_ode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute an ode given by a str</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ode_str</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The ode as a str</li>
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of ODE</li>
+<li><strong>arguments</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em> (</em><em>optional</em><em>)</em>) – Optional arguments which can control loading of model</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gotran.model.load_cell">
+<code class="descclassname">gotran.model.</code><code class="descname">load_cell</code><span class="sig-paren">(</span><em>filename</em>, <em>name=None</em>, <em>**arguments</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/loadmodel.html#load_cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.load_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a Cell from file and return the instance</p>
+<p>The method looks for a file with .ode extension.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Name of the ode file to load</li>
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> (</em><em>optional</em><em>)</em>) – Set the name of ODE (defaults to filename)</li>
+<li><strong>arguments</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em> (</em><em>optional</em><em>)</em>) – Optional arguments which can control loading of model</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gotran.model.get_model_as_python_module">
+<code class="descclassname">gotran.model.</code><code class="descname">get_model_as_python_module</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/loadmodel.html#get_model_as_python_module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.model.get_model_as_python_module" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="gotran.solver.html" class="btn btn-neutral float-right" title="gotran.solver package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="gotran.input.html" class="btn btn-neutral" title="gotran.input package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Johan Hake, Henrik Finsberg.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
