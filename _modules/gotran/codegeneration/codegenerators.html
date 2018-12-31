@@ -168,7 +168,7 @@
 <span class="c1"># Model parameters imports</span>
 <span class="kn">from</span> <span class="nn">modelparameters.parameterdict</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">modelparameters.codegeneration</span> <span class="k">import</span> <span class="n">ccode</span><span class="p">,</span> <span class="n">cppcode</span><span class="p">,</span> <span class="n">pythoncode</span><span class="p">,</span> \
-     <span class="n">sympycode</span><span class="p">,</span> <span class="n">matlabcode</span>
+     <span class="n">sympycode</span><span class="p">,</span> <span class="n">matlabcode</span><span class="p">,</span> <span class="n">juliacode</span>
 
 <span class="c1"># Gotran imports</span>
 <span class="kn">from</span> <span class="nn">gotran.common</span> <span class="k">import</span> <span class="n">check_arg</span><span class="p">,</span> <span class="n">check_kwarg</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">warning</span>
@@ -357,9 +357,11 @@
                 <span class="n">comps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">solver</span><span class="o">+</span><span class="s2">&quot;_solver&quot;</span><span class="p">)(</span>\
                     <span class="n">ode</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
 
+
         <span class="c1"># Create code snippest of all</span>
         <span class="n">code</span><span class="o">.</span><span class="n">update</span><span class="p">((</span><span class="n">comp</span><span class="o">.</span><span class="n">function_name</span><span class="p">,</span> \
                      <span class="bp">self</span><span class="o">.</span><span class="n">function_code</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span> <span class="k">for</span> <span class="n">comp</span> <span class="ow">in</span> <span class="n">comps</span><span class="p">)</span>
+
 
         <span class="k">if</span> <span class="n">functions</span><span class="o">.</span><span class="n">componentwise_rhs_evaluation</span><span class="o">.</span><span class="n">generate</span><span class="p">:</span>
             <span class="n">snippet</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">componentwise_code</span><span class="p">(</span><span class="n">ode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">)</span>
@@ -2237,6 +2239,784 @@
             <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;The mass matrix of the </span><span class="si">{0}</span><span class="s2"> ODE&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ode</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">body_lines</span><span class="p">))</span></div></div>
+
+
+<span class="k">class</span> <span class="nc">DOLFINCodeGenerator</span><span class="p">(</span><span class="n">PythonCodeGenerator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for generating a DOLFIN compatible declarations of an ODE from</span>
+<span class="sd">    a gotran file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">default_parameters</span><span class="p">():</span>
+        <span class="n">default_params</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">generation</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">state_repr</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">default_params</span><span class="o">.</span><span class="n">states</span><span class="p">,</span> <span class="s2">&quot;representation&quot;</span><span class="p">)</span>
+        <span class="n">param_repr</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">default_params</span><span class="o">.</span><span class="n">parameters</span><span class="p">,</span> <span class="s2">&quot;representation&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ParameterDict</span><span class="p">(</span><span class="n">state_repr</span><span class="o">=</span><span class="n">state_repr</span><span class="p">,</span>
+                             <span class="n">param_repr</span><span class="o">=</span><span class="n">param_repr</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code_params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Instantiate the class</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        code_params : dict</span>
+<span class="sd">            Parameters controling the code generation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">code_params</span> <span class="o">=</span> <span class="n">code_params</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="n">check_kwarg</span><span class="p">(</span><span class="n">code_params</span><span class="p">,</span> <span class="s2">&quot;code_params&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="n">DOLFINCodeGenerator</span><span class="o">.</span><span class="n">default_parameters</span><span class="p">()</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">code_params</span><span class="p">)</span>
+
+        <span class="c1"># Get a whole set of gotran code parameters and update with dolfin</span>
+        <span class="c1"># specific options</span>
+        <span class="n">generation_params</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">generation</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">generation_params</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">default_arguments</span> <span class="o">=</span> \
+                            <span class="s2">&quot;st&quot;</span> <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">param_repr</span> <span class="o">==</span> <span class="s2">&quot;numerals&quot;</span> <span class="k">else</span> <span class="s2">&quot;stp&quot;</span>
+        <span class="n">generation_params</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span>
+
+        <span class="n">generation_params</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">index_format</span> <span class="o">=</span> <span class="s2">&quot;[]&quot;</span>
+        <span class="n">generation_params</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">index_offset</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">generation_params</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">representation</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">param_repr</span>
+
+        <span class="n">generation_params</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">representation</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">state_repr</span>
+        <span class="n">generation_params</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">array_name</span> <span class="o">=</span> <span class="s2">&quot;states&quot;</span>
+
+        <span class="n">generation_params</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">array_name</span> <span class="o">=</span> <span class="s2">&quot;body&quot;</span>
+        <span class="n">generation_params</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">representation</span> <span class="o">=</span> <span class="s2">&quot;named&quot;</span>
+
+        <span class="c1"># Init base class</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DOLFINCodeGenerator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">ns</span><span class="o">=</span><span class="s2">&quot;ufl&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Store attributes (over load default PythonCode parameters)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">generation_params</span>
+
+
+    <span class="k">def</span> <span class="nf">_init_arguments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp</span><span class="p">,</span> <span class="n">default_arguments</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="n">check_arg</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="n">CodeComponent</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">code</span>
+        <span class="n">default_arguments</span> <span class="o">=</span> <span class="n">default_arguments</span> <span class="ow">or</span> <span class="n">params</span><span class="o">.</span><span class="n">default_arguments</span>
+
+        <span class="c1"># Check if comp defines used_states if not use the root components</span>
+        <span class="c1"># full_states attribute</span>
+        <span class="c1"># FIXME: No need for full_states here...</span>
+        <span class="n">states</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">full_states</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">parameters</span>
+
+        <span class="n">num_states</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">num_full_states</span>
+        <span class="n">num_parameters</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">num_parameters</span>
+
+        <span class="c1"># Start building body</span>
+        <span class="n">body_lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;# Imports&quot;</span><span class="p">,</span> <span class="s2">&quot;import ufl&quot;</span><span class="p">,</span> <span class="s2">&quot;import dolfin&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="s2">&quot;s&quot;</span> <span class="ow">in</span> <span class="n">default_arguments</span> <span class="ow">and</span> <span class="n">states</span><span class="p">:</span>
+
+            <span class="n">states_name</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">array_name</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# Assign states&quot;</span><span class="p">)</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;assert(isinstance(</span><span class="si">{0}</span><span class="s2">, dolfin.Function))&quot;</span>\
+                              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">states_name</span><span class="p">))</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;assert(states.function_space().depth() == 1)&quot;</span><span class="p">)</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;assert(states.function_space().num_sub_spaces() &quot;</span>\
+                              <span class="s2">&quot;== </span><span class="si">{0}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num_states</span><span class="p">))</span>
+
+            <span class="c1"># Generate state assign code</span>
+            <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">representation</span> <span class="o">==</span> <span class="s2">&quot;named&quot;</span><span class="p">:</span>
+
+                <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">states</span><span class="p">)</span> <span class="o">+</span> \
+                                  <span class="s2">&quot; = dolfin.split(</span><span class="si">{0}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">states_name</span><span class="p">))</span>
+
+        <span class="c1"># Add parameters code if not numerals</span>
+        <span class="k">if</span> <span class="s2">&quot;p&quot;</span> <span class="ow">in</span> <span class="n">default_arguments</span> <span class="ow">and</span> <span class="n">params</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">representation</span> \
+               <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;named&quot;</span><span class="p">,</span> <span class="s2">&quot;array&quot;</span><span class="p">]:</span>
+
+            <span class="n">parameters_name</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">array_name</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# Assign parameters&quot;</span><span class="p">)</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;assert(isinstance(</span><span class="si">{0}</span><span class="s2">, (dolfin.Function, &quot;</span>\
+                              <span class="s2">&quot;dolfin.Constant)))&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters_name</span><span class="p">))</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;if isinstance(</span><span class="si">{0}</span><span class="s2">, dolfin.Function):&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+                <span class="n">parameters_name</span><span class="p">))</span>
+            <span class="n">if_closure</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">if_closure</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;assert(</span><span class="si">{0}</span><span class="s2">.function_space().depth() == 1)&quot;</span>\
+                              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters_name</span><span class="p">))</span>
+            <span class="n">if_closure</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;assert(</span><span class="si">{0}</span><span class="s2">.function_space().num_sub_spaces() &quot;</span>\
+                              <span class="s2">&quot;== </span><span class="si">{1}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters_name</span><span class="p">,</span> <span class="n">num_parameters</span><span class="p">))</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">if_closure</span><span class="p">)</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;else:&quot;</span><span class="p">)</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s2">&quot;assert(</span><span class="si">{0}</span><span class="s2">.value_size() == </span><span class="si">{1}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+                <span class="n">parameters_name</span><span class="p">,</span> <span class="n">num_parameters</span><span class="p">)])</span>
+
+            <span class="c1"># Generate parameters assign code</span>
+            <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">representation</span> <span class="o">==</span> <span class="s2">&quot;named&quot;</span><span class="p">:</span>
+
+                <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> \
+                <span class="n">parameters</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; = dolfin.split(</span><span class="si">{0}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parameters_name</span><span class="p">))</span>
+
+        <span class="c1"># If initilizing results</span>
+        <span class="k">if</span> <span class="n">comp</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# Init return args&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">result_name</span> <span class="ow">in</span> <span class="n">comp</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">shapes</span><span class="p">[</span><span class="n">result_name</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">error</span><span class="p">(</span><span class="s2">&quot;expected only result expression with rank 1&quot;</span><span class="p">)</span>
+
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> = [ufl.zero()]*</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+                <span class="n">result_name</span><span class="p">,</span> <span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+        <span class="k">return</span> <span class="n">body_lines</span>
+
+    <span class="k">def</span> <span class="nf">function_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">include_signature</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+        <span class="n">check_arg</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="n">CodeComponent</span><span class="p">)</span>
+        <span class="n">check_kwarg</span><span class="p">(</span><span class="n">indent</span><span class="p">,</span> <span class="s2">&quot;indent&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+
+        <span class="n">body_lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_arguments</span><span class="p">(</span><span class="n">comp</span><span class="p">)</span>
+
+        <span class="c1"># Iterate over any body needed to define the dy</span>
+        <span class="k">for</span> <span class="n">expr</span> <span class="ow">in</span> <span class="n">comp</span><span class="o">.</span><span class="n">body_expressions</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">Comment</span><span class="p">):</span>
+                <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_code</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">expr</span><span class="p">,</span> <span class="n">expr</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">comp</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# Return results&quot;</span><span class="p">)</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;return </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>\
+                <span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">[0]&quot;</span> <span class="k">if</span> <span class="n">comp</span><span class="o">.</span><span class="n">shapes</span><span class="p">[</span><span class="n">result_name</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> \
+                 <span class="k">else</span> <span class="s2">&quot;dolfin.as_vector(</span><span class="si">{0}</span><span class="s2">)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result_name</span><span class="p">)</span> \
+                 <span class="k">for</span> <span class="n">result_name</span> <span class="ow">in</span> <span class="n">comp</span><span class="o">.</span><span class="n">results</span><span class="p">)))</span>
+
+        <span class="k">if</span> <span class="n">include_signature</span><span class="p">:</span>
+
+            <span class="c1"># Add function prototype</span>
+            <span class="n">body_lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wrap_body_with_function_prototype</span><span class="p">(</span>\
+                <span class="n">body_lines</span><span class="p">,</span> <span class="n">comp</span><span class="o">.</span><span class="n">function_name</span><span class="p">,</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">(</span><span class="n">comp</span><span class="p">),</span> \
+                <span class="n">comp</span><span class="o">.</span><span class="n">description</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">decorators</span><span class="p">())</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">body_lines</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">init_states_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate code for setting initial condition</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Start building body</span>
+        <span class="n">states</span> <span class="o">=</span> <span class="n">ode</span><span class="o">.</span><span class="n">full_states</span>
+        <span class="n">body_lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;# Imports&quot;</span><span class="p">,</span> <span class="s2">&quot;import dolfin&quot;</span><span class="p">,</span>\
+                      <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;# Init values&quot;</span><span class="p">]</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">=</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+            <span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">init</span><span class="p">)</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">states</span><span class="p">)))</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;init_values = [</span><span class="si">{0}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>\
+            <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">init</span><span class="p">)</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">states</span><span class="p">)))</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+        <span class="n">range_check</span> <span class="o">=</span> <span class="s2">&quot;lambda value : value </span><span class="si">{minop}</span><span class="s2"> </span><span class="si">{minvalue}</span><span class="s2"> and &quot;</span>\
+                      <span class="s2">&quot;value </span><span class="si">{maxop}</span><span class="s2"> </span><span class="si">{maxvalue}</span><span class="s2">&quot;</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;inf = float(</span><span class="se">\&quot;</span><span class="s2">inf</span><span class="se">\&quot;</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# State indices and limit checker&quot;</span><span class="p">)</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;state_ind = dict(</span><span class="si">{0}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+            <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">=(</span><span class="si">{1}</span><span class="s2">, </span><span class="si">{2}</span><span class="s2">, </span><span class="si">{3!r}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+                <span class="n">state</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">range_check</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+                    <span class="o">**</span><span class="n">state</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">_range</span><span class="o">.</span><span class="n">range_formats</span><span class="p">),</span> \
+                <span class="n">state</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">_range</span><span class="o">.</span><span class="n">_not_in_str</span><span class="p">)</span>\
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">state</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">states</span><span class="p">))))</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;for state_name, value in values.items():&quot;</span><span class="p">)</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>\
+            <span class="p">[</span><span class="s2">&quot;if state_name not in state_ind:&quot;</span><span class="p">,</span>
+             <span class="p">[</span><span class="s2">&quot;raise ValueError(</span><span class="se">\&quot;</span><span class="s2">{{0}} is not a state.</span><span class="se">\&quot;</span><span class="s2">.format(state_name))&quot;</span><span class="p">],</span>
+             <span class="s2">&quot;ind, range_check, not_in_format = state_ind[state_name]&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;if not range_check(value):&quot;</span><span class="p">,</span>
+             <span class="p">[</span><span class="s2">&quot;raise ValueError(</span><span class="se">\&quot;</span><span class="s2">While setting </span><span class="se">\&#39;</span><span class="si">{0}</span><span class="se">\&#39;</span><span class="s2"> </span><span class="si">{1}</span><span class="se">\&quot;</span><span class="s2">.format(&quot;</span>\
+              <span class="s2">&quot;state_name, not_in_format </span><span class="si">% s</span><span class="s2">tr(value)))&quot;</span><span class="p">],</span>
+             <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;# Assign value&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;init_values[ind] = value&quot;</span><span class="p">])</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;return dolfin.Constant(tuple(init_values))&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add function prototype</span>
+        <span class="n">init_function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wrap_body_with_function_prototype</span><span class="p">(</span>\
+            <span class="n">body_lines</span><span class="p">,</span> <span class="s2">&quot;init_state_values&quot;</span><span class="p">,</span> <span class="s2">&quot;**values&quot;</span><span class="p">,</span> <span class="s2">&quot;Init values&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">init_function</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">init_parameters_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate code for setting parameters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">parameters</span> <span class="o">=</span> <span class="n">ode</span><span class="o">.</span><span class="n">parameters</span>
+
+        <span class="c1"># Start building body</span>
+        <span class="n">body_lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;# Imports&quot;</span><span class="p">,</span> <span class="s2">&quot;import dolfin&quot;</span><span class="p">,</span>\
+                      <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;# Param values&quot;</span><span class="p">]</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">=</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+            <span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">init</span><span class="p">)</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">)))</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;param_values = [</span><span class="si">{0}</span><span class="s2">]&quot;</span>\
+                          <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">init</span><span class="p">)</span> \
+                                            <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">)))</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+        <span class="n">range_check</span> <span class="o">=</span> <span class="s2">&quot;lambda value : value </span><span class="si">{minop}</span><span class="s2"> </span><span class="si">{minvalue}</span><span class="s2"> and &quot;</span>\
+                      <span class="s2">&quot;value </span><span class="si">{maxop}</span><span class="s2"> </span><span class="si">{maxvalue}</span><span class="s2">&quot;</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# Parameter indices and limit checker&quot;</span><span class="p">)</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;parameter_ind = dict(</span><span class="si">{0}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+            <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">=(</span><span class="si">{1}</span><span class="s2">, </span><span class="si">{2}</span><span class="s2">, </span><span class="si">{3!r}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+                <span class="n">parameter</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">range_check</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+                    <span class="o">**</span><span class="n">parameter</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">_range</span><span class="o">.</span><span class="n">range_formats</span><span class="p">),</span> \
+                <span class="n">parameter</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">_range</span><span class="o">.</span><span class="n">_not_in_str</span><span class="p">)</span>\
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">parameters</span><span class="p">))))</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;for param_name, value in values.items():&quot;</span><span class="p">)</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>\
+            <span class="p">[</span><span class="s2">&quot;if param_name not in parameter_ind:&quot;</span><span class="p">,</span>
+             <span class="p">[</span><span class="s2">&quot;raise ValueError(</span><span class="se">\&quot;</span><span class="s2">{{0}} is not a parameter.</span><span class="se">\&quot;</span><span class="s2">.format(param_name))&quot;</span><span class="p">],</span>
+             <span class="s2">&quot;ind, range_check, not_in_format = parameter_ind[param_name]&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;if not range_check(value):&quot;</span><span class="p">,</span>
+             <span class="p">[</span><span class="s2">&quot;raise ValueError(</span><span class="se">\&quot;</span><span class="s2">While setting </span><span class="se">\&#39;</span><span class="si">{0}</span><span class="se">\&#39;</span><span class="s2"> </span><span class="si">{1}</span><span class="se">\&quot;</span><span class="s2">.format(&quot;</span>\
+              <span class="s2">&quot;param_name, not_in_format </span><span class="si">% s</span><span class="s2">tr(value)))&quot;</span><span class="p">],</span>
+             <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;# Assign value&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;init_values[ind] = value&quot;</span><span class="p">])</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;return dolfin.Constant(tuple(param_values))&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add function prototype</span>
+        <span class="n">function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wrap_body_with_function_prototype</span><span class="p">(</span>\
+            <span class="n">body_lines</span><span class="p">,</span> <span class="s2">&quot;init_parameter_values&quot;</span><span class="p">,</span> \
+            <span class="s2">&quot;**values&quot;</span><span class="p">,</span> <span class="s2">&quot;Parameter values&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">JuliaCodeGenerator</span><span class="p">(</span><span class="n">BaseCodeGenerator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A Julia Code generator</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Class attributes</span>
+    <span class="n">language</span> <span class="o">=</span> <span class="s2">&quot;Julia&quot;</span>
+    <span class="n">line_ending</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">closure_start</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">closure_end</span> <span class="o">=</span> <span class="s2">&quot;end&quot;</span>
+    <span class="n">line_cont</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">comment</span> <span class="o">=</span> <span class="s2">&quot;#&quot;</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">i</span> <span class="p">:</span> <span class="s2">&quot;[</span><span class="si">{0}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">indent</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">indent_str</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span>
+    <span class="n">to_code</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">name</span> <span class="p">:</span> <span class="n">juliacode</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">default_parameters</span><span class="p">():</span>
+        <span class="c1"># Start out with a copy of the global parameters</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">generation</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">default_arguments</span> <span class="o">=</span> <span class="s2">&quot;spt&quot;</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">index_offset</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="c1"># from IPython import embed; embed()</span>
+        <span class="c1"># exit()</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">functions</span><span class="o">.</span><span class="n">rhs</span><span class="p">[</span><span class="s1">&#39;result_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;dy&#39;</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">states</span><span class="p">[</span><span class="s1">&#39;array_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span>
+
+        <span class="k">return</span> <span class="n">params</span>
+
+    <span class="k">def</span> <span class="nf">args</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Build argument str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">code</span>
+        <span class="n">default_arguments</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">default_arguments</span> \
+                            <span class="k">if</span> <span class="n">comp</span><span class="o">.</span><span class="n">use_default_arguments</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="n">additional_arguments</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">additional_arguments</span><span class="p">[:]</span>
+
+        <span class="n">skip_result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">ret_args</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Add the results first</span>
+        <span class="k">for</span> <span class="n">result_name</span> <span class="ow">in</span> <span class="n">comp</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">result_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">skip_result</span><span class="p">:</span>
+                <span class="n">ret_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result_name</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">default_arguments</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">arg</span> <span class="o">==</span> <span class="s2">&quot;s&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">array_name</span> <span class="ow">in</span> <span class="n">comp</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+                    <span class="n">skip_result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">array_name</span><span class="p">)</span>
+                <span class="n">ret_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">array_name</span><span class="p">)</span>
+
+            <span class="k">elif</span> <span class="n">arg</span> <span class="o">==</span> <span class="s2">&quot;t&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">comp</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+                    <span class="n">skip_result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="n">ret_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="s2">&quot;dt&quot;</span> <span class="ow">in</span> <span class="n">additional_arguments</span><span class="p">:</span>
+                    <span class="n">additional_arguments</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;dt&quot;</span><span class="p">)</span>
+                    <span class="n">ret_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+            <span class="k">elif</span> <span class="n">arg</span> <span class="o">==</span> <span class="s2">&quot;p&quot;</span> <span class="ow">and</span> <span class="n">params</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">representation</span> <span class="o">!=</span> \
+                     <span class="s2">&quot;numerals&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">array_name</span> <span class="ow">in</span> <span class="n">comp</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+                    <span class="n">skip_result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">array_name</span><span class="p">)</span>
+                <span class="n">ret_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">array_name</span><span class="p">)</span>
+
+        <span class="n">ret_args</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">additional_arguments</span><span class="p">)</span>
+
+        <span class="c1"># Arguments with default (None) values</span>
+        <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">in_signature</span> <span class="ow">and</span> <span class="n">params</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">representation</span> <span class="o">!=</span> <span class="s2">&quot;named&quot;</span><span class="p">:</span>
+            <span class="n">ret_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">=nothing&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">array_name</span><span class="p">))</span>
+
+
+
+        <span class="k">return</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ret_args</span><span class="p">)</span>
+
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">wrap_body_with_function_prototype</span><span class="p">(</span><span class="n">body_lines</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> \
+                                          <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Wrap a passed body of lines with a function prototype</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">check_arg</span><span class="p">(</span><span class="n">body_lines</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="n">check_arg</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="n">check_arg</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="n">check_arg</span><span class="p">(</span><span class="n">comment</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">))</span>
+
+        <span class="n">prototype</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">prototype</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;function </span><span class="si">{0}</span><span class="s2">(</span><span class="si">{1}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Wrap comment if any</span>
+        <span class="k">if</span> <span class="n">comment</span><span class="p">:</span>
+            <span class="n">body</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\&quot;\&quot;\&quot;</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">comment</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="n">body</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">body</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+            <span class="n">body</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\&quot;\&quot;\&quot;</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Extend the body with body lines</span>
+        <span class="n">body</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">body_lines</span><span class="p">)</span>
+
+        <span class="c1"># Append body to prototyp</span>
+        <span class="n">prototype</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">prototype</span>
+
+    <span class="k">def</span> <span class="nf">_init_arguments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp</span><span class="p">):</span>
+
+        <span class="n">check_arg</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="n">CodeComponent</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">code</span>
+
+        <span class="n">default_arguments</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">default_arguments</span> \
+                            <span class="k">if</span> <span class="n">comp</span><span class="o">.</span><span class="n">use_default_arguments</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="c1"># Check if comp defines used_states if not use the root components</span>
+        <span class="c1"># full_states attribute</span>
+        <span class="c1"># FIXME: No need for full_states here...</span>
+        <span class="n">used_states</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">used_states</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="s2">&quot;used_states&quot;</span><span class="p">)</span> <span class="k">else</span> \
+                      <span class="n">comp</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">full_states</span>
+
+        <span class="n">used_parameters</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">used_parameters</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="s2">&quot;used_parameters&quot;</span><span class="p">)</span> <span class="k">else</span> \
+                          <span class="n">comp</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">parameters</span>
+
+        <span class="n">num_states</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">num_full_states</span>
+        <span class="n">num_parameters</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">num_parameters</span>
+
+        <span class="c1"># Start building body</span>
+        <span class="n">body_lines</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="s2">&quot;s&quot;</span> <span class="ow">in</span> <span class="n">default_arguments</span> <span class="ow">and</span> <span class="n">used_states</span><span class="p">:</span>
+
+            <span class="n">states_name</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">array_name</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# Assign states&quot;</span><span class="p">)</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;@assert length(</span><span class="si">{0}</span><span class="s2">) == </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">states_name</span><span class="p">,</span> \
+                                                               <span class="n">num_states</span><span class="p">))</span>
+            <span class="c1"># Generate state assign code</span>
+            <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">representation</span> <span class="o">==</span> <span class="s2">&quot;named&quot;</span><span class="p">:</span>
+
+                <span class="c1"># If all states are used</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">used_states</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">comp</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">full_states</span><span class="p">):</span>
+                    <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>\
+                        <span class="n">state</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">state</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">comp</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">full_states</span><span class="p">))</span> <span class="o">+</span> \
+                                      <span class="s2">&quot; = &quot;</span> <span class="o">+</span> <span class="n">states_name</span><span class="p">)</span>
+
+                <span class="c1"># If only a limited number of states are used</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>\
+                        <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">=</span><span class="si">{1}</span><span class="s2">[</span><span class="si">{2}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">states_name</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span> \
+                        <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">state</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">comp</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">full_states</span><span class="p">)</span> \
+                        <span class="k">if</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">used_states</span><span class="p">))</span>
+
+        <span class="c1"># Add parameters code if not numerals</span>
+        <span class="k">if</span> <span class="s2">&quot;p&quot;</span> <span class="ow">in</span> <span class="n">default_arguments</span> <span class="ow">and</span> \
+               <span class="n">params</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">representation</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;named&quot;</span><span class="p">,</span> <span class="s2">&quot;array&quot;</span><span class="p">]</span> <span class="ow">and</span> \
+               <span class="n">used_parameters</span><span class="p">:</span>
+
+            <span class="n">parameters_name</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">array_name</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# Assign parameters&quot;</span><span class="p">)</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;@assert length(</span><span class="si">{0}</span><span class="s2">) == </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+                        <span class="n">parameters_name</span><span class="p">,</span> <span class="n">num_parameters</span><span class="p">))</span>
+
+            <span class="c1"># Generate parameters assign code</span>
+            <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">representation</span> <span class="o">==</span> <span class="s2">&quot;named&quot;</span><span class="p">:</span>
+
+                <span class="c1"># If all parameters are used</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">used_parameters</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">comp</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">parameters</span><span class="p">):</span>
+                    <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>\
+                        <span class="n">param</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">used_parameters</span><span class="p">))</span> <span class="o">+</span> \
+                                      <span class="s2">&quot; = &quot;</span> <span class="o">+</span> <span class="n">parameters_name</span><span class="p">)</span>
+
+                <span class="c1"># If only a limited number of states are used</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>\
+                        <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">=</span><span class="si">{1}</span><span class="s2">[</span><span class="si">{2}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">parameters_name</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span> \
+                        <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">comp</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">parameters</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> \
+                        <span class="k">if</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">used_parameters</span><span class="p">))</span>
+
+        <span class="c1"># If using an array for the body variables</span>
+        <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">representation</span> <span class="o">!=</span> <span class="s2">&quot;named&quot;</span> <span class="ow">and</span> \
+               <span class="n">params</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">array_name</span> <span class="ow">in</span> <span class="n">comp</span><span class="o">.</span><span class="n">shapes</span><span class="p">:</span>
+
+            <span class="n">body_name</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">array_name</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# Body array </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">body_name</span><span class="p">))</span>
+
+            <span class="c1"># If passing the body argument to the method</span>
+            <span class="k">if</span>  <span class="n">params</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">in_signature</span><span class="p">:</span>
+                <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;if </span><span class="si">{0}</span><span class="s2"> == nothing&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">body_name</span><span class="p">))</span>
+                <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> = zeros(</span><span class="si">{1}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+                    <span class="n">body_name</span><span class="p">,</span> <span class="n">comp</span><span class="o">.</span><span class="n">shapes</span><span class="p">[</span><span class="n">body_name</span><span class="p">])])</span>
+                <span class="c1"># body_lines.append(&quot;else&quot;.format(body_name))</span>
+                <span class="c1"># body_lines.append([&quot;assert isinstance({0}, np.ndarray) and &quot;\</span>
+                <span class="c1">#                    &quot;{1}.shape=={2}&quot;.format(\</span>
+                <span class="c1">#             body_name, body_name, comp.shapes[body_name])])</span>
+                <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;@assert size(</span><span class="si">{0}</span><span class="s2">) == </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+                    <span class="n">body_name</span><span class="p">,</span> <span class="n">comp</span><span class="o">.</span><span class="n">shapes</span><span class="p">[</span><span class="n">body_name</span><span class="p">]))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> = zeros(</span><span class="si">{1}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+                    <span class="n">body_name</span><span class="p">,</span> <span class="n">comp</span><span class="o">.</span><span class="n">shapes</span><span class="p">[</span><span class="n">body_name</span><span class="p">]))</span>
+
+        <span class="c1"># If initelizing results</span>
+        <span class="k">if</span> <span class="n">comp</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+
+            <span class="n">results</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">results</span><span class="p">[:]</span>
+
+            <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">array_name</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">states</span><span class="o">.</span><span class="n">array_name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">array_name</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">array_name</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">results</span><span class="p">:</span>
+                <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# Init return args&quot;</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">result_name</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+                <span class="n">shape</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">shapes</span><span class="p">[</span><span class="n">result_name</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">params</span><span class="o">.</span><span class="n">array</span><span class="o">.</span><span class="n">flatten</span><span class="p">:</span>
+                        <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">)</span>
+
+                <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;if </span><span class="si">{0}</span><span class="s2"> == nothing&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result_name</span><span class="p">))</span>
+                <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> = zeros(</span><span class="si">{1}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+                    <span class="n">result_name</span><span class="p">,</span> <span class="n">shape</span><span class="p">)])</span>
+                <span class="c1"># body_lines.append(&quot;else&quot;.format(result_name))</span>
+                <span class="c1"># body_lines.append([&quot;assert isinstance({0}, np.ndarray) and &quot;\</span>
+                <span class="c1"># &quot;{1}.shape == {2}&quot;.format(result_name, result_name, shape)])</span>
+                <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;@assert size(</span><span class="si">{0}</span><span class="s2">) == </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">result_name</span><span class="p">,</span> <span class="n">shape</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">body_lines</span>
+
+    <span class="k">def</span> <span class="nf">function_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">include_signature</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate code for a single function given by a CodeComponent</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">check_arg</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="n">CodeComponent</span><span class="p">)</span>
+        <span class="n">check_kwarg</span><span class="p">(</span><span class="n">indent</span><span class="p">,</span> <span class="s2">&quot;indent&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+
+        <span class="n">body_lines</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">body_lines</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_arguments</span><span class="p">(</span><span class="n">comp</span><span class="p">)</span>
+
+        <span class="c1"># Iterate over any body needed to define the dy</span>
+        <span class="k">for</span> <span class="n">expr</span> <span class="ow">in</span> <span class="n">comp</span><span class="o">.</span><span class="n">body_expressions</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">Comment</span><span class="p">):</span>
+                <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_code</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">expr</span><span class="p">,</span> <span class="n">expr</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">comp</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# Return results&quot;</span><span class="p">)</span>
+            <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;return </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>\
+                <span class="n">result_name</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">comp</span><span class="o">.</span><span class="n">shapes</span><span class="p">[</span><span class="n">result_name</span><span class="p">])</span><span class="o">&gt;=</span><span class="mi">1</span> <span class="ow">and</span> \
+                <span class="n">comp</span><span class="o">.</span><span class="n">shapes</span><span class="p">[</span><span class="n">result_name</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1</span> <span class="k">else</span> <span class="n">result_name</span><span class="o">+</span><span class="s2">&quot;[0]&quot;</span> \
+                <span class="k">for</span> <span class="n">result_name</span> <span class="ow">in</span> <span class="n">comp</span><span class="o">.</span><span class="n">results</span><span class="p">)))</span>
+
+        <span class="k">if</span> <span class="n">include_signature</span><span class="p">:</span>
+
+            <span class="c1"># Add function prototype</span>
+            <span class="n">body_lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wrap_body_with_function_prototype</span><span class="p">(</span>\
+                <span class="n">body_lines</span><span class="p">,</span> <span class="n">comp</span><span class="o">.</span><span class="n">function_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">(</span><span class="n">comp</span><span class="p">),</span> \
+                <span class="n">comp</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">body_lines</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">init_states_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate code for setting initial condition</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">check_arg</span><span class="p">(</span><span class="n">ode</span><span class="p">,</span> <span class="n">ODE</span><span class="p">)</span>
+
+        <span class="c1"># Get all full states</span>
+        <span class="n">states</span> <span class="o">=</span> <span class="n">ode</span><span class="o">.</span><span class="n">full_states</span>
+
+        <span class="c1"># Start building body</span>
+        <span class="n">body_lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;kwargs = Dict(kwargs)&quot;</span><span class="p">,</span> <span class="s2">&quot;# Init values&quot;</span><span class="p">]</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">=</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+            <span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">init</span><span class="p">)</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">states</span><span class="p">)))</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;init_values = Vector([</span><span class="si">{0}</span><span class="s2">])&quot;</span>\
+                          <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">init</span><span class="p">)</span> \
+                    <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">states</span><span class="p">)))</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# State indices and limit checker&quot;</span><span class="p">)</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;state_ind = Dict(</span><span class="si">{0}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+            <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;:</span><span class="si">{0}</span><span class="s2"> =&gt; </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> \
+                      <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">state</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">states</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">))))</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;for key in keys(kwargs)&quot;</span><span class="p">)</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&quot;if haskey(state_ind, key)&quot;</span><span class="p">,</span>
+             <span class="p">[</span><span class="s2">&quot;ind = state_ind[key]&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;init_values[ind] = kwargs[key]&quot;</span><span class="p">]])</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;return init_values&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add function prototype</span>
+        <span class="n">init_function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wrap_body_with_function_prototype</span><span class="p">(</span>\
+            <span class="n">body_lines</span><span class="p">,</span> <span class="s2">&quot;init_state_values&quot;</span><span class="p">,</span> <span class="s2">&quot;; kwargs...&quot;</span><span class="p">,</span> \
+            <span class="s2">&quot;Initialize state values&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">init_function</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">init_parameters_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate code for setting parameters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">check_arg</span><span class="p">(</span><span class="n">ode</span><span class="p">,</span> <span class="n">ODE</span><span class="p">)</span>
+
+        <span class="c1"># Get all parameters</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="n">ode</span><span class="o">.</span><span class="n">parameters</span>
+
+        <span class="c1"># Start building body</span>
+        <span class="n">body_lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;kwargs = Dict(kwargs)&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;# Param values&quot;</span><span class="p">]</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">=</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+            <span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">init</span><span class="p">)</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">)))</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;init_values = Vector([</span><span class="si">{0}</span><span class="s2">])&quot;</span>\
+                          <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">init</span><span class="p">)</span> \
+                    <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">)))</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# Parameter indices and limit checker&quot;</span><span class="p">)</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;param_ind = Dict(</span><span class="si">{0}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+            <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;:</span><span class="si">{0}</span><span class="s2"> =&gt; </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>\
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">state</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">))))</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;for key in keys(kwargs)&quot;</span><span class="p">)</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&quot;if haskey(param_ind, key)&quot;</span><span class="p">,</span>
+             <span class="p">[</span><span class="s2">&quot;ind = param_ind[key]&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;init_values[ind] = kwargs[key]&quot;</span><span class="p">]])</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;return init_values&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Add function prototype</span>
+        <span class="n">function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wrap_body_with_function_prototype</span><span class="p">(</span>\
+            <span class="n">body_lines</span><span class="p">,</span> <span class="s2">&quot;init_parameter_values&quot;</span><span class="p">,</span> \
+            <span class="s2">&quot;; kwargs...&quot;</span><span class="p">,</span> <span class="s2">&quot;Initialize parameter values&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">state_name_to_index_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return code for index handling for states</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">check_arg</span><span class="p">(</span><span class="n">ode</span><span class="p">,</span> <span class="n">ODE</span><span class="p">)</span>
+        <span class="n">states</span> <span class="o">=</span> <span class="n">ode</span><span class="o">.</span><span class="n">full_states</span>
+
+        <span class="n">body_lines</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;state_inds = Dict(</span><span class="si">{0}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+            <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;:</span><span class="si">{0}</span><span class="s2"> =&gt; </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>\
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">state</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">states</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">))))</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;for state in states&quot;</span><span class="p">)</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>\
+            <span class="p">[</span><span class="s2">&quot;if state in state_inds&quot;</span><span class="p">,</span>
+             <span class="p">[</span><span class="s2">&quot;return state_inds[state]&quot;</span><span class="p">]])</span>
+        <span class="c1"># body_lines.append(&quot;end&quot;)</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;error(&quot;Index not found&quot;)&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Add function prototype</span>
+        <span class="n">function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wrap_body_with_function_prototype</span><span class="p">(</span>\
+            <span class="n">body_lines</span><span class="p">,</span> <span class="s2">&quot;state_indices&quot;</span><span class="p">,</span> \
+            <span class="s2">&quot;states...&quot;</span><span class="p">,</span> <span class="s2">&quot;State indices&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">param_name_to_index_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return code for index handling for parameters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">check_arg</span><span class="p">(</span><span class="n">ode</span><span class="p">,</span> <span class="n">ODE</span><span class="p">)</span>
+
+        <span class="n">parameters</span> <span class="o">=</span> <span class="n">ode</span><span class="o">.</span><span class="n">parameters</span>
+
+        <span class="n">body_lines</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;param_inds = Dict(</span><span class="si">{0}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+            <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;:</span><span class="si">{0}</span><span class="s2"> =&gt; </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>\
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">))))</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;for param in params&quot;</span><span class="p">)</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>\
+            <span class="p">[</span><span class="s2">&quot;if param in param_inds&quot;</span><span class="p">,</span>
+             <span class="p">[</span><span class="s2">&quot;return param_inds[param]&quot;</span><span class="p">]])</span>
+        <span class="c1"># body_lines.append(&quot;end&quot;)</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;error(&quot;Index not found&quot;)&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Add function prototype</span>
+        <span class="n">function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wrap_body_with_function_prototype</span><span class="p">(</span>\
+            <span class="n">body_lines</span><span class="p">,</span> <span class="s2">&quot;parameter_indices&quot;</span><span class="p">,</span> \
+            <span class="s2">&quot;params...&quot;</span><span class="p">,</span> <span class="s2">&quot;Parameter indices&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">monitor_name_to_index_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">monitored</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return code for index handling for monitored</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">check_arg</span><span class="p">(</span><span class="n">ode</span><span class="p">,</span> <span class="n">ODE</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">expr_str</span> <span class="ow">in</span> <span class="n">monitored</span><span class="p">:</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">ode</span><span class="o">.</span><span class="n">present_ode_objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">expr_str</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Expression</span><span class="p">):</span>
+                <span class="n">error</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> is not an intermediate or state expression in &quot;</span>\
+                      <span class="s2">&quot;the </span><span class="si">{1}</span><span class="s2"> ODE&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">expr_str</span><span class="p">,</span> <span class="n">ode</span><span class="p">))</span>
+
+        <span class="n">body_lines</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;monitor_inds = Dict(</span><span class="si">{0}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>\
+            <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;:</span><span class="si">{0}</span><span class="s2"> =&gt; </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">monitor</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>\
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">monitor</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">monitored</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">))))</span>
+
+
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;for monitor in monitored&quot;</span><span class="p">)</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>\
+            <span class="p">[</span><span class="s2">&quot;if monitor in monitor_inds&quot;</span><span class="p">,</span>
+             <span class="p">[</span><span class="s2">&quot;return monitor_inds[monitor]&quot;</span><span class="p">]])</span>
+        <span class="c1"># body_lines.append(&quot;end&quot;)</span>
+        <span class="n">body_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;error(&quot;Index not found&quot;)&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Add function prototype</span>
+        <span class="n">function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wrap_body_with_function_prototype</span><span class="p">(</span>\
+            <span class="n">body_lines</span><span class="p">,</span> <span class="s2">&quot;monitor_indices&quot;</span><span class="p">,</span> \
+            <span class="s2">&quot;monitored...&quot;</span><span class="p">,</span> <span class="s2">&quot;Monitor indices&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">componentwise_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">include_signature</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> \
+                           <span class="n">return_body_lines</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Generation of componentwise_rhs_evaluation code is not &quot;</span>
+                <span class="s2">&quot;yet implemented for Python backend.&quot;</span><span class="p">)</span>
+
+<span class="c1">#     def mass_matrix(self, ode, indent=0):</span>
+<span class="c1">#         check_arg(ode, ODE)</span>
+<span class="c1">#         body_lines = [&quot;&quot;, &quot;import numpy as np&quot;,</span>
+<span class="c1">#                       &quot;M = np.eye({0})&quot;.format(ode.num_full_states)]</span>
+<span class="c1">#</span>
+<span class="c1">#         for ind, expr in enumerate(ode.state_expressions):</span>
+<span class="c1">#             if isinstance(expr, AlgebraicExpression):</span>
+<span class="c1">#                 body_lines.append(&quot;M[{0},{0}] = 0&quot;.format(ind))</span>
+<span class="c1">#</span>
+<span class="c1">#         body_lines.append(&quot;&quot;)</span>
+<span class="c1">#         body_lines.append(&quot;return M&quot;)</span>
+<span class="c1">#</span>
+<span class="c1">#         body_lines = self.wrap_body_with_function_prototype(\</span>
+<span class="c1">#             body_lines, &quot;mass_matrix&quot;, &quot;&quot;, \</span>
+<span class="c1">#             &quot;The mass matrix of the {0} ODE&quot;.format(ode.name))</span>
+<span class="c1">#</span>
+<span class="c1">#         return &quot;\n&quot;.join(self.indent_and_split_lines(body_lines, indent=indent))</span>
+<span class="c1">#</span>
+<span class="c1">#     def class_code(self, ode, monitored=None):</span>
+<span class="c1">#         &quot;&quot;&quot;</span>
+<span class="c1">#         Generate class code</span>
+<span class="c1">#         &quot;&quot;&quot;</span>
+<span class="c1">#</span>
+<span class="c1">#         # Force class code param to be True</span>
+<span class="c1">#         class_code_param = self.params.class_code</span>
+<span class="c1">#         self.params.class_code = True</span>
+<span class="c1">#</span>
+<span class="c1">#         check_arg(ode, ODE)</span>
+<span class="c1">#         name = class_name(ode.name)</span>
+<span class="c1">#         code_list = list(self.code_dict(ode, monitored=monitored, indent=1).values())</span>
+<span class="c1">#</span>
+<span class="c1">#         self.params.class_code = class_code_param</span>
+<span class="c1">#         return  &quot;&quot;&quot;</span>
+<span class="c1"># class {0}:</span>
+<span class="c1">#</span>
+<span class="c1"># {1}</span>
+<span class="c1"># &quot;&quot;&quot;.format(name, &quot;\n\n&quot;.join(code_list))</span>
+
+    <span class="k">def</span> <span class="nf">module_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">monitored</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="c1"># self.params.functions.rhs[&#39;result_name&#39;] = &#39;dy&#39;</span>
+
+        <span class="c1"># Force class code param to be False</span>
+        <span class="n">class_code_param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">class_code</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">class_code</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="n">check_arg</span><span class="p">(</span><span class="n">ode</span><span class="p">,</span> <span class="n">ODE</span><span class="p">)</span>
+        <span class="n">code_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code_dict</span><span class="p">(</span><span class="n">ode</span><span class="p">,</span> <span class="n">monitored</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">class_code</span> <span class="o">=</span> <span class="n">class_code_param</span>
+
+        <span class="k">return</span>  <span class="s2">&quot;&quot;&quot;# Gotran generated code for the  &quot;</span><span class="si">{0}</span><span class="s2">&quot; model</span>
+
+<span class="si">{1}</span><span class="s2"></span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ode</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">code_list</span><span class="p">))</span>
 </pre></div>
 
            </div>
@@ -2249,7 +3029,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Johan Hake, Henrik Finsberg.
+        &copy; Copyright 2018, Johan Hake, Henrik Finsberg
 
     </p>
   </div>
@@ -2268,21 +3048,15 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../',
-            VERSION:'1.0',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

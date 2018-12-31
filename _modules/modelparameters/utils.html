@@ -178,7 +178,7 @@
     <span class="n">scalars</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
     <span class="n">integers</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">,)</span>
     <span class="n">nptypes</span> <span class="o">=</span> <span class="p">()</span>
-    <span class="n">range_types</span> <span class="o">=</span> <span class="n">scalars</span> 
+    <span class="n">range_types</span> <span class="o">=</span> <span class="n">scalars</span>
     <span class="n">_all</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">value</span> <span class="p">:</span> <span class="n">value</span>
 
 <span class="kn">import</span> <span class="nn">time</span> <span class="k">as</span> <span class="nn">_time</span>
@@ -210,6 +210,16 @@
 
 <span class="n">VALUE_JUST</span> <span class="o">=</span> <span class="n">rjust</span>
 <span class="n">inf</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="param2value"><a class="viewcode-back" href="../../gotran.common.html#gotran.param2value">[docs]</a><span class="k">def</span> <span class="nf">param2value</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">scalars</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">param</span>
+    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">param</span><span class="o">.</span><span class="n">value</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unable to get value of parameters </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">param</span><span class="p">))</span></div>
+
 
 <div class="viewcode-block" id="value_formatter"><a class="viewcode-back" href="../../gotran.common.html#gotran.value_formatter">[docs]</a><span class="k">def</span> <span class="nf">value_formatter</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -247,19 +257,19 @@
 
             <span class="n">formatstr</span> <span class="o">=</span> <span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">formatstr</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)))</span> <span class="p">)</span>
             <span class="n">ret</span> <span class="o">=</span> <span class="n">formatstr</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-    
+
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="n">inf</span><span class="p">:</span>
-            <span class="n">ret</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\xe2\x88\x9e</span><span class="s2">&quot;</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\xe2\x88\x9e</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">value</span> <span class="o">==</span> <span class="o">-</span><span class="n">inf</span><span class="p">:</span>
-            <span class="n">ret</span> <span class="o">=</span> <span class="s2">&quot;-</span><span class="se">\xe2\x88\x9e</span><span class="s2">&quot;</span>
-    
+            <span class="n">ret</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;-</span><span class="se">\xe2\x88\x9e</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-        
+
     <span class="k">if</span> <span class="n">ret</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-    
+
     <span class="k">if</span> <span class="n">width</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">ret</span>
     <span class="k">return</span> <span class="n">VALUE_JUST</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span></div>
@@ -293,7 +303,7 @@
         <span class="k">if</span> <span class="n">ge</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">gt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">value_error</span><span class="p">(</span><span class="s2">&quot;Cannot create a &#39;Range&#39; including &quot;</span>\
                         <span class="s2">&quot;both &#39;ge&#39; and &#39;gt&#39;&quot;</span><span class="p">)</span>
-        
+
         <span class="c1"># Checking valid types for &#39;RangeChecks&#39;</span>
         <span class="k">for</span> <span class="n">op</span><span class="p">,</span> <span class="n">opname</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ops</span><span class="p">,</span> <span class="n">opnames</span><span class="p">):</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">op</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">scalars</span><span class="p">)):</span>
@@ -312,7 +322,7 @@
         <span class="n">range_formats</span><span class="p">[</span><span class="s2">&quot;maxop&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&lt;=&quot;</span> <span class="k">if</span> <span class="n">lt</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&lt;&quot;</span>
         <span class="n">range_formats</span><span class="p">[</span><span class="s2">&quot;minvalue&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">minval</span><span class="p">)</span>
         <span class="n">range_formats</span><span class="p">[</span><span class="s2">&quot;maxvalue&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">maxval</span><span class="p">)</span>
-        
+
         <span class="c1"># Dict for pretty print</span>
         <span class="n">range_formats</span><span class="p">[</span><span class="s2">&quot;minop_format&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;[&quot;</span> <span class="k">if</span> <span class="n">gt</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;(&quot;</span>
         <span class="n">range_formats</span><span class="p">[</span><span class="s2">&quot;maxop_format&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;]&quot;</span> <span class="k">if</span> <span class="n">lt</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;)&quot;</span>
@@ -325,14 +335,13 @@
                               <span class="n">range_formats</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_in_range</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">range_eval_str</span><span class="p">)</span>
-        
+
         <span class="c1"># Define some string used for pretty print</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_range_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%(minop_format)s%(minformat)s</span><span class="s2">, &quot;</span>\
                           <span class="s2">&quot;</span><span class="si">%(maxformat)s%(maxop_format)s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">range_formats</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">_in_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%%</span><span class="s2">s </span><span class="se">\xe2\x88\x88</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_range_str</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">_not_in_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%%</span><span class="s2">s </span><span class="se">\xe2\x88\x89</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_range_str</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_in_str</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="si">%%</span><span class="s2">s </span><span class="se">\xe2\x88\x88</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_range_str</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_not_in_str</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="si">%%</span><span class="s2">s </span><span class="se">\xe2\x88\x89</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_range_str</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">arg_repr_str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">opname</span><span class="p">,</span> <span class="n">op</span><span class="p">)</span> \
                                       <span class="k">for</span> <span class="n">op</span><span class="p">,</span> <span class="n">opname</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ops</span><span class="p">,</span> <span class="n">opnames</span><span class="p">)</span> \
@@ -374,14 +383,14 @@
 <span class="sd">            A min str length value</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">in_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__contains__</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-        
+
         <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_in</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_not_in</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span></div>
-        
+
 <div class="viewcode-block" id="Range.format_in"><a class="viewcode-back" href="../../gotran.common.html#gotran.Range.format_in">[docs]</a>    <span class="k">def</span> <span class="nf">format_in</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return a formated range check </span>
+<span class="sd">        Return a formated range check</span>
 
 <span class="sd">        Arguments</span>
 <span class="sd">        ---------</span>
@@ -390,7 +399,7 @@
 <span class="sd">        width : int</span>
 <span class="sd">            A min str length value</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        
+
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_in_str</span> <span class="o">%</span> <span class="n">value_formatter</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Range.format_not_in"><a class="viewcode-back" href="../../gotran.common.html#gotran.Range.format_not_in">[docs]</a>    <span class="k">def</span> <span class="nf">format_not_in</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
@@ -404,10 +413,10 @@
 <span class="sd">        width : int</span>
 <span class="sd">            A min str length value</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        
+
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_not_in_str</span> <span class="o">%</span> <span class="n">value_formatter</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span></div></div>
-        
-    
+
+
 <span class="k">def</span> <span class="nf">_floor</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">_math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
 
@@ -434,7 +443,7 @@
 
     <span class="n">days</span> <span class="o">=</span> <span class="n">_floor</span><span class="p">(</span><span class="n">hours</span><span class="o">/</span><span class="mi">24</span><span class="p">)</span>
     <span class="n">hours</span> <span class="o">=</span> <span class="n">_floor</span><span class="p">(</span><span class="n">hours</span><span class="o">%</span><span class="mi">24</span><span class="p">)</span>
-    
+
     <span class="k">if</span> <span class="n">days</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> h</span><span class="si">%s%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="n">minutes_str</span><span class="p">,</span> <span class="n">seconds_str</span><span class="p">)</span>
     <span class="n">hours_str</span> <span class="o">=</span>  <span class="s2">&quot; </span><span class="si">%d</span><span class="s2"> h&quot;</span> <span class="o">%</span> <span class="n">hours</span> <span class="k">if</span> <span class="n">hours</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
@@ -444,7 +453,7 @@
 
 <div class="viewcode-block" id="Timer"><a class="viewcode-back" href="../../gotran.common.html#gotran.Timer">[docs]</a><span class="k">class</span> <span class="nc">Timer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Timer class </span>
+<span class="sd">    Timer class</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">__all_timings</span> <span class="o">=</span> <span class="n">_OrderedDict</span><span class="p">()</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">):</span>
@@ -547,7 +556,7 @@
     <span class="k">if</span> <span class="n">arg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">()</span>
     <span class="k">return</span> <span class="n">arg</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="k">else</span> <span class="p">(</span><span class="n">arg</span><span class="p">,)</span></div>
-    
+
 <div class="viewcode-block" id="listwrap"><a class="viewcode-back" href="../../gotran.common.html#gotran.listwrap">[docs]</a><span class="k">def</span> <span class="nf">listwrap</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Wrap the argument to a list if it is not a list</span>
@@ -566,7 +575,7 @@
 
     <span class="k">assert</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="p">(</span><span class="nb">type</span><span class="p">,</span>  <span class="n">ClassType</span><span class="p">,</span> <span class="n">_types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">,</span> \
                                 <span class="n">_types</span><span class="o">.</span><span class="n">MethodType</span><span class="p">)))</span>
-        
+
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="p">(</span><span class="n">ClassType</span><span class="p">,</span> <span class="nb">type</span><span class="p">)):</span>
         <span class="k">return</span> <span class="s2">&quot; while instantiating &#39;</span><span class="si">{0}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -584,7 +593,7 @@
     <span class="c1"># First check if we are interested in any range check</span>
     <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">comp</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">comp</span> <span class="ow">in</span> <span class="p">[</span><span class="n">ge</span><span class="p">,</span> <span class="n">le</span><span class="p">,</span> <span class="n">gt</span><span class="p">,</span> <span class="n">lt</span><span class="p">]):</span>
 
-        <span class="c1"># Return empty string </span>
+        <span class="c1"># Return empty string</span>
         <span class="k">return</span> <span class="s2">&quot;&quot;</span>
 
     <span class="c1"># Check we want a scalar</span>
@@ -604,14 +613,14 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">assert</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">argtypes</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">type</span><span class="p">)))</span>
     <span class="n">argtypes</span> <span class="o">=</span> <span class="n">tuplewrap</span><span class="p">(</span><span class="n">argtypes</span><span class="p">)</span>
-    
+
     <span class="c1"># First check for correct range</span>
     <span class="n">message</span> <span class="o">=</span> <span class="n">_range_check</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">argtypes</span><span class="p">,</span> <span class="n">ge</span><span class="p">,</span> <span class="n">le</span><span class="p">,</span> <span class="n">gt</span><span class="p">,</span> <span class="n">lt</span><span class="p">)</span>
-    
+
     <span class="c1"># If we have a message we failed the range check</span>
     <span class="k">if</span> <span class="n">message</span><span class="p">:</span>
         <span class="n">raise_error</span> <span class="o">=</span> <span class="n">value_error</span>
-        
+
     <span class="c1"># Check the argument</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">argtypes</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">itemtypes</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
@@ -620,9 +629,9 @@
         <span class="k">assert</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">itemtypes</span><span class="p">,</span> <span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)))</span>
         <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">itemtypes</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">arg</span><span class="p">):</span>
             <span class="k">return</span>
-        
+
         <span class="n">itemtypes</span> <span class="o">=</span> <span class="n">tuplewrap</span><span class="p">(</span><span class="n">itemtypes</span><span class="p">)</span>
-        
+
         <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;expected &#39;</span><span class="si">%s</span><span class="s2">&#39; of &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">iterativetype</span><span class="p">,</span>\
                                 <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">argt</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">argt</span> <span class="ow">in</span> <span class="n">itemtypes</span><span class="p">))</span>
         <span class="n">raise_error</span> <span class="o">=</span> <span class="n">type_error</span>
@@ -645,7 +654,7 @@
                            <span class="n">argtypes_strs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">argtypes_str</span> <span class="o">=</span> <span class="n">argtypes_strs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        
+
         <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;expected &#39;</span><span class="si">%s</span><span class="s2">&#39; (got &#39;</span><span class="si">%s</span><span class="s2">&#39; which is &#39;</span><span class="si">%s</span><span class="s2">&#39;)&quot;</span><span class="o">%</span>\
                   <span class="p">(</span><span class="n">argtypes_str</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
         <span class="n">raise_error</span> <span class="o">=</span> <span class="n">type_error</span>
@@ -669,7 +678,7 @@
     <span class="n">check_arg</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
     <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;Argument </span><span class="si">{}</span><span class="s2"> must be one of </span><span class="si">{}</span><span class="s2">, got </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">lst</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
     <span class="k">assert</span><span class="p">(</span><span class="n">arg</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">),</span> <span class="n">msg</span></div>
-    
+
 <div class="viewcode-block" id="check_arg"><a class="viewcode-back" href="../../gotran.common.html#gotran.check_arg">[docs]</a><span class="k">def</span> <span class="nf">check_arg</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">argtypes</span><span class="p">,</span> <span class="n">num</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">itemtypes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
               <span class="n">ge</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -702,7 +711,7 @@
     <span class="k">assert</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="nb">int</span><span class="p">))</span>
     <span class="n">_check_arg</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">argtypes</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">itemtypes</span><span class="p">,</span> <span class="n">ge</span><span class="p">,</span> <span class="n">le</span><span class="p">,</span> <span class="n">gt</span><span class="p">,</span> <span class="n">lt</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="check_kwarg"><a class="viewcode-back" href="../../gotran.common.html#gotran.check_kwarg">[docs]</a><span class="k">def</span> <span class="nf">check_kwarg</span><span class="p">(</span><span class="n">kwarg</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">argtypes</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">itemtypes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                 <span class="n">ge</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -751,7 +760,7 @@
 <span class="sd">    when the function is used.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">functools</span>
-    
+
     <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">new_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Call to deprecated function </span><span class="si">{0}</span><span class="s2"> (filename=</span><span class="si">{1}</span><span class="s2">, &quot;</span>\
@@ -762,7 +771,6 @@
     <span class="k">return</span> <span class="n">new_func</span></div>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="n">_name</span> <span class="k">for</span> <span class="n">_name</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">globals</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="k">if</span> <span class="n">_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;_&quot;</span><span class="p">]</span>
-
 </pre></div>
 
            </div>
@@ -775,7 +783,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Johan Hake, Henrik Finsberg.
+        &copy; Copyright 2018, Johan Hake, Henrik Finsberg
 
     </p>
   </div>
@@ -794,21 +802,15 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'1.0',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

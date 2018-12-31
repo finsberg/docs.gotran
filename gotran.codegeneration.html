@@ -86,7 +86,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">gotran.codegeneration package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-gotran.codegeneration.algorithmcomponents">gotran.codegeneration.algorithmcomponents module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-gotran.codegeneration.avoidsympycontractions">gotran.codegeneration.avoidsympycontractions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gotran-codegeneration-avoidsympycontractions-module">gotran.codegeneration.avoidsympycontractions module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-gotran.codegeneration.codecomponent">gotran.codegeneration.codecomponent module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-gotran.codegeneration.codegenerators">gotran.codegeneration.codegenerators module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-gotran.codegeneration.compilemodule">gotran.codegeneration.compilemodule module</a></li>
@@ -433,8 +433,8 @@ substitions for a factorized jacobian</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-gotran.codegeneration.avoidsympycontractions">
-<span id="gotran-codegeneration-avoidsympycontractions-module"></span><h2>gotran.codegeneration.avoidsympycontractions module<a class="headerlink" href="#module-gotran.codegeneration.avoidsympycontractions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="gotran-codegeneration-avoidsympycontractions-module">
+<h2>gotran.codegeneration.avoidsympycontractions module<a class="headerlink" href="#gotran-codegeneration-avoidsympycontractions-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-gotran.codegeneration.codecomponent">
 <span id="gotran-codegeneration-codecomponent-module"></span><h2>gotran.codegeneration.codecomponent module<a class="headerlink" href="#module-gotran.codegeneration.codecomponent" title="Permalink to this headline">¶</a></h2>
@@ -956,18 +956,22 @@ state, parameters or monitored will be generated.</li>
 <dt id="gotran.codegeneration.compilemodule.compile_module">
 <code class="descclassname">gotran.codegeneration.compilemodule.</code><code class="descname">compile_module</code><span class="sig-paren">(</span><em>ode</em>, <em>language='C'</em>, <em>monitored=None</em>, <em>generation_params=None</em>, <em>additional_declarations=None</em>, <em>jacobian_declaration_template=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/compilemodule.html#compile_module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.compilemodule.compile_module" title="Permalink to this definition">¶</a></dt>
 <dd><p>JIT compile an ode</p>
-<dl class="docutils">
-<dt>ode <span class="classifier-delimiter">:</span> <span class="classifier">ODE, str</span></dt>
-<dd>The gotran ode</dd>
-<dt>language <span class="classifier-delimiter">:</span> <span class="classifier">str (optional)</span></dt>
-<dd>The language of the generated code
-Defaults : ‘C’ [‘C’, ‘Python’]</dd>
-<dt>monitored <span class="classifier-delimiter">:</span> <span class="classifier">list</span></dt>
-<dd>A list of names of intermediates of the ODE. Code for monitoring
-the intermediates will be generated.</dd>
-<dt>generation_params <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
-<dd>Parameters controling the code generation</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The gotran ode</li>
+<li><strong>language</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> (</em><em>optional</em><em>)</em>) – The language of the generated code
+Defaults : ‘C’ [‘C’, ‘Python’]</li>
+<li><strong>monitored</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A list of names of intermediates of the ODE. Code for monitoring
+the intermediates will be generated.</li>
+<li><strong>generation_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters controling the code generation</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -2483,6 +2487,12 @@ state, parameters or monitored will be generated.</li>
 <span class="go">8 \sqrt{2} \tau^{\frac{7}{2}}</span>
 </pre></div>
 </div>
+<p>Not using a print statement for printing, results in double backslashes for
+latex commands since that’s the way Python escapes backslashes in strings.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">latex</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span><span class="o">**</span><span class="n">Rational</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="go">&#39;8 \\sqrt{2} \\tau^{\\frac{7}{2}}&#39;</span>
+</pre></div>
+</div>
 <p>order: Any of the supported monomial orderings (currently “lex”, “grlex”, or
 “grevlex”), “old”, and “none”. This parameter does nothing for Mul objects.
 Setting order to “old” uses the compatibility ordering for Add defined in
@@ -2501,7 +2511,7 @@ case, the <code class="docutils literal notranslate"><span class="pre">$$</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span><span class="o">**</span><span class="n">Rational</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">))</span>
-<span class="go">$8 \sqrt{2} \tau^{\frac{7}{2}}$</span>
+<span class="go">$8 \sqrt{2} \tau^{7 / 2}$</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">mu</span><span class="p">)</span><span class="o">**</span><span class="n">Rational</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;equation*&#39;</span><span class="p">))</span>
@@ -2597,13 +2607,38 @@ dictionary.</p>
 
 <dl class="class">
 <dt id="gotran.codegeneration.Param">
-<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">Param</code><span class="sig-paren">(</span><em>value</em>, <em>name=''</em>, <em>description=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#Param"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.Param" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">Param</code><span class="sig-paren">(</span><em>value</em>, <em>name=''</em>, <em>description=''</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#Param"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.Param" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A simple type checking class for a single value</p>
 <dl class="method">
 <dt id="gotran.codegeneration.Param.check">
 <code class="descname">check</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#Param.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.Param.check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check the value using the type and any range check</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.codegeneration.Param.convert_to">
+<code class="descname">convert_to</code><span class="sig-paren">(</span><em>unit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#Param.convert_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.Param.convert_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert parameter to a different unit than the current one.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>unit</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The new unit</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Return the same prameter with the new unit</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="gotran.html#gotran.Param" title="gotran.Param">Param</a></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p_s</span> <span class="o">=</span> <span class="n">ScalarParam</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;s&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p_ms</span> <span class="o">=</span> <span class="n">p_s</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="s1">&#39;ms&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;value = </span><span class="si">{}</span><span class="s1">, unit = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p_ms</span><span class="o">.</span><span class="n">value</span><span class="p">),</span> <span class="n">p_ms</span><span class="o">.</span><span class="n">unit</span><span class="p">))</span>
+<span class="go">value = 1000.0, unit = &#39;milliseconds&#39;</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -3155,18 +3190,22 @@ states.</p>
 <dt id="gotran.codegeneration.compile_module">
 <code class="descclassname">gotran.codegeneration.</code><code class="descname">compile_module</code><span class="sig-paren">(</span><em>ode</em>, <em>language='C'</em>, <em>monitored=None</em>, <em>generation_params=None</em>, <em>additional_declarations=None</em>, <em>jacobian_declaration_template=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/compilemodule.html#compile_module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.compile_module" title="Permalink to this definition">¶</a></dt>
 <dd><p>JIT compile an ode</p>
-<dl class="docutils">
-<dt>ode <span class="classifier-delimiter">:</span> <span class="classifier">ODE, str</span></dt>
-<dd>The gotran ode</dd>
-<dt>language <span class="classifier-delimiter">:</span> <span class="classifier">str (optional)</span></dt>
-<dd>The language of the generated code
-Defaults : ‘C’ [‘C’, ‘Python’]</dd>
-<dt>monitored <span class="classifier-delimiter">:</span> <span class="classifier">list</span></dt>
-<dd>A list of names of intermediates of the ODE. Code for monitoring
-the intermediates will be generated.</dd>
-<dt>generation_params <span class="classifier-delimiter">:</span> <span class="classifier">dict</span></dt>
-<dd>Parameters controling the code generation</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The gotran ode</li>
+<li><strong>language</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> (</em><em>optional</em><em>)</em>) – The language of the generated code
+Defaults : ‘C’ [‘C’, ‘Python’]</li>
+<li><strong>monitored</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A list of names of intermediates of the ODE. Code for monitoring
+the intermediates will be generated.</li>
+<li><strong>generation_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters controling the code generation</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -3192,7 +3231,7 @@ the intermediates will be generated.</dd>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Johan Hake, Henrik Finsberg.
+        &copy; Copyright 2018, Johan Hake, Henrik Finsberg
 
     </p>
   </div>
@@ -3211,21 +3250,15 @@ the intermediates will be generated.</dd>
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'1.0',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

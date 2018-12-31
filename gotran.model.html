@@ -78,21 +78,30 @@
               
             
             
-              <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">gotran</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="gotran.html">gotran package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="gotran.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="gotran.algorithms.html">gotran.algorithms package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="gotran.codegeneration.html">gotran.codegeneration package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="gotran.common.html">gotran.common package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="gotran.input.html">gotran.input package</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">gotran.model package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="gotran.solver.html">gotran.solver package</a></li>
+              <p class="caption"><span class="caption-text">Programmers reference:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="gotran.html">gotran package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="gotran.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="gotran.algorithms.html">gotran.algorithms package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gotran.codegeneration.html">gotran.codegeneration package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gotran.common.html">gotran.common package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gotran.input.html">gotran.input package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">gotran.model package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gotran.model.cellmodel">gotran.model.cellmodel module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gotran.model.expressions">gotran.model.expressions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gotran.model.loadmodel">gotran.model.loadmodel module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gotran.model.ode">gotran.model.ode module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gotran.model.odecomponent">gotran.model.odecomponent module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gotran.model.odeobjects">gotran.model.odeobjects module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gotran.model.utils">gotran.model.utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gotran.model">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="gotran.html#module-gotran">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gotran.solver.html">gotran.solver package</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="gotran.html#module-gotran">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -139,8 +148,6 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="modules.html">gotran</a> &raquo;</li>
         
           <li><a href="gotran.html">gotran package</a> &raquo;</li>
         
@@ -304,10 +311,9 @@ of beats and time increment</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>nbeats</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Nuber of beats (Default:1)</li>
-<li><strong>dt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Time increament between two time steps. (Default:1.0)
-Note that you need to think about the time unit.
-If time unit is <cite>ms</cite> then dt = 1.0 is probably OK, but
-if time unit is <cite>s</cite> then dt should probably be lower</li>
+<li><strong>dt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Time increament between two time steps in ms. (Default:1.0)
+Note that you can provide <cite>dt</cite> as a Parameter with unit different
+from ms.</li>
 <li><strong>t1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – End time. If not provided then end time will determined from
 the number of beats</li>
 <li><strong>t0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Start time (Default: 0.0)</li>
@@ -2422,10 +2428,9 @@ of beats and time increment</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>nbeats</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Nuber of beats (Default:1)</li>
-<li><strong>dt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Time increament between two time steps. (Default:1.0)
-Note that you need to think about the time unit.
-If time unit is <cite>ms</cite> then dt = 1.0 is probably OK, but
-if time unit is <cite>s</cite> then dt should probably be lower</li>
+<li><strong>dt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Time increament between two time steps in ms. (Default:1.0)
+Note that you can provide <cite>dt</cite> as a Parameter with unit different
+from ms.</li>
 <li><strong>t1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – End time. If not provided then end time will determined from
 the number of beats</li>
 <li><strong>t0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Start time (Default: 0.0)</li>
@@ -2662,7 +2667,7 @@ with the given number points</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Johan Hake, Henrik Finsberg.
+        &copy; Copyright 2018, Johan Hake, Henrik Finsberg
 
     </p>
   </div>
@@ -2681,21 +2686,15 @@ with the given number points</p>
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'1.0',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

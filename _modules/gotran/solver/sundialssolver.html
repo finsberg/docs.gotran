@@ -149,10 +149,12 @@
 <span class="sd">conda install assimulo</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="k">import</span> <span class="n">suppress_stdout_stderr</span>
 <span class="c1"># Assimulo imports</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">assimulo.solvers</span> <span class="k">import</span> <span class="n">CVode</span>
-    <span class="kn">from</span> <span class="nn">assimulo.problem</span> <span class="k">import</span> <span class="n">Explicit_Problem</span>
+    <span class="k">with</span> <span class="n">suppress_stdout_stderr</span><span class="p">():</span>
+        <span class="kn">from</span> <span class="nn">assimulo.solvers</span> <span class="k">import</span> <span class="n">CVode</span>
+        <span class="kn">from</span> <span class="nn">assimulo.problem</span> <span class="k">import</span> <span class="n">Explicit_Problem</span>
     <span class="n">has_sundials</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
     <span class="n">has_sundials</span> <span class="o">=</span> <span class="kc">False</span>
@@ -161,19 +163,20 @@
 <span class="c1"># Local imports</span>
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;SundialsSolver&quot;</span><span class="p">,</span> <span class="s2">&quot;has_sundials&quot;</span><span class="p">,</span> <span class="s2">&quot;SundialsNotInstalled&quot;</span><span class="p">]</span>
 
+
 <div class="viewcode-block" id="SundialsNotInstalled"><a class="viewcode-back" href="../../../gotran.solver.html#gotran.solver.sundialssolver.SundialsNotInstalled">[docs]</a><span class="k">class</span> <span class="nc">SundialsNotInstalled</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span><span class="k">pass</span></div>
 
 
 <div class="viewcode-block" id="SundialsSolver"><a class="viewcode-back" href="../../../gotran.solver.html#gotran.solver.sundialssolver.SundialsSolver">[docs]</a><span class="k">class</span> <span class="nc">SundialsSolver</span><span class="p">(</span><span class="n">Solver</span><span class="p">):</span>
-    
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;cvode&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;cvode&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
 
         <span class="c1"># Check imports</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">has_sundials</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Chosen backend is sundials, but sundials is &quot;</span><span class="o">+</span>
                    <span class="s2">&quot;not installed&quot;</span><span class="p">)</span>
             <span class="k">raise</span> <span class="n">SundialsNotInstalled</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-        
+
         <span class="c1"># # Check method</span>
         <span class="c1"># msg = (&quot;Method {} is not a sundials method. &quot;.format(method)+\</span>
         <span class="c1">#        &quot;Possible methods are {}&quot;.format(sundials_methods))</span>
@@ -181,14 +184,14 @@
         <span class="c1"># self._method = method</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_options</span> <span class="o">=</span> <span class="n">options</span>
-        
 
-        <span class="n">Solver</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="c1">#arguments=&quot;tsp&quot;,</span>
+
+        <span class="n">Solver</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">arguments</span><span class="o">=</span><span class="s2">&quot;tsp&quot;</span><span class="p">,</span>
                         <span class="n">additional_declarations</span><span class="o">=</span><span class="n">additional_declarations</span><span class="p">,</span>
                         <span class="n">jacobian_declaration_template</span><span class="o">=</span><span class="n">jacobian_declaration_template</span><span class="p">,</span>
                         <span class="o">**</span><span class="n">options</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_create_solver</span><span class="p">()</span>
-       
+
 
     <span class="k">def</span> <span class="nf">_create_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Create problem</span>
@@ -198,7 +201,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_jac</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_problem</span><span class="o">.</span><span class="n">jac</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_jac</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s1">&#39;usejac&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-        
+
         <span class="c1"># Create the solver</span>
         <span class="c1"># if self._method == &quot;cvode&quot;:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_solver</span> <span class="o">=</span> <span class="n">CVode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_problem</span><span class="p">)</span>
@@ -214,9 +217,9 @@
         <span class="c1"># Set verbosity to 100 (i.e turn of printing) if not specified</span>
         <span class="n">maxh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;maxh&quot;</span><span class="p">,</span> <span class="mf">5e-4</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="p">[</span><span class="s2">&quot;maxh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">maxh</span>
-            
-        <span class="bp">self</span><span class="o">.</span><span class="n">_solver</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">update</span><span class="p">(</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> \
-                                     <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_solver</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_solver</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">update</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> \
+                                    <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_solver</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
 
     <span class="k">def</span> <span class="nf">_eval_monitored</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">monitor</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
@@ -229,34 +232,35 @@
     <span class="k">def</span> <span class="nf">solver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solver</span>
 
-    
+
 <div class="viewcode-block" id="SundialsSolver.get_options"><a class="viewcode-back" href="../../../gotran.solver.html#gotran.solver.sundialssolver.SundialsSolver.get_options">[docs]</a>    <span class="k">def</span> <span class="nf">get_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get solver options for the current solver</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">options</span></div>
-        
+
 <div class="viewcode-block" id="SundialsSolver.list_solver_options"><a class="viewcode-back" href="../../../gotran.solver.html#gotran.solver.sundialssolver.SundialsSolver.list_solver_options">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">list_solver_options</span><span class="p">():</span>
-    
+
         <span class="c1"># if method == &quot;cvode&quot;:</span>
         <span class="k">return</span> <span class="n">_CVode</span><span class="o">.</span><span class="n">default_options</span><span class="p">()</span></div>
-        
+
     <span class="k">def</span> <span class="nf">_solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tsteps</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Solve the problem</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_create_solver</span><span class="p">()</span>
+
         <span class="n">t_end</span> <span class="o">=</span> <span class="n">tsteps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">ncp</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tsteps</span><span class="p">)</span>
         <span class="n">ncp_list</span> <span class="o">=</span> <span class="n">tsteps</span>
         <span class="c1"># Construct problem</span>
-        <span class="n">t</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solver</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">ncp</span><span class="p">,</span> <span class="n">ncp_list</span><span class="p">)</span>
+        <span class="n">t</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_solver</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">ncp</span><span class="p">,</span> <span class="n">ncp_list</span><span class="p">)</span>
         <span class="c1"># t,y = self._solver.simulate(t_end)</span>
 
         <span class="k">return</span> <span class="n">t</span><span class="p">,</span><span class="n">y</span></div>
-    
+
 <span class="k">if</span> <span class="n">has_sundials</span><span class="p">:</span>
 
     <span class="k">class</span> <span class="nc">_CVode</span><span class="p">:</span>
@@ -330,7 +334,7 @@
 <span class="s2">  if ( PyArray_SIZE(xa) != </span><span class="si">{num_states}</span><span class="s2"> )</span>
 <span class="s2">    SWIG_exception(SWIG_ValueError, &quot;Expected a numpy array of size: &quot;</span>
 <span class="s2">                                  &quot;</span><span class="si">{num_states}</span><span class="s2">, for the </span><span class="si">{rhs_name}</span><span class="s2"> argument.&quot;);</span>
-<span class="s2">  </span>
+
 <span class="s2">  $1 = (double *)PyArray_DATA(xa);</span>
 <span class="s2">}}</span>
 
@@ -352,7 +356,7 @@
 <span class="s2">  if ( PyArray_SIZE(xa) != </span><span class="si">{num_states}</span><span class="s2"> )</span>
 <span class="s2">    SWIG_exception(SWIG_ValueError, &quot;Expected a numpy array of size: &quot;</span>
 <span class="s2">                              &quot;</span><span class="si">{num_states}</span><span class="s2">, for the </span><span class="si">{states_name}</span><span class="s2"> argument.&quot;);</span>
-<span class="s2">  </span>
+
 <span class="s2">  $1 = (double *)PyArray_DATA(xa);</span>
 <span class="s2">}}</span>
 
@@ -374,7 +378,7 @@
 <span class="s2">  if ( PyArray_SIZE(xa) != </span><span class="si">{num_states}</span><span class="s2"> )</span>
 <span class="s2">    SWIG_exception(SWIG_ValueError, &quot;Expected a numpy array of size: &quot;</span>
 <span class="s2">                              &quot;</span><span class="si">{num_states}</span><span class="s2">, for the </span><span class="si">{states_name}</span><span class="s2"> argument.&quot;);</span>
-<span class="s2">  </span>
+
 <span class="s2">  $1 = (double *)PyArray_DATA(xa);</span>
 <span class="s2">}}</span>
 
@@ -396,9 +400,9 @@
 <span class="s2">  if ( PyArray_SIZE(xa) != </span><span class="si">{num_parameters}</span><span class="s2"> )</span>
 <span class="s2">    SWIG_exception(SWIG_ValueError, &quot;Expected a numpy array of size: &quot;</span>
 <span class="s2">             &quot;</span><span class="si">{num_parameters}</span><span class="s2">, for the </span><span class="si">{parameters_name}</span><span class="s2"> argument.&quot;);</span>
-<span class="s2">  </span>
+
 <span class="s2">  $1 = (double *)PyArray_DATA(xa);</span>
-<span class="s2">  </span>
+
 <span class="s2">}}</span>
 
 <span class="s2">// The typecheck</span>
@@ -419,7 +423,7 @@
 
 <span class="s2">    Arguments:</span>
 <span class="s2">    ----------</span>
-<span class="si">{args_doc}</span><span class="s2">    </span>
+<span class="si">{args_doc}</span><span class="s2"></span>
 <span class="s2">    &#39;&#39;&#39;</span>
 <span class="s2">    import numpy as np</span>
 
@@ -462,7 +466,7 @@
 <span class="s2">  if ( PyArray_SIZE(xa) != </span><span class="si">{num_states}</span><span class="s2">*</span><span class="si">{num_states}</span><span class="s2"> )</span>
 <span class="s2">    SWIG_exception(SWIG_ValueError, &quot;Expected a numpy array of size: &quot;</span>
 <span class="s2">                                  &quot;</span><span class="si">{num_states}</span><span class="s2">*</span><span class="si">{num_states}</span><span class="s2">, for the </span><span class="si">{jac_name}</span><span class="s2"> argument.&quot;);</span>
-<span class="s2">  </span>
+
 <span class="s2">  $1 = (double *)PyArray_DATA(xa);</span>
 <span class="s2">}}</span>
 
@@ -473,14 +477,14 @@
 
 <span class="s2">    Arguments:</span>
 <span class="s2">    ----------</span>
-<span class="si">{args_doc}</span><span class="s2">    </span>
+<span class="si">{args_doc}</span><span class="s2"></span>
 <span class="s2">    </span><span class="si">{jac_name}</span><span class="s2"> : np.ndarray (optional)</span>
-<span class="s2">        The computed result </span>
+<span class="s2">        The computed result</span>
 <span class="s2">    &#39;&#39;&#39;</span>
 <span class="s2">    import numpy as np</span>
 
 <span class="s2">    </span><span class="si">{jac_name}</span><span class="s2"> = np.zeros(</span><span class="si">{num_states}</span><span class="s2">*</span><span class="si">{num_states}</span><span class="s2">, dtype=np.float_)</span>
-<span class="s2">       </span>
+
 <span class="s2">    _</span><span class="si">{jacobian_function_name}</span><span class="s2">(</span><span class="si">{args}</span><span class="s2">, </span><span class="si">{jac_name}</span><span class="s2">)</span>
 <span class="s2">    </span><span class="si">{jac_name}</span><span class="s2">.shape = (</span><span class="si">{num_states}</span><span class="s2">,</span><span class="si">{num_states}</span><span class="s2">)</span>
 <span class="s2">    return </span><span class="si">{jac_name}</span><span class="s2"></span>
@@ -500,7 +504,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Johan Hake, Henrik Finsberg.
+        &copy; Copyright 2018, Johan Hake, Henrik Finsberg
 
     </p>
   </div>
@@ -519,21 +523,15 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../',
-            VERSION:'1.0',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
