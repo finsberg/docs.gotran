@@ -426,7 +426,7 @@
 <span class="si">%r</span><span class="s2">ename (_</span><span class="si">{monitored_function_name}</span><span class="s2">) </span><span class="si">{monitored_function_name}</span><span class="s2">;</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="compile_module"><a class="viewcode-back" href="../../../gotran.codegeneration.html#gotran.compile_module">[docs]</a><span class="k">def</span> <span class="nf">compile_module</span><span class="p">(</span><span class="n">ode</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="n">monitored</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="compile_module"><a class="viewcode-back" href="../../../gotran.codegeneration.html#gotran.codegeneration.compilemodule.compile_module">[docs]</a><span class="k">def</span> <span class="nf">compile_module</span><span class="p">(</span><span class="n">ode</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="n">monitored</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                    <span class="n">generation_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                    <span class="n">additional_declarations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                    <span class="n">jacobian_declaration_template</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -435,7 +435,7 @@
 
 <span class="sd">    Arguments</span>
 <span class="sd">    ---------</span>
-<span class="sd">    ode : ODE, str</span>
+<span class="sd">    ode : gotran.ODE, str</span>
 <span class="sd">        The gotran ode</span>
 <span class="sd">    language : str (optional)</span>
 <span class="sd">        The language of the generated code</span>

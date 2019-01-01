@@ -187,16 +187,16 @@
 
 <span class="sd">    Arguments</span>
 <span class="sd">    ---------</span>
-<span class="sd">    expr : sympy expressio</span>
+<span class="sd">    expr : sympy.expression</span>
 <span class="sd">        A sympy expression of ode symbols</span>
-<span class="sd">    time : sympy Symbol</span>
+<span class="sd">    time : sympy.Symbol</span>
 <span class="sd">        A Symbol representing time in the ODE</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">symbols</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
     <span class="n">pt</span> <span class="o">=</span> <span class="n">preorder_traversal</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
-    
+
     <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">pt</span><span class="p">:</span>
-        
+
         <span class="c1"># Collect AppliedUndefs which are functions of time</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">AppliedUndef</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> \
                <span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">time</span><span class="p">:</span>
@@ -242,16 +242,16 @@
 
 <span class="sd">    Arguments</span>
 <span class="sd">    ---------</span>
-<span class="sd">    comp : ODEComponent</span>
+<span class="sd">    comp : gotran.ODEComponent</span>
 <span class="sd">        The root ODEComponent of the iteration</span>
 <span class="sd">    reverse : bool</span>
 <span class="sd">        If True the iteration is done from the last component added</span>
-<span class="sd">    types : ODEObject types (optional)</span>
+<span class="sd">    types : gotran.ODEObject types (optional)</span>
 <span class="sd">        Only iterate over particular types</span>
 
 <span class="sd">    Yields</span>
 <span class="sd">    ------</span>
-<span class="sd">    ode_object : ODEObject</span>
+<span class="sd">    ode_object : gotran.ODEObject</span>
 <span class="sd">        All ODEObjects of a component</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp</span><span class="p">,</span> <span class="n">return_comp</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">only_return_comp</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -320,9 +320,9 @@
 
 <span class="sd">    Arguments</span>
 <span class="sd">    ---------</span>
-<span class="sd">    comp : ODEComponent</span>
+<span class="sd">    comp : gotran.ODEComponent</span>
 <span class="sd">        The root ODEComponent of the list</span>
-<span class="sd">    types : ODEObject types (optional)</span>
+<span class="sd">    types : gotran.ODEObject types (optional)</span>
 <span class="sd">        Only include objects of type given in types</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">obj</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">iter_objects</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="o">*</span><span class="n">types</span><span class="p">)]</span></div>
@@ -333,13 +333,13 @@
 
 <span class="sd">    Arguments</span>
 <span class="sd">    ---------</span>
-<span class="sd">    comp : ODEComponent</span>
+<span class="sd">    comp : gotran.ODEComponent</span>
 <span class="sd">        The root ODEComponent of the list</span>
 <span class="sd">    return_self : bool (optional)</span>
 <span class="sd">        The list will include the passed component if True</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">comps</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">iter_objects</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">)]</span>
-    
+
     <span class="k">if</span> <span class="ow">not</span> <span class="n">include_self</span><span class="p">:</span>
         <span class="n">comps</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">comp</span><span class="p">)</span>
 
@@ -463,7 +463,7 @@
 <span class="sd">            in the row and the second the states in the column of the Matrix</span>
 <span class="sd">        expr : sympy.Basic, scalar, sympy.MatrixBase</span>
 <span class="sd">            A sympy.Basic and scalars is expected for a single rate between</span>
-<span class="sd">            two states. </span>
+<span class="sd">            two states.</span>
 <span class="sd">            A sympy.Matrix is expected if several rate expressions are given,</span>
 <span class="sd">            see explaination in for states argument for how the columns and</span>
 <span class="sd">            rows are interpreted.</span>
@@ -482,7 +482,7 @@
 
     <span class="k">def</span> <span class="nf">_register_single_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to_state</span><span class="p">,</span> <span class="n">from_state</span><span class="p">,</span> <span class="n">expr_sym</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Actually setting an item </span>
+<span class="sd">        Actually setting an item</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">OrderedDict</span><span class="o">.</span><span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">(</span><span class="n">to_state</span><span class="p">,</span> <span class="n">from_state</span><span class="p">),</span> <span class="n">expr_sym</span><span class="p">)</span></div>
 </pre></div>

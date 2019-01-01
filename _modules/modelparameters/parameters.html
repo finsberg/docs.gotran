@@ -787,7 +787,7 @@
         <span class="c1"># Set allowed types to all Python objects</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value_type</span> <span class="o">=</span> <span class="nb">object</span>
 
-<div class="viewcode-block" id="ScalarParam"><a class="viewcode-back" href="../../gotran.codegeneration.html#gotran.ScalarParam">[docs]</a><span class="k">class</span> <span class="nc">ScalarParam</span><span class="p">(</span><span class="n">Param</span><span class="p">):</span>
+<div class="viewcode-block" id="ScalarParam"><a class="viewcode-back" href="../../gotran.html#gotran.ScalarParam">[docs]</a><span class="k">class</span> <span class="nc">ScalarParam</span><span class="p">(</span><span class="n">Param</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A simple type and range checking class for a scalar value</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -873,7 +873,7 @@
         <span class="c1"># Store parameter</span>
         <span class="n">store_symbol_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ScalarParam.copy"><a class="viewcode-back" href="../../gotran.codegeneration.html#gotran.ScalarParam.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">include_checkarg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">include_name</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> \
+<div class="viewcode-block" id="ScalarParam.copy"><a class="viewcode-back" href="../../gotran.html#gotran.ScalarParam.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">include_checkarg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">include_name</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> \
              <span class="n">include_description</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">include_unit</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a copy of the parameter</span>
@@ -905,7 +905,7 @@
         <span class="c1"># Evaluate the repr str with a copy of the value</span>
         <span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="n">repr_str</span><span class="p">,</span> <span class="nb">globals</span><span class="p">(),</span> <span class="nb">dict</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="ScalarParam.repr"><a class="viewcode-back" href="../../gotran.codegeneration.html#gotran.ScalarParam.repr">[docs]</a>    <span class="k">def</span> <span class="nf">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">include_checkarg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">include_name</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> \
+<div class="viewcode-block" id="ScalarParam.repr"><a class="viewcode-back" href="../../gotran.html#gotran.ScalarParam.repr">[docs]</a>    <span class="k">def</span> <span class="nf">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">include_checkarg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">include_name</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> \
              <span class="n">include_description</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">include_unit</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns an executable version of the Param including optional arguments</span>
@@ -932,7 +932,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_name_arg</span><span class="p">()</span> <span class="k">if</span> <span class="n">include_name</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> \
             <span class="bp">self</span><span class="o">.</span><span class="n">_description_arg</span><span class="p">()</span> <span class="k">if</span> <span class="n">include_description</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ScalarParam.update"><a class="viewcode-back" href="../../gotran.codegeneration.html#gotran.ScalarParam.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+<div class="viewcode-block" id="ScalarParam.update"><a class="viewcode-back" href="../../gotran.html#gotran.ScalarParam.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update parameter with value of new parameter.</span>
 <span class="sd">        Take into account unit conversion if applicable.</span>
@@ -967,7 +967,7 @@
     <span class="k">def</span> <span class="nf">_unit_arg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;, unit=&#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">_unit</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_unit</span> <span class="o">!=</span> <span class="s2">&quot;1&quot;</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
 
-<div class="viewcode-block" id="ScalarParam.get_sym"><a class="viewcode-back" href="../../gotran.codegeneration.html#gotran.ScalarParam.get_sym">[docs]</a>    <span class="k">def</span> <span class="nf">get_sym</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ScalarParam.get_sym"><a class="viewcode-back" href="../../gotran.html#gotran.ScalarParam.get_sym">[docs]</a>    <span class="k">def</span> <span class="nf">get_sym</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sym</span></div>
 
     <span class="n">name</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_name</span><span class="p">,</span> <span class="n">_set_name</span><span class="p">)</span>

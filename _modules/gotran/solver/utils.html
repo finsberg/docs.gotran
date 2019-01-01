@@ -144,12 +144,14 @@
   <h1>Source code for gotran.solver.utils</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="c1"># Define a context manager to suppress stdout and stderr.</span>
+
+
 <div class="viewcode-block" id="suppress_stdout_stderr"><a class="viewcode-back" href="../../../gotran.solver.html#gotran.solver.utils.suppress_stdout_stderr">[docs]</a><span class="k">class</span> <span class="nc">suppress_stdout_stderr</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A context manager for doing a &quot;deep suppression&quot; of stdout and stderr in</span>
 <span class="sd">    Python, i.e. will suppress all print, even if the print originates in a</span>
 <span class="sd">    compiled C/Fortran sub-function.</span>
-<span class="sd">       This will not suppress raised exceptions, since exceptions are printed</span>
+<span class="sd">    This will not suppress raised exceptions, since exceptions are printed</span>
 <span class="sd">    to stderr just before a script exits, and after the context manager has</span>
 <span class="sd">    exited (at least, I think that is why it lets exceptions through).</span>
 <span class="sd">    &quot;&quot;&quot;</span>

@@ -331,10 +331,9 @@ the sundials solvers</p>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A context manager for doing a “deep suppression” of stdout and stderr in
 Python, i.e. will suppress all print, even if the print originates in a
-compiled C/Fortran sub-function.</p>
-<blockquote>
-<div>This will not suppress raised exceptions, since exceptions are printed</div></blockquote>
-<p>to stderr just before a script exits, and after the context manager has
+compiled C/Fortran sub-function.
+This will not suppress raised exceptions, since exceptions are printed
+to stderr just before a script exits, and after the context manager has
 exited (at least, I think that is why it lets exceptions through).</p>
 </dd></dl>
 

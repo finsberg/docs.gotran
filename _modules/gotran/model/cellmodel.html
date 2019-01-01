@@ -263,17 +263,15 @@
 <div class="viewcode-block" id="CellModel"><a class="viewcode-back" href="../../../gotran.html#gotran.CellModel">[docs]</a><span class="k">class</span> <span class="nc">CellModel</span><span class="p">(</span><span class="n">ODE</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Basic class for storing information of a cell model</span>
-
 <span class="sd">    You can either initialize an empty CellModel similar to</span>
-<span class="sd">    an ODE</span>
-
+<span class="sd">    an ODE.</span>
 <span class="sd">    (Maybe if we can create a library of th cellmodels</span>
 <span class="sd">    then it the string matched that of the library we return</span>
-<span class="sd">    the model in the library, e.g `cell = CellModel(&quot;Noble_1962&quot;)`` ?? )</span>
+<span class="sd">    the model in the library, e.g `cell = CellModel(&quot;Noble_1962&quot;)`)</span>
 <span class="sd">    Or you can initialize the cell using an existing ODE</span>
 <span class="sd">    If you have an ODE and want to have a cell, then save the</span>
-<span class="sd">    ODE to an *.ode file and load it using `load_cell`` (in stead of</span>
-<span class="sd">    `load_ode``)</span>
+<span class="sd">    ODE to an .ode file and load it using `load_cell` (in stead of</span>
+<span class="sd">    `load_ode`)</span>
 
 <span class="sd">    Example</span>
 <span class="sd">    -------</span>
@@ -822,7 +820,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        par : ODECompoenent</span>
+<span class="sd">        par : gotran.ODECompoenent</span>
 <span class="sd">            The component</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -846,7 +844,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        par : Parameter</span>
+<span class="sd">        par : gotran.Parameter</span>
 <span class="sd">            The parameter</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -869,7 +867,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        par : Parameter</span>
+<span class="sd">        par : gotran.Parameter</span>
 <span class="sd">            The state</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -892,7 +890,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        par : Parameter</span>
+<span class="sd">        par : gotran.Parameter</span>
 <span class="sd">            The parameter</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -916,7 +914,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        par : Parameter</span>
+<span class="sd">        par : gotran.Parameter</span>
 <span class="sd">            The parameter</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -938,7 +936,7 @@
 
 <span class="sd">        name : str</span>
 <span class="sd">            Name of the parmaeter</span>
-<span class="sd">        value : scalar, ScalarParam</span>
+<span class="sd">        value : scalar, gotran.ScalarParam</span>
 <span class="sd">            The new value of the parameter. Note that</span>
 <span class="sd">            if the parameter is of type `ScalarParam`</span>
 <span class="sd">            while the provided value is a scalar then the value</span>
@@ -964,7 +962,7 @@
 <span class="c1"># Construct a default CellModel</span>
 <span class="c1"># _current_cellmodel = CellModel(&quot;Default&quot;)</span>
 
-<div class="viewcode-block" id="gccm"><a class="viewcode-back" href="../../../gotran.html#gotran.gccm">[docs]</a><span class="k">def</span> <span class="nf">gccm</span><span class="p">():</span>
+<div class="viewcode-block" id="gccm"><a class="viewcode-back" href="../../../gotran.model.html#gotran.gccm">[docs]</a><span class="k">def</span> <span class="nf">gccm</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return the current CellModel</span>
 <span class="sd">    &quot;&quot;&quot;</span>

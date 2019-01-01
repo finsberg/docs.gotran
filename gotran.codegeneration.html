@@ -86,7 +86,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">gotran.codegeneration package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-gotran.codegeneration.algorithmcomponents">gotran.codegeneration.algorithmcomponents module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gotran-codegeneration-avoidsympycontractions-module">gotran.codegeneration.avoidsympycontractions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gotran.codegeneration.avoidsympycontractions">gotran.codegeneration.avoidsympycontractions module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-gotran.codegeneration.codecomponent">gotran.codegeneration.codecomponent module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-gotran.codegeneration.codegenerators">gotran.codegeneration.codegenerators module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-gotran.codegeneration.compilemodule">gotran.codegeneration.compilemodule module</a></li>
@@ -234,7 +234,7 @@ state derivative</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The finalized ODE for which the ith derivative should be computed</li>
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The finalized ODE for which the ith derivative should be computed</li>
 <li><strong>indices</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>list of ints</em>) – The index</li>
 <li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
 <li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the result variable</li>
@@ -254,7 +254,7 @@ state derivative</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The ODE for which derivatives should be linearized</li>
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The ODE for which derivatives should be linearized</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>result_names</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the linearized derivatives and the
 rhs evaluation if that is included.</li>
@@ -278,7 +278,7 @@ rhs evaluation if that is included.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The ODE for which the jacobian expressions should be computed</li>
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The ODE for which the jacobian expressions should be computed</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the jacobian result</li>
 <li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
@@ -298,7 +298,7 @@ rhs evaluation if that is included.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>jacobian</strong> (<a class="reference internal" href="gotran.html#gotran.JacobianComponent" title="gotran.JacobianComponent"><em>JacobianComponent</em></a>) – The ODEComponent holding expressions for the jacobian</li>
+<li><strong>jacobian</strong> (<a class="reference internal" href="gotran.html#gotran.JacobianComponent" title="gotran.JacobianComponent"><em>gotran.JacobianComponent</em></a>) – The ODEComponent holding expressions for the jacobian</li>
 <li><strong>with_body</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If true, the body for computing the jacobian will be included</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the jacobian diagonal result</li>
@@ -319,7 +319,7 @@ rhs evaluation if that is included.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>jacobian</strong> (<a class="reference internal" href="gotran.html#gotran.JacobianComponent" title="gotran.JacobianComponent"><em>JacobianComponent</em></a>) – The ODEComponent holding expressions for the jacobian</li>
+<li><strong>jacobian</strong> (<a class="reference internal" href="gotran.html#gotran.JacobianComponent" title="gotran.JacobianComponent"><em>gotran.JacobianComponent</em></a>) – The ODEComponent holding expressions for the jacobian</li>
 <li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
 </ul>
 </td>
@@ -338,7 +338,7 @@ substitions for a factorized jacobian</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>factorized</strong> (<a class="reference internal" href="gotran.html#gotran.FactorizedJacobianComponent" title="gotran.FactorizedJacobianComponent"><em>FactorizedJacobianComponent</em></a>) – The ODEComponent holding expressions for the factorized jacobian</li>
+<li><strong>factorized</strong> (<a class="reference internal" href="gotran.html#gotran.FactorizedJacobianComponent" title="gotran.FactorizedJacobianComponent"><em>gotran.FactorizedJacobianComponent</em></a>) – The ODEComponent holding expressions for the factorized jacobian</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the result (increment)</li>
 <li><strong>residual_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the residual</li>
@@ -359,7 +359,7 @@ substitions for a factorized jacobian</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>jacobian</strong> (<a class="reference internal" href="gotran.html#gotran.JacobianComponent" title="gotran.JacobianComponent"><em>JacobianComponent</em></a>) – The Jacobian of the ODE</li>
+<li><strong>jacobian</strong> (<a class="reference internal" href="gotran.html#gotran.JacobianComponent" title="gotran.JacobianComponent"><em>gotran.JacobianComponent</em></a>) – The Jacobian of the ODE</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the jacobian diagonal result</li>
 <li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
@@ -379,7 +379,7 @@ substitions for a factorized jacobian</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The finalized ODE</li>
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The finalized ODE</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the rhs result</li>
 <li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
@@ -399,7 +399,7 @@ substitions for a factorized jacobian</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>diagonal_jacobian</strong> (<em>DiagonalJacobianComponent</em>) – The ODEComponent holding expressions for the diagonal jacobian</li>
+<li><strong>diagonal_jacobian</strong> (<em>gotran.DiagonalJacobianComponent</em>) – The ODEComponent holding expressions for the diagonal jacobian</li>
 <li><strong>with_body</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If true, the body for computing the jacobian will be included</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the jacobian diagonal result</li>
@@ -420,7 +420,7 @@ substitions for a factorized jacobian</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The finalized ODE for which the monitored expression should be computed</li>
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The finalized ODE for which the monitored expression should be computed</li>
 <li><strong>monitored</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A tuple/list of strings containing the name of the monitored expressions</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the rhs result</li>
@@ -433,8 +433,8 @@ substitions for a factorized jacobian</p>
 </dd></dl>
 
 </div>
-<div class="section" id="gotran-codegeneration-avoidsympycontractions-module">
-<h2>gotran.codegeneration.avoidsympycontractions module<a class="headerlink" href="#gotran-codegeneration-avoidsympycontractions-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-gotran.codegeneration.avoidsympycontractions">
+<span id="gotran-codegeneration-avoidsympycontractions-module"></span><h2>gotran.codegeneration.avoidsympycontractions module<a class="headerlink" href="#module-gotran.codegeneration.avoidsympycontractions" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-gotran.codegeneration.codecomponent">
 <span id="gotran-codegeneration-codecomponent-module"></span><h2>gotran.codegeneration.codecomponent module<a class="headerlink" href="#module-gotran.codegeneration.codecomponent" title="Permalink to this headline">¶</a></h2>
@@ -458,7 +458,7 @@ generate code.</p>
 <li><strong>indices</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>tuple of int</em>) – The fixed indices identifying the expression</li>
 <li><strong>expr</strong> (<em>sympy.Basic</em><em>, </em><em>scalar</em>) – The expression.</li>
 <li><strong>add_offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Add offset to indices</li>
-<li><strong>dependent</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><em>ODEObject</em></a>) – If given the count of this expression will follow as a
+<li><strong>dependent</strong> (<a class="reference internal" href="gotran.html#gotran.ODEObject" title="gotran.ODEObject"><em>gotran.ODEObject</em></a>) – If given the count of this expression will follow as a
 fractional count based on the count of the dependent object</li>
 </ul>
 </td>
@@ -778,7 +778,7 @@ if no base names give all indexed objects are returned</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The ODE for which code will be generated</li>
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The ODE for which code will be generated</li>
 <li><strong>monitored</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A list of name of monitored intermediates for which evaluation
 code will be generated.</li>
 <li><strong>include_init</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If True, code for initializing the states and parameters will
@@ -949,6 +949,126 @@ state, parameters or monitored will be generated.</li>
 
 </dd></dl>
 
+<dl class="class">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator">
+<em class="property">class </em><code class="descclassname">gotran.codegeneration.codegenerators.</code><code class="descname">JuliaCodeGenerator</code><span class="sig-paren">(</span><em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.codegeneration.codegenerators.BaseCodeGenerator</span></code></p>
+<p>A Julia Code generator</p>
+<dl class="method">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.args">
+<code class="descname">args</code><span class="sig-paren">(</span><em>comp</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build argument str</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.closure_end">
+<code class="descname">closure_end</code><em class="property"> = 'end'</em><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.closure_end" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.closure_start">
+<code class="descname">closure_start</code><em class="property"> = ''</em><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.closure_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.comment">
+<code class="descname">comment</code><em class="property"> = '#'</em><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.comment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.componentwise_code">
+<code class="descname">componentwise_code</code><span class="sig-paren">(</span><em>ode</em>, <em>indent=0</em>, <em>include_signature=True</em>, <em>return_body_lines=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.componentwise_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.componentwise_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.default_parameters">
+<em class="property">static </em><code class="descname">default_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.default_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.default_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.function_code">
+<code class="descname">function_code</code><span class="sig-paren">(</span><em>comp</em>, <em>indent=0</em>, <em>include_signature=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.function_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.function_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate code for a single function given by a CodeComponent</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.indent">
+<code class="descname">indent</code><em class="property"> = 4</em><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.indent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.indent_str">
+<code class="descname">indent_str</code><em class="property"> = ' '</em><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.indent_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.index">
+<code class="descname">index</code><span class="sig-paren">(</span><em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.init_parameters_code">
+<code class="descname">init_parameters_code</code><span class="sig-paren">(</span><em>ode</em>, <em>indent=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.init_parameters_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.init_parameters_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate code for setting parameters</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.init_states_code">
+<code class="descname">init_states_code</code><span class="sig-paren">(</span><em>ode</em>, <em>indent=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.init_states_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.init_states_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate code for setting initial condition</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.language">
+<code class="descname">language</code><em class="property"> = 'Julia'</em><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.language" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.line_cont">
+<code class="descname">line_cont</code><em class="property"> = ''</em><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.line_cont" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.line_ending">
+<code class="descname">line_ending</code><em class="property"> = ''</em><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.line_ending" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.module_code">
+<code class="descname">module_code</code><span class="sig-paren">(</span><em>ode</em>, <em>monitored=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.module_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.module_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.monitor_name_to_index_code">
+<code class="descname">monitor_name_to_index_code</code><span class="sig-paren">(</span><em>ode</em>, <em>monitored</em>, <em>indent=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.monitor_name_to_index_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.monitor_name_to_index_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return code for index handling for monitored</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.param_name_to_index_code">
+<code class="descname">param_name_to_index_code</code><span class="sig-paren">(</span><em>ode</em>, <em>indent=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.param_name_to_index_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.param_name_to_index_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return code for index handling for parameters</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.state_name_to_index_code">
+<code class="descname">state_name_to_index_code</code><span class="sig-paren">(</span><em>ode</em>, <em>indent=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.state_name_to_index_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.state_name_to_index_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return code for index handling for states</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.to_code">
+<code class="descname">to_code</code><span class="sig-paren">(</span><em>expr</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.to_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="gotran.codegeneration.codegenerators.JuliaCodeGenerator.wrap_body_with_function_prototype">
+<em class="property">static </em><code class="descname">wrap_body_with_function_prototype</code><span class="sig-paren">(</span><em>body_lines</em>, <em>name</em>, <em>args</em>, <em>comment=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.wrap_body_with_function_prototype"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.codegenerators.JuliaCodeGenerator.wrap_body_with_function_prototype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrap a passed body of lines with a function prototype</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-gotran.codegeneration.compilemodule">
 <span id="gotran-codegeneration-compilemodule-module"></span><h2>gotran.codegeneration.compilemodule module<a class="headerlink" href="#module-gotran.codegeneration.compilemodule" title="Permalink to this headline">¶</a></h2>
@@ -961,7 +1081,7 @@ state, parameters or monitored will be generated.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The gotran ode</li>
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The gotran ode</li>
 <li><strong>language</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> (</em><em>optional</em><em>)</em>) – The language of the generated code
 Defaults : ‘C’ [‘C’, ‘Python’]</li>
 <li><strong>monitored</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A list of names of intermediates of the ODE. Code for monitoring
@@ -1254,7 +1374,7 @@ a SymPy Basic</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The ODE for which the jacobian expressions should be computed</li>
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The ODE for which the jacobian expressions should be computed</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
 </ul>
@@ -1280,7 +1400,7 @@ a SymPy Basic</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The ODE for which the jacobian expressions should be computed</li>
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The ODE for which the jacobian expressions should be computed</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>delta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Value to safeguard the evaluation of the rush larsen step.</li>
 <li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
@@ -1307,7 +1427,7 @@ a SymPy Basic</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The ODE for which the jacobian expressions should be computed</li>
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The ODE for which the jacobian expressions should be computed</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>delta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Value to safeguard the evaluation of the rush larsen step.</li>
 <li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
@@ -1336,7 +1456,7 @@ implicit Euler method</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The ODE for which the jacobian expressions should be computed</li>
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The ODE for which the jacobian expressions should be computed</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>numeric_jacobian</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If True use numeric calculated diagonal jacobian.</li>
 <li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
@@ -1573,7 +1693,7 @@ generate code.</p>
 <li><strong>indices</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>tuple of int</em>) – The fixed indices identifying the expression</li>
 <li><strong>expr</strong> (<em>sympy.Basic</em><em>, </em><em>scalar</em>) – The expression.</li>
 <li><strong>add_offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Add offset to indices</li>
-<li><strong>dependent</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.odeobjects.ODEObject" title="gotran.model.odeobjects.ODEObject"><em>ODEObject</em></a>) – If given the count of this expression will follow as a
+<li><strong>dependent</strong> (<a class="reference internal" href="gotran.html#gotran.ODEObject" title="gotran.ODEObject"><em>gotran.ODEObject</em></a>) – If given the count of this expression will follow as a
 fractional count based on the count of the dependent object</li>
 </ul>
 </td>
@@ -1671,7 +1791,7 @@ state derivative</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The finalized ODE for which the ith derivative should be computed</li>
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The finalized ODE for which the ith derivative should be computed</li>
 <li><strong>indices</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>list of ints</em>) – The index</li>
 <li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
 <li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the result variable</li>
@@ -1691,7 +1811,7 @@ state derivative</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The ODE for which derivatives should be linearized</li>
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The ODE for which derivatives should be linearized</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>result_names</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the linearized derivatives and the
 rhs evaluation if that is included.</li>
@@ -1715,7 +1835,7 @@ rhs evaluation if that is included.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The ODE for which the jacobian expressions should be computed</li>
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The ODE for which the jacobian expressions should be computed</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the jacobian result</li>
 <li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
@@ -1735,7 +1855,7 @@ rhs evaluation if that is included.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>jacobian</strong> (<a class="reference internal" href="gotran.html#gotran.JacobianComponent" title="gotran.JacobianComponent"><em>JacobianComponent</em></a>) – The ODEComponent holding expressions for the jacobian</li>
+<li><strong>jacobian</strong> (<a class="reference internal" href="gotran.html#gotran.JacobianComponent" title="gotran.JacobianComponent"><em>gotran.JacobianComponent</em></a>) – The ODEComponent holding expressions for the jacobian</li>
 <li><strong>with_body</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If true, the body for computing the jacobian will be included</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the jacobian diagonal result</li>
@@ -1756,7 +1876,7 @@ rhs evaluation if that is included.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>jacobian</strong> (<a class="reference internal" href="gotran.html#gotran.JacobianComponent" title="gotran.JacobianComponent"><em>JacobianComponent</em></a>) – The ODEComponent holding expressions for the jacobian</li>
+<li><strong>jacobian</strong> (<a class="reference internal" href="gotran.html#gotran.JacobianComponent" title="gotran.JacobianComponent"><em>gotran.JacobianComponent</em></a>) – The ODEComponent holding expressions for the jacobian</li>
 <li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
 </ul>
 </td>
@@ -1775,7 +1895,7 @@ substitions for a factorized jacobian</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>factorized</strong> (<a class="reference internal" href="gotran.html#gotran.FactorizedJacobianComponent" title="gotran.FactorizedJacobianComponent"><em>FactorizedJacobianComponent</em></a>) – The ODEComponent holding expressions for the factorized jacobian</li>
+<li><strong>factorized</strong> (<a class="reference internal" href="gotran.html#gotran.FactorizedJacobianComponent" title="gotran.FactorizedJacobianComponent"><em>gotran.FactorizedJacobianComponent</em></a>) – The ODEComponent holding expressions for the factorized jacobian</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the result (increment)</li>
 <li><strong>residual_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the residual</li>
@@ -1796,7 +1916,7 @@ substitions for a factorized jacobian</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>jacobian</strong> (<a class="reference internal" href="gotran.html#gotran.JacobianComponent" title="gotran.JacobianComponent"><em>JacobianComponent</em></a>) – The Jacobian of the ODE</li>
+<li><strong>jacobian</strong> (<a class="reference internal" href="gotran.html#gotran.JacobianComponent" title="gotran.JacobianComponent"><em>gotran.JacobianComponent</em></a>) – The Jacobian of the ODE</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the jacobian diagonal result</li>
 <li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
@@ -1816,7 +1936,7 @@ substitions for a factorized jacobian</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The finalized ODE</li>
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The finalized ODE</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the rhs result</li>
 <li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
@@ -1836,7 +1956,7 @@ substitions for a factorized jacobian</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>diagonal_jacobian</strong> (<em>DiagonalJacobianComponent</em>) – The ODEComponent holding expressions for the diagonal jacobian</li>
+<li><strong>diagonal_jacobian</strong> (<em>gotran.DiagonalJacobianComponent</em>) – The ODEComponent holding expressions for the diagonal jacobian</li>
 <li><strong>with_body</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If true, the body for computing the jacobian will be included</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the jacobian diagonal result</li>
@@ -1857,7 +1977,7 @@ substitions for a factorized jacobian</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The finalized ODE for which the monitored expression should be computed</li>
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The finalized ODE for which the monitored expression should be computed</li>
 <li><strong>monitored</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A tuple/list of strings containing the name of the monitored expressions</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
 <li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the rhs result</li>
@@ -1870,106 +1990,87 @@ substitions for a factorized jacobian</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="gotran.codegeneration.ExplicitEuler">
-<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">ExplicitEuler</code><span class="sig-paren">(</span><em>ode</em>, <em>function_name='forward_explicit_euler'</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/solvercomponents.html#ExplicitEuler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ExplicitEuler" title="Permalink to this definition">¶</a></dt>
+<dt>
+<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">JacobianComponent</code><span class="sig-paren">(</span><em>ode</em>, <em>function_name='compute_jacobian'</em>, <em>result_name='jac'</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/algorithmcomponents.html#JacobianComponent"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#gotran.codegeneration.codecomponent.CodeComponent" title="gotran.codegeneration.codecomponent.CodeComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.codegeneration.codecomponent.CodeComponent</span></code></a></p>
-<p>An ODEComponent which compute one step of the explicit Euler algorithm</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="gotran.codegeneration.explicit_euler_solver">
-<code class="descclassname">gotran.codegeneration.</code><code class="descname">explicit_euler_solver</code><span class="sig-paren">(</span><em>ode</em>, <em>function_name='forward_explicit_euler'</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/solvercomponents.html#explicit_euler_solver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.explicit_euler_solver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return an ODEComponent holding expressions for the explicit Euler method</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The ODE for which the jacobian expressions should be computed</li>
-<li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
-<li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+<p>An ODEComponent which keeps all expressions for the Jacobian of the rhs</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="gotran.codegeneration.RushLarsen">
-<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">RushLarsen</code><span class="sig-paren">(</span><em>ode</em>, <em>function_name='forward_rush_larsen'</em>, <em>delta=1e-08</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/solvercomponents.html#RushLarsen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.RushLarsen" title="Permalink to this definition">¶</a></dt>
+<dt>
+<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">JacobianActionComponent</code><span class="sig-paren">(</span><em>jacobian</em>, <em>with_body=True</em>, <em>function_name='compute_jacobian_action'</em>, <em>result_name='jac_action'</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/algorithmcomponents.html#JacobianActionComponent"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#gotran.codegeneration.codecomponent.CodeComponent" title="gotran.codegeneration.codecomponent.CodeComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.codegeneration.codecomponent.CodeComponent</span></code></a></p>
-<p>An ODEComponent which compute one step of the Rush Larsen algorithm</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="gotran.codegeneration.rush_larsen_solver">
-<code class="descclassname">gotran.codegeneration.</code><code class="descname">rush_larsen_solver</code><span class="sig-paren">(</span><em>ode</em>, <em>function_name='forward_rush_larsen'</em>, <em>delta=1e-08</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/solvercomponents.html#rush_larsen_solver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.rush_larsen_solver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return an ODEComponent holding expressions for the Rush Larsen method</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The ODE for which the jacobian expressions should be computed</li>
-<li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
-<li><strong>delta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Value to safeguard the evaluation of the rush larsen step.</li>
-<li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+<p>Jacobian action component which returns the expressions for Jac*x</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="gotran.codegeneration.GeneralizedRushLarsen">
-<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">GeneralizedRushLarsen</code><span class="sig-paren">(</span><em>ode</em>, <em>function_name='forward_generalized_rush_larsen'</em>, <em>delta=1e-08</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/solvercomponents.html#GeneralizedRushLarsen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.GeneralizedRushLarsen" title="Permalink to this definition">¶</a></dt>
+<dt>
+<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">FactorizedJacobianComponent</code><span class="sig-paren">(</span><em>jacobian</em>, <em>function_name='lu_factorize'</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/algorithmcomponents.html#FactorizedJacobianComponent"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#gotran.codegeneration.codecomponent.CodeComponent" title="gotran.codegeneration.codecomponent.CodeComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.codegeneration.codecomponent.CodeComponent</span></code></a></p>
-<p>An ODEComponent which compute one step of the Rush Larsen algorithm</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="gotran.codegeneration.generalized_rush_larsen_solver">
-<code class="descclassname">gotran.codegeneration.</code><code class="descname">generalized_rush_larsen_solver</code><span class="sig-paren">(</span><em>ode</em>, <em>function_name='forward_generalized_rush_larsen'</em>, <em>delta=1e-08</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/solvercomponents.html#generalized_rush_larsen_solver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.generalized_rush_larsen_solver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return an ODEComponent holding expressions for the generalized Rush Larsen method</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The ODE for which the jacobian expressions should be computed</li>
-<li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
-<li><strong>delta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Value to safeguard the evaluation of the rush larsen step.</li>
-<li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+<p>Class to generate expressions for symbolicaly factorizing a jacobian</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="gotran.codegeneration.SimplifiedImplicitEuler">
-<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">SimplifiedImplicitEuler</code><span class="sig-paren">(</span><em>ode</em>, <em>function_name='forward_simplified_implicit_euler'</em>, <em>numeric_jacobian=False</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/solvercomponents.html#SimplifiedImplicitEuler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.SimplifiedImplicitEuler" title="Permalink to this definition">¶</a></dt>
+<dt>
+<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">ForwardBackwardSubstitutionComponent</code><span class="sig-paren">(</span><em>factorized</em>, <em>function_name='forward_backward_subst'</em>, <em>result_name='dx'</em>, <em>residual_name='F'</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/algorithmcomponents.html#ForwardBackwardSubstitutionComponent"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#gotran.codegeneration.codecomponent.CodeComponent" title="gotran.codegeneration.codecomponent.CodeComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.codegeneration.codecomponent.CodeComponent</span></code></a></p>
-<p>An ODEComponent which compute one step of a simplified Implicit Euler
-algorithm</p>
+<p>Class to generate a forward backward substiution algorithm for
+symbolically factorized jacobian</p>
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">LinearizedDerivativeComponent</code><span class="sig-paren">(</span><em>ode, function_name='linear_derivatives', result_names=['linearized', 'rhs'], only_linear=True, include_rhs=False, nonlinear_last=False, params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/algorithmcomponents.html#LinearizedDerivativeComponent"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gotran.codegeneration.codecomponent.CodeComponent" title="gotran.codegeneration.codecomponent.CodeComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.codegeneration.codecomponent.CodeComponent</span></code></a></p>
+<p>A component for all linear and linearized derivatives</p>
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">CommonSubExpressionODE</code><span class="sig-paren">(</span><em>ode</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/algorithmcomponents.html#CommonSubExpressionODE"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Bases: <a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.ode.ODE</span></code></a></p>
+<p>Class which flattens the component structue of an ODE to just one.
+It uses common sub expressions as intermediates to reduce complexity
+of the derivative expressions.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="gotran.codegeneration.simplified_implicit_euler_solver">
-<code class="descclassname">gotran.codegeneration.</code><code class="descname">simplified_implicit_euler_solver</code><span class="sig-paren">(</span><em>ode</em>, <em>function_name='forward_simplified_implicit_euler'</em>, <em>numeric_jacobian=False</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/solvercomponents.html#simplified_implicit_euler_solver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.simplified_implicit_euler_solver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return an ODEComponent holding expressions for the simplified
-implicit Euler method</p>
+<dt>
+<code class="descclassname">gotran.codegeneration.</code><code class="descname">componentwise_derivative</code><span class="sig-paren">(</span><em>ode</em>, <em>indices</em>, <em>params=None</em>, <em>result_name='dy'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/algorithmcomponents.html#componentwise_derivative"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return an ODEComponent holding the expressions for the ith
+state derivative</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The ODE for which the jacobian expressions should be computed</li>
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The finalized ODE for which the ith derivative should be computed</li>
+<li><strong>indices</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>list of ints</em>) – The index</li>
+<li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
+<li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the result variable</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">gotran.codegeneration.</code><code class="descname">linearized_derivatives</code><span class="sig-paren">(</span><em>ode, function_name='linear_derivatives', result_names=['linearized', 'dy'], only_linear=True, include_rhs=False, nonlinear_last=False, params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/algorithmcomponents.html#linearized_derivatives"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return an ODEComponent holding the linearized derivative expressions</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The ODE for which derivatives should be linearized</li>
 <li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
-<li><strong>numeric_jacobian</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If True use numeric calculated diagonal jacobian.</li>
+<li><strong>result_names</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the linearized derivatives and the
+rhs evaluation if that is included.</li>
+<li><strong>only_linear</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If True, only linear terms will be linearized</li>
+<li><strong>include_rhs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If True, rhs evaluation will be included in the generated code.</li>
+<li><strong>nonlinear_last</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If True the nonlinear expressions are added last after a comment</li>
 <li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
 </ul>
 </td>
@@ -1979,9 +2080,167 @@ implicit Euler method</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="gotran.codegeneration.get_solver_fn">
-<code class="descclassname">gotran.codegeneration.</code><code class="descname">get_solver_fn</code><span class="sig-paren">(</span><em>solver_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/solvercomponents.html#get_solver_fn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.get_solver_fn" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt>
+<code class="descclassname">gotran.codegeneration.</code><code class="descname">jacobian_expressions</code><span class="sig-paren">(</span><em>ode</em>, <em>function_name='compute_jacobian'</em>, <em>result_name='jac'</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/algorithmcomponents.html#jacobian_expressions"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return an ODEComponent holding expressions for the jacobian</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The ODE for which the jacobian expressions should be computed</li>
+<li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
+<li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the jacobian result</li>
+<li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">gotran.codegeneration.</code><code class="descname">jacobian_action_expressions</code><span class="sig-paren">(</span><em>jacobian</em>, <em>with_body=True</em>, <em>function_name='compute_jacobian_action'</em>, <em>result_name='jac_action'</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/algorithmcomponents.html#jacobian_action_expressions"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return an ODEComponent holding expressions for the jacobian action</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>jacobian</strong> (<a class="reference internal" href="gotran.html#gotran.JacobianComponent" title="gotran.JacobianComponent"><em>gotran.JacobianComponent</em></a>) – The ODEComponent holding expressions for the jacobian</li>
+<li><strong>with_body</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If true, the body for computing the jacobian will be included</li>
+<li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
+<li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the jacobian diagonal result</li>
+<li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">gotran.codegeneration.</code><code class="descname">factorized_jacobian_expressions</code><span class="sig-paren">(</span><em>jacobian</em>, <em>function_name='lu_factorize'</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/algorithmcomponents.html#factorized_jacobian_expressions"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return an ODEComponent holding expressions for the factorized jacobian</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>jacobian</strong> (<a class="reference internal" href="gotran.html#gotran.JacobianComponent" title="gotran.JacobianComponent"><em>gotran.JacobianComponent</em></a>) – The ODEComponent holding expressions for the jacobian</li>
+<li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">gotran.codegeneration.</code><code class="descname">forward_backward_subst_expressions</code><span class="sig-paren">(</span><em>factorized</em>, <em>function_name='forward_backward_subst'</em>, <em>result_name='dx'</em>, <em>residual_name='F'</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/algorithmcomponents.html#forward_backward_subst_expressions"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return an ODEComponent holding expressions for the forward backward
+substitions for a factorized jacobian</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>factorized</strong> (<a class="reference internal" href="gotran.html#gotran.FactorizedJacobianComponent" title="gotran.FactorizedJacobianComponent"><em>gotran.FactorizedJacobianComponent</em></a>) – The ODEComponent holding expressions for the factorized jacobian</li>
+<li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
+<li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the result (increment)</li>
+<li><strong>residual_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the residual</li>
+<li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">gotran.codegeneration.</code><code class="descname">diagonal_jacobian_expressions</code><span class="sig-paren">(</span><em>jacobian</em>, <em>function_name='compute_diagonal_jacobian'</em>, <em>result_name='diag_jac'</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/algorithmcomponents.html#diagonal_jacobian_expressions"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return an ODEComponent holding expressions for the diagonal jacobian</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>jacobian</strong> (<a class="reference internal" href="gotran.html#gotran.JacobianComponent" title="gotran.JacobianComponent"><em>gotran.JacobianComponent</em></a>) – The Jacobian of the ODE</li>
+<li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
+<li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the jacobian diagonal result</li>
+<li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">gotran.codegeneration.</code><code class="descname">rhs_expressions</code><span class="sig-paren">(</span><em>ode</em>, <em>function_name='rhs'</em>, <em>result_name='dy'</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/algorithmcomponents.html#rhs_expressions"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return a code component with body expressions for the right hand side</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The finalized ODE</li>
+<li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
+<li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the rhs result</li>
+<li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">gotran.codegeneration.</code><code class="descname">diagonal_jacobian_action_expressions</code><span class="sig-paren">(</span><em>diagonal_jacobian</em>, <em>with_body=True</em>, <em>function_name='compute_diagonal_jacobian_action'</em>, <em>result_name='diag_jac_action'</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/algorithmcomponents.html#diagonal_jacobian_action_expressions"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return an ODEComponent holding expressions for the diagonal jacobian action</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>diagonal_jacobian</strong> (<em>gotran.DiagonalJacobianComponent</em>) – The ODEComponent holding expressions for the diagonal jacobian</li>
+<li><strong>with_body</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If true, the body for computing the jacobian will be included</li>
+<li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
+<li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the jacobian diagonal result</li>
+<li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">gotran.codegeneration.</code><code class="descname">monitored_expressions</code><span class="sig-paren">(</span><em>ode</em>, <em>monitored</em>, <em>function_name='monitored_expressions'</em>, <em>result_name='monitored'</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/algorithmcomponents.html#monitored_expressions"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Return a code component with body expressions to calculate monitored expressions</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The finalized ODE for which the monitored expression should be computed</li>
+<li><strong>monitored</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A tuple/list of strings containing the name of the monitored expressions</li>
+<li><strong>function_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the function which should be generated</li>
+<li><strong>result_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the variable storing the rhs result</li>
+<li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters determining how the code should be generated</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="class">
 <dt id="gotran.codegeneration.PythonCodeGenerator">
@@ -2257,7 +2516,7 @@ implicit Euler method</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a>) – The ODE for which code will be generated</li>
+<li><strong>ode</strong> (<a class="reference internal" href="gotran.html#gotran.ODE" title="gotran.ODE"><em>gotran.ODE</em></a>) – The ODE for which code will be generated</li>
 <li><strong>monitored</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A list of name of monitored intermediates for which evaluation
 code will be generated.</li>
 <li><strong>include_init</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If True, code for initializing the states and parameters will
@@ -2429,638 +2688,121 @@ state, parameters or monitored will be generated.</li>
 </dd></dl>
 
 <dl class="class">
-<dt id="gotran.codegeneration.Expression">
-<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">Expression</code><span class="sig-paren">(</span><em>name</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#Expression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.Expression" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="gotran.model.html#gotran.model.odeobjects.ODEValueObject" title="gotran.model.odeobjects.ODEValueObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.odeobjects.ODEValueObject</span></code></a></p>
-<p>class for all expressions such as intermediates and derivatives</p>
+<dt id="gotran.codegeneration.JuliaCodeGenerator">
+<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">JuliaCodeGenerator</code><span class="sig-paren">(</span><em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.codegeneration.codegenerators.BaseCodeGenerator</span></code></p>
+<p>A Julia Code generator</p>
+<dl class="method">
+<dt id="gotran.codegeneration.JuliaCodeGenerator.args">
+<code class="descname">args</code><span class="sig-paren">(</span><em>comp</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build argument str</p>
+</dd></dl>
+
 <dl class="attribute">
-<dt id="gotran.codegeneration.Expression.dependent">
-<code class="descname">dependent</code><a class="headerlink" href="#gotran.codegeneration.Expression.dependent" title="Permalink to this definition">¶</a></dt>
+<dt id="gotran.codegeneration.JuliaCodeGenerator.closure_end">
+<code class="descname">closure_end</code><em class="property"> = 'end'</em><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.closure_end" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="gotran.codegeneration.Expression.expr">
-<code class="descname">expr</code><a class="headerlink" href="#gotran.codegeneration.Expression.expr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the stored expression</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="gotran.codegeneration.Expression.is_state_expression">
-<code class="descname">is_state_expression</code><a class="headerlink" href="#gotran.codegeneration.Expression.is_state_expression" title="Permalink to this definition">¶</a></dt>
-<dd><p>True of expression is a state expression</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.Expression.replace_expr">
-<code class="descname">replace_expr</code><span class="sig-paren">(</span><em>*replace_dicts</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#Expression.replace_expr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.Expression.replace_expr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Replace registered expression using passed replace_dicts</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="gotran.codegeneration.Expression.sym">
-<code class="descname">sym</code><a class="headerlink" href="#gotran.codegeneration.Expression.sym" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="gotran.codegeneration.StateDerivative">
-<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">StateDerivative</code><span class="sig-paren">(</span><em>state</em>, <em>expr</em>, <em>dependent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/model/expressions.html#StateDerivative"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.StateDerivative" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="gotran.model.html#gotran.model.expressions.StateExpression" title="gotran.model.expressions.StateExpression"><code class="xref py py-class docutils literal notranslate"><span class="pre">gotran.model.expressions.StateExpression</span></code></a></p>
-<p>A class for all state derivatives</p>
-<dl class="attribute">
-<dt id="gotran.codegeneration.StateDerivative.sym">
-<code class="descname">sym</code><a class="headerlink" href="#gotran.codegeneration.StateDerivative.sym" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="gotran.codegeneration.mp_latex">
-<code class="descclassname">gotran.codegeneration.</code><code class="descname">mp_latex</code><span class="sig-paren">(</span><em>expr</em>, <em>**settings</em><span class="sig-paren">)</span><a class="headerlink" href="#gotran.codegeneration.mp_latex" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert the given expression to LaTeX representation.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="n">latex</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">asin</span><span class="p">,</span> <span class="n">Integral</span><span class="p">,</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">Rational</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="k">import</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">tau</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span><span class="o">**</span><span class="n">Rational</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
-<span class="go">8 \sqrt{2} \tau^{\frac{7}{2}}</span>
-</pre></div>
-</div>
-<p>Not using a print statement for printing, results in double backslashes for
-latex commands since that’s the way Python escapes backslashes in strings.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">latex</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span><span class="o">**</span><span class="n">Rational</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-<span class="go">&#39;8 \\sqrt{2} \\tau^{\\frac{7}{2}}&#39;</span>
-</pre></div>
-</div>
-<p>order: Any of the supported monomial orderings (currently “lex”, “grlex”, or
-“grevlex”), “old”, and “none”. This parameter does nothing for Mul objects.
-Setting order to “old” uses the compatibility ordering for Add defined in
-Printer. For very large expressions, set the ‘order’ keyword to ‘none’ if
-speed is a concern.</p>
-<p>mode: Specifies how the generated code will be delimited. ‘mode’ can be one
-of ‘plain’, ‘inline’, ‘equation’ or ‘equation*’.  If ‘mode’ is set to
-‘plain’, then the resulting code will not be delimited at all (this is the
-default). If ‘mode’ is set to ‘inline’ then inline LaTeX $ $ will be used.
-If ‘mode’ is set to ‘equation’ or ‘equation*’, the resulting code will be
-enclosed in the ‘equation’ or ‘equation*’ environment (remember to import
-‘amsmath’ for ‘equation*’), unless the ‘itex’ option is set. In the latter
-case, the <code class="docutils literal notranslate"><span class="pre">$$</span> <span class="pre">$$</span></code> syntax is used.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">mu</span><span class="p">)</span><span class="o">**</span><span class="n">Rational</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;plain&#39;</span><span class="p">))</span>
-<span class="go">8 \sqrt{2} \mu^{\frac{7}{2}}</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span><span class="o">**</span><span class="n">Rational</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">))</span>
-<span class="go">$8 \sqrt{2} \tau^{7 / 2}$</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">mu</span><span class="p">)</span><span class="o">**</span><span class="n">Rational</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;equation*&#39;</span><span class="p">))</span>
-<span class="go">\begin{equation*}8 \sqrt{2} \mu^{\frac{7}{2}}\end{equation*}</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">mu</span><span class="p">)</span><span class="o">**</span><span class="n">Rational</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;equation&#39;</span><span class="p">))</span>
-<span class="go">\begin{equation}8 \sqrt{2} \mu^{\frac{7}{2}}\end{equation}</span>
-</pre></div>
-</div>
-<p>itex: Specifies if itex-specific syntax is used, including emitting <code class="docutils literal notranslate"><span class="pre">$$</span> <span class="pre">$$</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">mu</span><span class="p">)</span><span class="o">**</span><span class="n">Rational</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;equation&#39;</span><span class="p">,</span> <span class="n">itex</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="go">$$8 \sqrt{2} \mu^{\frac{7}{2}}$$</span>
-</pre></div>
-</div>
-<p>fold_frac_powers: Emit “^{p/q}” instead of “^{frac{p}{q}}” for fractional
-powers.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span><span class="o">**</span><span class="n">Rational</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">fold_frac_powers</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="go">8 \sqrt{2} \tau^{7/2}</span>
-</pre></div>
-</div>
-<p>fold_func_brackets: Fold function brackets where applicable.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span><span class="o">**</span><span class="n">sin</span><span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">))))</span>
-<span class="go">\left(2 \tau\right)^{\sin{\left (\frac{7}{2} \right )}}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span><span class="o">**</span><span class="n">sin</span><span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span> <span class="n">fold_func_brackets</span> <span class="o">=</span> <span class="kc">True</span><span class="p">))</span>
-<span class="go">\left(2 \tau\right)^{\sin {\frac{7}{2}}}</span>
-</pre></div>
-</div>
-<p>fold_short_frac: Emit “p / q” instead of “frac{p}{q}” when the
-denominator is simple enough (at most two terms and no powers).
-The default value is <cite>True</cite> for inline mode, False otherwise.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">y</span><span class="p">))</span>
-<span class="go">\frac{3 x^{2}}{y}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">y</span><span class="p">,</span> <span class="n">fold_short_frac</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="go">3 x^{2} / y</span>
-</pre></div>
-</div>
-<p>long_frac_ratio: The allowed ratio of the width of the numerator to the
-width of the denominator before we start breaking off long fractions.
-The default value is 2.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">(</span><span class="n">Integral</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">pi</span><span class="p">,</span> <span class="n">long_frac_ratio</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
-<span class="go">\frac{\int r\, dr}{2 \pi}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">(</span><span class="n">Integral</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">pi</span><span class="p">,</span> <span class="n">long_frac_ratio</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="go">\frac{1}{2 \pi} \int r\, dr</span>
-</pre></div>
-</div>
-<p>mul_symbol: The symbol to use for multiplication. Can be one of None,
-“ldot”, “dot”, or “times”.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span><span class="o">**</span><span class="n">sin</span><span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span> <span class="n">mul_symbol</span><span class="o">=</span><span class="s2">&quot;times&quot;</span><span class="p">))</span>
-<span class="go">\left(2 \times \tau\right)^{\sin{\left (\frac{7}{2} \right )}}</span>
-</pre></div>
-</div>
-<p>inv_trig_style: How inverse trig functions should be displayed. Can be one
-of “abbreviated”, “full”, or “power”. Defaults to “abbreviated”.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">(</span><span class="n">asin</span><span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">))))</span>
-<span class="go">\operatorname{asin}{\left (\frac{7}{2} \right )}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">(</span><span class="n">asin</span><span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span> <span class="n">inv_trig_style</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">))</span>
-<span class="go">\arcsin{\left (\frac{7}{2} \right )}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">(</span><span class="n">asin</span><span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span> <span class="n">inv_trig_style</span><span class="o">=</span><span class="s2">&quot;power&quot;</span><span class="p">))</span>
-<span class="go">\sin^{-1}{\left (\frac{7}{2} \right )}</span>
-</pre></div>
-</div>
-<p>mat_str: Which matrix environment string to emit. “smallmatrix”, “matrix”,
-“array”, etc. Defaults to “smallmatrix” for inline mode, “matrix” for
-matrices of no more than 10 columns, and “array” otherwise.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">(</span><span class="n">Matrix</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])))</span>
-<span class="go">\left[\begin{matrix}x\\y\end{matrix}\right]</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">(</span><span class="n">Matrix</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]),</span> <span class="n">mat_str</span> <span class="o">=</span> <span class="s2">&quot;array&quot;</span><span class="p">))</span>
-<span class="go">\left[\begin{array}{c}x\\y\end{array}\right]</span>
-</pre></div>
-</div>
-<p>mat_delim: The delimiter to wrap around matrices. Can be one of “[“, “(“,
-or the empty string. Defaults to “[“.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">(</span><span class="n">Matrix</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]),</span> <span class="n">mat_delim</span><span class="o">=</span><span class="s2">&quot;(&quot;</span><span class="p">))</span>
-<span class="go">\left(\begin{matrix}x\\y\end{matrix}\right)</span>
-</pre></div>
-</div>
-<p>symbol_names: Dictionary of symbols and the custom strings they should be
-emitted as.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">symbol_names</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="s1">&#39;x_i&#39;</span><span class="p">}))</span>
-<span class="go">x_i^{2}</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">latex</span></code> also supports the builtin container types list, tuple, and
-dictionary.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">latex</span><span class="p">([</span><span class="mi">2</span><span class="o">/</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">))</span>
-<span class="go">$\left [ 2 / x, \quad y\right ]$</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="class">
-<dt id="gotran.codegeneration.Param">
-<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">Param</code><span class="sig-paren">(</span><em>value</em>, <em>name=''</em>, <em>description=''</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#Param"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.Param" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>A simple type checking class for a single value</p>
-<dl class="method">
-<dt id="gotran.codegeneration.Param.check">
-<code class="descname">check</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#Param.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.Param.check" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check the value using the type and any range check</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.Param.convert_to">
-<code class="descname">convert_to</code><span class="sig-paren">(</span><em>unit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#Param.convert_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.Param.convert_to" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert parameter to a different unit than the current one.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>unit</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The new unit</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Return the same prameter with the new unit</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="gotran.html#gotran.Param" title="gotran.Param">Param</a></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Example</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p_s</span> <span class="o">=</span> <span class="n">ScalarParam</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;s&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">p_ms</span> <span class="o">=</span> <span class="n">p_s</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="s1">&#39;ms&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;value = </span><span class="si">{}</span><span class="s1">, unit = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p_ms</span><span class="o">.</span><span class="n">value</span><span class="p">),</span> <span class="n">p_ms</span><span class="o">.</span><span class="n">unit</span><span class="p">))</span>
-<span class="go">value = 1000.0, unit = &#39;milliseconds&#39;</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.Param.copy">
-<code class="descname">copy</code><span class="sig-paren">(</span><em>include_checkarg=True</em>, <em>include_name=True</em>, <em>include_description=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#Param.copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.Param.copy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a copy of the parameter</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>include_checkarg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If include checkargs in new Param</li>
-<li><strong>include_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If include name in new Param</li>
-<li><strong>include_description</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If include description in new Param</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="gotran.codegeneration.Param.description">
-<code class="descname">description</code><a class="headerlink" href="#gotran.codegeneration.Param.description" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.Param.format_data">
-<code class="descname">format_data</code><span class="sig-paren">(</span><em>value=None</em>, <em>not_in=False</em>, <em>str_length=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#Param.format_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.Param.format_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print a nice formated version of the value and its range</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>value</strong> (<em>same as Param.value_type</em><em> (</em><em>optional</em><em>)</em>) – A value to be used in the formating. If not passed stored
-value is used.</li>
-<li><strong>not_in</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em> (</em><em>optional</em><em>)</em>) – If True return a not in version of the value</li>
-<li><strong>str_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> (</em><em>optional</em><em>)</em>) – Used to pad the str with blanks</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.Param.format_width">
-<code class="descname">format_width</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#Param.format_width"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.Param.format_width" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the width of the formated str of value</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.Param.getvalue">
-<code class="descname">getvalue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#Param.getvalue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.Param.getvalue" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the value</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="gotran.codegeneration.Param.name">
-<code class="descname">name</code><a class="headerlink" href="#gotran.codegeneration.Param.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.Param.repr">
-<code class="descname">repr</code><span class="sig-paren">(</span><em>include_checkarg=True</em>, <em>include_name=True</em>, <em>include_description=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#Param.repr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.Param.repr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns an executable version of the Param including optional arguments</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>include_checkarg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If include checkargs in new Param</li>
-<li><strong>include_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If include name in new Param</li>
-<li><strong>include_description</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If include description in new Param</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.Param.setvalue">
-<code class="descname">setvalue</code><span class="sig-paren">(</span><em>value</em>, <em>check=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#Param.setvalue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.Param.setvalue" title="Permalink to this definition">¶</a></dt>
-<dd><p>Try to set the value using the check</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.Param.update">
-<code class="descname">update</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#Param.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.Param.update" title="Permalink to this definition">¶</a></dt>
+<dt id="gotran.codegeneration.JuliaCodeGenerator.closure_start">
+<code class="descname">closure_start</code><em class="property"> = ''</em><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.closure_start" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="gotran.codegeneration.Param.value">
-<code class="descname">value</code><a class="headerlink" href="#gotran.codegeneration.Param.value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the value</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="gotran.codegeneration.ScalarParam">
-<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">ScalarParam</code><span class="sig-paren">(</span><em>value</em>, <em>ge=None</em>, <em>le=None</em>, <em>gt=None</em>, <em>lt=None</em>, <em>unit='1'</em>, <em>name=''</em>, <em>description=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#ScalarParam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ScalarParam" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">modelparameters.parameters.Param</span></code></p>
-<p>A simple type and range checking class for a scalar value</p>
-<dl class="method">
-<dt id="gotran.codegeneration.ScalarParam.copy">
-<code class="descname">copy</code><span class="sig-paren">(</span><em>include_checkarg=True</em>, <em>include_name=True</em>, <em>include_description=True</em>, <em>include_unit=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#ScalarParam.copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ScalarParam.copy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a copy of the parameter</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>include_checkarg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If include checkargs in new Param</li>
-<li><strong>include_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If include name in new Param</li>
-<li><strong>include_description</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If include description in new Param</li>
-<li><strong>include_unit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If include unit in new Param</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.ScalarParam.get_sym">
-<code class="descname">get_sym</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#ScalarParam.get_sym"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ScalarParam.get_sym" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="gotran.codegeneration.ScalarParam.name">
-<code class="descname">name</code><a class="headerlink" href="#gotran.codegeneration.ScalarParam.name" title="Permalink to this definition">¶</a></dt>
+<dt id="gotran.codegeneration.JuliaCodeGenerator.comment">
+<code class="descname">comment</code><em class="property"> = '#'</em><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.comment" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="gotran.codegeneration.ScalarParam.repr">
-<code class="descname">repr</code><span class="sig-paren">(</span><em>include_checkarg=True</em>, <em>include_name=True</em>, <em>include_description=True</em>, <em>include_unit=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#ScalarParam.repr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ScalarParam.repr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns an executable version of the Param including optional arguments</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>include_checkarg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If include checkargs in new Param</li>
-<li><strong>include_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If include name in new Param</li>
-<li><strong>include_description</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If include description in new Param</li>
-<li><strong>include_unit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If include unit in new Param</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="gotran.codegeneration.ScalarParam.sym">
-<code class="descname">sym</code><a class="headerlink" href="#gotran.codegeneration.ScalarParam.sym" title="Permalink to this definition">¶</a></dt>
+<dt id="gotran.codegeneration.JuliaCodeGenerator.componentwise_code">
+<code class="descname">componentwise_code</code><span class="sig-paren">(</span><em>ode</em>, <em>indent=0</em>, <em>include_signature=True</em>, <em>return_body_lines=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.componentwise_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.componentwise_code" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="gotran.codegeneration.ScalarParam.unit">
-<code class="descname">unit</code><a class="headerlink" href="#gotran.codegeneration.ScalarParam.unit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the unit</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.ScalarParam.update">
-<code class="descname">update</code><span class="sig-paren">(</span><em>param</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#ScalarParam.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ScalarParam.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update parameter with value of new parameter.
-Take into account unit conversion if applicable.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>param</strong> (<em>ScalarParameter</em><em> or </em><em>scalar</em>) – The parameter with the new value</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="gotran.codegeneration.ArrayParam">
-<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">ArrayParam</code><span class="sig-paren">(</span><em>value</em>, <em>size=None</em>, <em>ge=None</em>, <em>le=None</em>, <em>gt=None</em>, <em>lt=None</em>, <em>unit='1'</em>, <em>name=''</em>, <em>description=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#ArrayParam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ArrayParam" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">modelparameters.parameters.ScalarParam</span></code></p>
-<p>A numpy Array based parameter</p>
-<dl class="method">
-<dt id="gotran.codegeneration.ArrayParam.resize">
-<code class="descname">resize</code><span class="sig-paren">(</span><em>newsize</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#ArrayParam.resize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ArrayParam.resize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Change the size of the Array</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.ArrayParam.setvalue">
-<code class="descname">setvalue</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameters.html#ArrayParam.setvalue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ArrayParam.setvalue" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set value of ArrayParameter</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="gotran.codegeneration.ArrayParam.value">
-<code class="descname">value</code><a class="headerlink" href="#gotran.codegeneration.ArrayParam.value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the value</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="gotran.codegeneration.ParameterDict">
-<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">ParameterDict</code><span class="sig-paren">(</span><em>**params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameterdict.html#ParameterDict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ParameterDict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
-<p>A dictionary with attribute-style access,
-that maps attribute access to the real dictionary.</p>
-<dl class="method">
-<dt id="gotran.codegeneration.ParameterDict.clear">
-<code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None.  Remove all items from D.<a class="reference internal" href="_modules/modelparameters/parameterdict.html#ParameterDict.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ParameterDict.clear" title="Permalink to this definition">¶</a></dt>
+<dl class="staticmethod">
+<dt id="gotran.codegeneration.JuliaCodeGenerator.default_parameters">
+<em class="property">static </em><code class="descname">default_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.default_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.default_parameters" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="gotran.codegeneration.ParameterDict.copy">
-<code class="descname">copy</code><span class="sig-paren">(</span><em>to_dict=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameterdict.html#ParameterDict.copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ParameterDict.copy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make a deep copy of self, including recursive copying of parameter
-subsets.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>to_dict</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em> (</em><em>optional</em><em>)</em>) – Return a dict with items representing the values of the
-Parameters</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.ParameterDict.format_data">
-<code class="descname">format_data</code><span class="sig-paren">(</span><em>indent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameterdict.html#ParameterDict.format_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ParameterDict.format_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make a recursive indented pretty-print string of
-self and parameter subsets.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.ParameterDict.fromkeys">
-<code class="descname">fromkeys</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameterdict.html#ParameterDict.fromkeys"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ParameterDict.fromkeys" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a new dict with keys from iterable and values equal to value.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.ParameterDict.iterparameterdicts">
-<code class="descname">iterparameterdicts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameterdict.html#ParameterDict.iterparameterdicts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ParameterDict.iterparameterdicts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Iterate over all ParameterDicts</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>recurse</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em> (</em><em>optional</em><em>)</em>) – If True each encountered ParameterDict will also be entered</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.ParameterDict.iterparams">
-<code class="descname">iterparams</code><span class="sig-paren">(</span><em>recurse=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameterdict.html#ParameterDict.iterparams"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ParameterDict.iterparams" title="Permalink to this definition">¶</a></dt>
-<dd><p>Iterate over all Param</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>recurse</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em> (</em><em>optional</em><em>)</em>) – If True each encountered ParameterDict will be entered</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.ParameterDict.optstr">
-<code class="descname">optstr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameterdict.html#ParameterDict.optstr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ParameterDict.optstr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a string with option set</p>
-<p>An option string can be sent to a script using a parameter dict
-to set its parameters from command line options</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.ParameterDict.parse_args">
-<code class="descname">parse_args</code><span class="sig-paren">(</span><em>options=None</em>, <em>usage=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameterdict.html#ParameterDict.parse_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ParameterDict.parse_args" title="Permalink to this definition">¶</a></dt>
-<dd><p>Parse a list of options. use sys.argv as default</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>options</strong> (<em>list of str</em><em> (</em><em>optional</em><em>)</em>) – List of options. By default sys.argv[1:] is used. This argument
-is mostly for debugging.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.ParameterDict.pop">
-<code class="descname">pop</code><span class="sig-paren">(</span><em>k</em><span class="optional">[</span>, <em>d</em><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; v, remove specified key and return the corresponding value.<a class="reference internal" href="_modules/modelparameters/parameterdict.html#ParameterDict.pop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ParameterDict.pop" title="Permalink to this definition">¶</a></dt>
-<dd><p>If key is not found, d is returned if given, otherwise KeyError is raised</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.ParameterDict.update">
-<code class="descname">update</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelparameters/parameterdict.html#ParameterDict.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.ParameterDict.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>A recursive update that handles parameter subsets
-correctly unlike dict.update.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="gotran.codegeneration.StringIO">
-<em class="property">class </em><code class="descclassname">gotran.codegeneration.</code><code class="descname">StringIO</code><a class="headerlink" href="#gotran.codegeneration.StringIO" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_io._TextIOBase</span></code></p>
-<p>Text I/O implementation using an in-memory buffer.</p>
-<p>The initial_value argument sets the value of object.  The newline
-argument is like the one of TextIOWrapper’s constructor.</p>
-<dl class="method">
-<dt id="gotran.codegeneration.StringIO.close">
-<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gotran.codegeneration.StringIO.close" title="Permalink to this definition">¶</a></dt>
-<dd><p>Close the IO object.</p>
-<p>Attempting any further operation after the object is closed
-will raise a ValueError.</p>
-<p>This method has no effect if the file is already closed.</p>
+<dt id="gotran.codegeneration.JuliaCodeGenerator.function_code">
+<code class="descname">function_code</code><span class="sig-paren">(</span><em>comp</em>, <em>indent=0</em>, <em>include_signature=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.function_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.function_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate code for a single function given by a CodeComponent</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="gotran.codegeneration.StringIO.closed">
-<code class="descname">closed</code><a class="headerlink" href="#gotran.codegeneration.StringIO.closed" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.StringIO.getvalue">
-<code class="descname">getvalue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gotran.codegeneration.StringIO.getvalue" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieve the entire contents of the object.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="gotran.codegeneration.StringIO.line_buffering">
-<code class="descname">line_buffering</code><a class="headerlink" href="#gotran.codegeneration.StringIO.line_buffering" title="Permalink to this definition">¶</a></dt>
+<dt id="gotran.codegeneration.JuliaCodeGenerator.indent">
+<code class="descname">indent</code><em class="property"> = 4</em><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.indent" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="gotran.codegeneration.StringIO.newlines">
-<code class="descname">newlines</code><a class="headerlink" href="#gotran.codegeneration.StringIO.newlines" title="Permalink to this definition">¶</a></dt>
-<dd><p>Line endings translated so far.</p>
-<p>Only line endings translated during reading are considered.</p>
-<p>Subclasses should override.</p>
+<dt id="gotran.codegeneration.JuliaCodeGenerator.indent_str">
+<code class="descname">indent_str</code><em class="property"> = ' '</em><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.indent_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.codegeneration.JuliaCodeGenerator.index">
+<code class="descname">index</code><span class="sig-paren">(</span><em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.codegeneration.JuliaCodeGenerator.init_parameters_code">
+<code class="descname">init_parameters_code</code><span class="sig-paren">(</span><em>ode</em>, <em>indent=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.init_parameters_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.init_parameters_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate code for setting parameters</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="gotran.codegeneration.StringIO.read">
-<code class="descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gotran.codegeneration.StringIO.read" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read at most size characters, returned as a string.</p>
-<p>If the argument is negative or omitted, read until EOF
-is reached. Return an empty string at EOF.</p>
+<dt id="gotran.codegeneration.JuliaCodeGenerator.init_states_code">
+<code class="descname">init_states_code</code><span class="sig-paren">(</span><em>ode</em>, <em>indent=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.init_states_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.init_states_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate code for setting initial condition</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.codegeneration.JuliaCodeGenerator.language">
+<code class="descname">language</code><em class="property"> = 'Julia'</em><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.language" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.codegeneration.JuliaCodeGenerator.line_cont">
+<code class="descname">line_cont</code><em class="property"> = ''</em><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.line_cont" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gotran.codegeneration.JuliaCodeGenerator.line_ending">
+<code class="descname">line_ending</code><em class="property"> = ''</em><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.line_ending" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.codegeneration.JuliaCodeGenerator.module_code">
+<code class="descname">module_code</code><span class="sig-paren">(</span><em>ode</em>, <em>monitored=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.module_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.module_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="gotran.codegeneration.JuliaCodeGenerator.monitor_name_to_index_code">
+<code class="descname">monitor_name_to_index_code</code><span class="sig-paren">(</span><em>ode</em>, <em>monitored</em>, <em>indent=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.monitor_name_to_index_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.monitor_name_to_index_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return code for index handling for monitored</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="gotran.codegeneration.StringIO.readable">
-<code class="descname">readable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gotran.codegeneration.StringIO.readable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns True if the IO object can be read.</p>
+<dt id="gotran.codegeneration.JuliaCodeGenerator.param_name_to_index_code">
+<code class="descname">param_name_to_index_code</code><span class="sig-paren">(</span><em>ode</em>, <em>indent=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.param_name_to_index_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.param_name_to_index_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return code for index handling for parameters</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="gotran.codegeneration.StringIO.readline">
-<code class="descname">readline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gotran.codegeneration.StringIO.readline" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read until newline or EOF.</p>
-<p>Returns an empty string if EOF is hit immediately.</p>
+<dt id="gotran.codegeneration.JuliaCodeGenerator.state_name_to_index_code">
+<code class="descname">state_name_to_index_code</code><span class="sig-paren">(</span><em>ode</em>, <em>indent=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.state_name_to_index_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.state_name_to_index_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return code for index handling for states</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="gotran.codegeneration.StringIO.seek">
-<code class="descname">seek</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gotran.codegeneration.StringIO.seek" title="Permalink to this definition">¶</a></dt>
-<dd><p>Change stream position.</p>
-<dl class="docutils">
-<dt>Seek to character offset pos relative to position indicated by whence:</dt>
-<dd>0  Start of stream (the default).  pos should be &gt;= 0;
-1  Current position - pos must be 0;
-2  End of stream - pos must be 0.</dd>
-</dl>
-<p>Returns the new absolute position.</p>
-</dd></dl>
+<dt id="gotran.codegeneration.JuliaCodeGenerator.to_code">
+<code class="descname">to_code</code><span class="sig-paren">(</span><em>expr</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.to_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
-<dl class="method">
-<dt id="gotran.codegeneration.StringIO.seekable">
-<code class="descname">seekable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gotran.codegeneration.StringIO.seekable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns True if the IO object can be seeked.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.StringIO.tell">
-<code class="descname">tell</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gotran.codegeneration.StringIO.tell" title="Permalink to this definition">¶</a></dt>
-<dd><p>Tell the current file position.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.StringIO.truncate">
-<code class="descname">truncate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gotran.codegeneration.StringIO.truncate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Truncate size to pos.</p>
-<p>The pos argument defaults to the current file position, as
-returned by tell().  The current file position is unchanged.
-Returns the new absolute position.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.StringIO.writable">
-<code class="descname">writable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gotran.codegeneration.StringIO.writable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns True if the IO object can be written.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="gotran.codegeneration.StringIO.write">
-<code class="descname">write</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gotran.codegeneration.StringIO.write" title="Permalink to this definition">¶</a></dt>
-<dd><p>Write string to file.</p>
-<p>Returns the number of characters written, which is always equal to
-the length of the string.</p>
+<dl class="staticmethod">
+<dt id="gotran.codegeneration.JuliaCodeGenerator.wrap_body_with_function_prototype">
+<em class="property">static </em><code class="descname">wrap_body_with_function_prototype</code><span class="sig-paren">(</span><em>body_lines</em>, <em>name</em>, <em>args</em>, <em>comment=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/codegenerators.html#JuliaCodeGenerator.wrap_body_with_function_prototype"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.JuliaCodeGenerator.wrap_body_with_function_prototype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrap a passed body of lines with a function prototype</p>
 </dd></dl>
 
 </dd></dl>
@@ -3184,28 +2926,6 @@ states.</p>
 <code class="descname">print_settings</code><em class="property"> = {}</em><a class="headerlink" href="#gotran.codegeneration.LatexCodeGenerator.print_settings" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</dd></dl>
-
-<dl class="function">
-<dt id="gotran.codegeneration.compile_module">
-<code class="descclassname">gotran.codegeneration.</code><code class="descname">compile_module</code><span class="sig-paren">(</span><em>ode</em>, <em>language='C'</em>, <em>monitored=None</em>, <em>generation_params=None</em>, <em>additional_declarations=None</em>, <em>jacobian_declaration_template=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gotran/codegeneration/compilemodule.html#compile_module"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gotran.codegeneration.compile_module" title="Permalink to this definition">¶</a></dt>
-<dd><p>JIT compile an ode</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ode</strong> (<a class="reference internal" href="gotran.model.html#gotran.model.ode.ODE" title="gotran.model.ode.ODE"><em>ODE</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The gotran ode</li>
-<li><strong>language</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> (</em><em>optional</em><em>)</em>) – The language of the generated code
-Defaults : ‘C’ [‘C’, ‘Python’]</li>
-<li><strong>monitored</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a>) – A list of names of intermediates of the ODE. Code for monitoring
-the intermediates will be generated.</li>
-<li><strong>generation_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – Parameters controling the code generation</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
 </dd></dl>
 
 </div>

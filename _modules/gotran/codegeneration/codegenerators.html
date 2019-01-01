@@ -183,7 +183,8 @@
 <span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">reduce</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;PythonCodeGenerator&quot;</span><span class="p">,</span> <span class="s2">&quot;CCodeGenerator&quot;</span><span class="p">,</span> <span class="s2">&quot;CppCodeGenerator&quot;</span><span class="p">,</span> \
-           <span class="s2">&quot;MatlabCodeGenerator&quot;</span><span class="p">,</span> <span class="s2">&quot;class_name&quot;</span><span class="p">,</span> <span class="s2">&quot;CUDACodeGenerator&quot;</span><span class="p">]</span>
+           <span class="s2">&quot;MatlabCodeGenerator&quot;</span><span class="p">,</span> <span class="s2">&quot;class_name&quot;</span><span class="p">,</span> <span class="s2">&quot;CUDACodeGenerator&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;JuliaCodeGenerator&quot;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="class_name"><a class="viewcode-back" href="../../../gotran.codegeneration.html#gotran.class_name">[docs]</a><span class="k">def</span> <span class="nf">class_name</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
     <span class="n">check_arg</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
@@ -236,7 +237,7 @@
 
 <span class="sd">        Arguments</span>
 <span class="sd">        ---------</span>
-<span class="sd">        ode : ODE</span>
+<span class="sd">        ode : gotran.ODE</span>
 <span class="sd">            The ODE for which code will be generated</span>
 <span class="sd">        monitored : list</span>
 <span class="sd">            A list of name of monitored intermediates for which evaluation</span>
@@ -2505,7 +2506,7 @@
         <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span>
 
 
-<span class="k">class</span> <span class="nc">JuliaCodeGenerator</span><span class="p">(</span><span class="n">BaseCodeGenerator</span><span class="p">):</span>
+<div class="viewcode-block" id="JuliaCodeGenerator"><a class="viewcode-back" href="../../../gotran.codegeneration.html#gotran.JuliaCodeGenerator">[docs]</a><span class="k">class</span> <span class="nc">JuliaCodeGenerator</span><span class="p">(</span><span class="n">BaseCodeGenerator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A Julia Code generator</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -2522,7 +2523,7 @@
     <span class="n">indent_str</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span>
     <span class="n">to_code</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">name</span> <span class="p">:</span> <span class="n">juliacode</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
-    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="JuliaCodeGenerator.default_parameters"><a class="viewcode-back" href="../../../gotran.codegeneration.html#gotran.JuliaCodeGenerator.default_parameters">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">default_parameters</span><span class="p">():</span>
         <span class="c1"># Start out with a copy of the global parameters</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">generation</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -2533,9 +2534,9 @@
         <span class="n">params</span><span class="o">.</span><span class="n">functions</span><span class="o">.</span><span class="n">rhs</span><span class="p">[</span><span class="s1">&#39;result_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;dy&#39;</span>
         <span class="n">params</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">states</span><span class="p">[</span><span class="s1">&#39;array_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span>
 
-        <span class="k">return</span> <span class="n">params</span>
+        <span class="k">return</span> <span class="n">params</span></div>
 
-    <span class="k">def</span> <span class="nf">args</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp</span><span class="p">):</span>
+<div class="viewcode-block" id="JuliaCodeGenerator.args"><a class="viewcode-back" href="../../../gotran.codegeneration.html#gotran.JuliaCodeGenerator.args">[docs]</a>    <span class="k">def</span> <span class="nf">args</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Build argument str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2582,10 +2583,10 @@
 
 
 
-        <span class="k">return</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ret_args</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ret_args</span><span class="p">)</span></div>
 
 
-    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="JuliaCodeGenerator.wrap_body_with_function_prototype"><a class="viewcode-back" href="../../../gotran.codegeneration.html#gotran.JuliaCodeGenerator.wrap_body_with_function_prototype">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">wrap_body_with_function_prototype</span><span class="p">(</span><span class="n">body_lines</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> \
                                           <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -2615,7 +2616,7 @@
 
         <span class="c1"># Append body to prototyp</span>
         <span class="n">prototype</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">prototype</span>
+        <span class="k">return</span> <span class="n">prototype</span></div>
 
     <span class="k">def</span> <span class="nf">_init_arguments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp</span><span class="p">):</span>
 
@@ -2745,7 +2746,7 @@
 
         <span class="k">return</span> <span class="n">body_lines</span>
 
-    <span class="k">def</span> <span class="nf">function_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">include_signature</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="JuliaCodeGenerator.function_code"><a class="viewcode-back" href="../../../gotran.codegeneration.html#gotran.JuliaCodeGenerator.function_code">[docs]</a>    <span class="k">def</span> <span class="nf">function_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">include_signature</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate code for a single function given by a CodeComponent</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2780,9 +2781,9 @@
                 <span class="n">body_lines</span><span class="p">,</span> <span class="n">comp</span><span class="o">.</span><span class="n">function_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">(</span><span class="n">comp</span><span class="p">),</span> \
                 <span class="n">comp</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">body_lines</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">body_lines</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span></div>
 
-    <span class="k">def</span> <span class="nf">init_states_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="JuliaCodeGenerator.init_states_code"><a class="viewcode-back" href="../../../gotran.codegeneration.html#gotran.JuliaCodeGenerator.init_states_code">[docs]</a>    <span class="k">def</span> <span class="nf">init_states_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate code for setting initial condition</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2822,9 +2823,9 @@
             <span class="n">body_lines</span><span class="p">,</span> <span class="s2">&quot;init_state_values&quot;</span><span class="p">,</span> <span class="s2">&quot;; kwargs...&quot;</span><span class="p">,</span> \
             <span class="s2">&quot;Initialize state values&quot;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">init_function</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">init_function</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span></div>
 
-    <span class="k">def</span> <span class="nf">init_parameters_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="JuliaCodeGenerator.init_parameters_code"><a class="viewcode-back" href="../../../gotran.codegeneration.html#gotran.JuliaCodeGenerator.init_parameters_code">[docs]</a>    <span class="k">def</span> <span class="nf">init_parameters_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate code for setting parameters</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2865,9 +2866,9 @@
             <span class="n">body_lines</span><span class="p">,</span> <span class="s2">&quot;init_parameter_values&quot;</span><span class="p">,</span> \
             <span class="s2">&quot;; kwargs...&quot;</span><span class="p">,</span> <span class="s2">&quot;Initialize parameter values&quot;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span></div>
 
-    <span class="k">def</span> <span class="nf">state_name_to_index_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="JuliaCodeGenerator.state_name_to_index_code"><a class="viewcode-back" href="../../../gotran.codegeneration.html#gotran.JuliaCodeGenerator.state_name_to_index_code">[docs]</a>    <span class="k">def</span> <span class="nf">state_name_to_index_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return code for index handling for states</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2893,9 +2894,9 @@
             <span class="n">body_lines</span><span class="p">,</span> <span class="s2">&quot;state_indices&quot;</span><span class="p">,</span> \
             <span class="s2">&quot;states...&quot;</span><span class="p">,</span> <span class="s2">&quot;State indices&quot;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span></div>
 
-    <span class="k">def</span> <span class="nf">param_name_to_index_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="JuliaCodeGenerator.param_name_to_index_code"><a class="viewcode-back" href="../../../gotran.codegeneration.html#gotran.JuliaCodeGenerator.param_name_to_index_code">[docs]</a>    <span class="k">def</span> <span class="nf">param_name_to_index_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return code for index handling for parameters</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2922,9 +2923,9 @@
             <span class="n">body_lines</span><span class="p">,</span> <span class="s2">&quot;parameter_indices&quot;</span><span class="p">,</span> \
             <span class="s2">&quot;params...&quot;</span><span class="p">,</span> <span class="s2">&quot;Parameter indices&quot;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span></div>
 
-    <span class="k">def</span> <span class="nf">monitor_name_to_index_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">monitored</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="JuliaCodeGenerator.monitor_name_to_index_code"><a class="viewcode-back" href="../../../gotran.codegeneration.html#gotran.JuliaCodeGenerator.monitor_name_to_index_code">[docs]</a>    <span class="k">def</span> <span class="nf">monitor_name_to_index_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">monitored</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return code for index handling for monitored</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2956,12 +2957,12 @@
             <span class="n">body_lines</span><span class="p">,</span> <span class="s2">&quot;monitor_indices&quot;</span><span class="p">,</span> \
             <span class="s2">&quot;monitored...&quot;</span><span class="p">,</span> <span class="s2">&quot;Monitor indices&quot;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indent_and_split_lines</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">))</span></div>
 
-    <span class="k">def</span> <span class="nf">componentwise_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">include_signature</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> \
+<div class="viewcode-block" id="JuliaCodeGenerator.componentwise_code"><a class="viewcode-back" href="../../../gotran.codegeneration.html#gotran.JuliaCodeGenerator.componentwise_code">[docs]</a>    <span class="k">def</span> <span class="nf">componentwise_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">include_signature</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> \
                            <span class="n">return_body_lines</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Generation of componentwise_rhs_evaluation code is not &quot;</span>
-                <span class="s2">&quot;yet implemented for Python backend.&quot;</span><span class="p">)</span>
+                <span class="s2">&quot;yet implemented for Python backend.&quot;</span><span class="p">)</span></div>
 
 <span class="c1">#     def mass_matrix(self, ode, indent=0):</span>
 <span class="c1">#         check_arg(ode, ODE)</span>
@@ -3001,7 +3002,7 @@
 <span class="c1"># {1}</span>
 <span class="c1"># &quot;&quot;&quot;.format(name, &quot;\n\n&quot;.join(code_list))</span>
 
-    <span class="k">def</span> <span class="nf">module_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">monitored</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="JuliaCodeGenerator.module_code"><a class="viewcode-back" href="../../../gotran.codegeneration.html#gotran.JuliaCodeGenerator.module_code">[docs]</a>    <span class="k">def</span> <span class="nf">module_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ode</span><span class="p">,</span> <span class="n">monitored</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
         <span class="c1"># self.params.functions.rhs[&#39;result_name&#39;] = &#39;dy&#39;</span>
 
@@ -3016,7 +3017,7 @@
         <span class="k">return</span>  <span class="s2">&quot;&quot;&quot;# Gotran generated code for the  &quot;</span><span class="si">{0}</span><span class="s2">&quot; model</span>
 
 <span class="si">{1}</span><span class="s2"></span>
-<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ode</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">code_list</span><span class="p">))</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ode</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">code_list</span><span class="p">))</span></div></div>
 </pre></div>
 
            </div>
